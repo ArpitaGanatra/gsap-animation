@@ -1,10 +1,9 @@
 "use client";
 
-import * as THREE from "three";
-import { useRef, useEffect, useState } from "react";
-import { Canvas, extend, useFrame } from "@react-three/fiber";
 import { Image } from "@react-three/drei";
+import { Canvas, extend, useFrame } from "@react-three/fiber";
 import { geometry } from "maath";
+import { useEffect, useRef, useState } from "react";
 
 extend(geometry);
 
@@ -47,11 +46,13 @@ function StackedCards() {
     cardsRef.current.forEach((card, index) => {
       if (!card) return;
 
-      // Compute new Z position with smooth wrapping
       let zIndex = (index - scrollIndex) % NUM_CARDS;
       if (zIndex < 0) zIndex += NUM_CARDS;
 
-      card.position.set(-1, -1, (-zIndex * SPACING) / 1.5);
+      const zOffset = (-zIndex * SPACING) / 1.5;
+
+      card.position.set(-1, -0.5, zOffset);
+      card.rotation.set(0, -0.3, 0);
     });
   });
 
