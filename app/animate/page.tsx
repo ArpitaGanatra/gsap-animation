@@ -4,12 +4,15 @@ import { Image } from "@react-three/drei";
 import { Canvas, extend, useFrame } from "@react-three/fiber";
 import { geometry } from "maath";
 import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 
 extend(geometry);
 
 const NUM_CARDS = 17;
-const SPACING = 2; // Space between cards
-const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
+const SPACING = 2;
+const SCROLL_THRESHOLD = 50;
+const HOVER_OFFSET = 0.2; // Increased offset for more noticeable effect
+const LERP_FACTOR = 0.1; // Controls animation smoothness (0-1)
 
 const App = () => (
   <Canvas
@@ -26,15 +29,26 @@ const App = () => (
 function StackedCards() {
   const cardsRef = useRef([]);
   const [scrollIndex, setScrollIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const scrollAmount = useRef(0);
+  const targetPositions = useRef(
+    Array(NUM_CARDS)
+      .fill(null)
+      .map(() => new THREE.Vector3())
+  );
+  const currentVelocities = useRef(
+    Array(NUM_CARDS)
+      .fill(null)
+      .map(() => new THREE.Vector3())
+  );
 
   useEffect(() => {
     const handleScroll = (event: { deltaY: number }) => {
       scrollAmount.current += event.deltaY;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
-        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current)); // Move one step
-        scrollAmount.current = 0; // Reset accumulator
+        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
+        scrollAmount.current = 0;
       }
     };
 
@@ -42,7 +56,7 @@ function StackedCards() {
     return () => window.removeEventListener("wheel", handleScroll);
   }, []);
 
-  useFrame(() => {
+  useFrame((state, delta) => {
     cardsRef.current.forEach((card, index) => {
       if (!card) return;
 
@@ -50,9 +64,35 @@ function StackedCards() {
       if (zIndex < 0) zIndex += NUM_CARDS;
 
       const zOffset = (-zIndex * SPACING) / 1.5;
+      const isHovered = index === hoveredIndex;
 
-      card.position.set(-1, -0.5, zOffset);
-      card.rotation.set(0, -0.3, 0);
+      // Set target position
+      const targetX = isHovered ? -1 + HOVER_OFFSET : -1;
+      const targetY = -0.5;
+      const targetRotationY = isHovered ? -0.2 : -0.3; // Slight rotation change on hover
+
+      // Update target position
+      targetPositions.current[index].set(targetX, targetY, zOffset);
+
+      // Smooth interpolation using spring-like motion
+      const currentPosition = card.position;
+      const currentVelocity = currentVelocities.current[index];
+
+      // Position interpolation
+      currentPosition.x +=
+        (targetPositions.current[index].x - currentPosition.x) * LERP_FACTOR;
+      currentPosition.y +=
+        (targetPositions.current[index].y - currentPosition.y) * LERP_FACTOR;
+      currentPosition.z +=
+        (targetPositions.current[index].z - currentPosition.z) * LERP_FACTOR;
+
+      // Rotation interpolation
+      card.rotation.y += (targetRotationY - card.rotation.y) * LERP_FACTOR;
+
+      // Add subtle floating animation when hovered
+      if (isHovered) {
+        card.position.y += Math.sin(state.clock.elapsedTime * 2) * 0.002;
+      }
     });
   });
 
@@ -74,6 +114,14 @@ function StackedCards() {
           opacity={1}
           position={[0, 0, -i * SPACING]}
           url={images[i % images.length]}
+          onPointerOver={(e) => {
+            e.stopPropagation();
+            setHoveredIndex(i);
+          }}
+          onPointerOut={(e) => {
+            e.stopPropagation();
+            setHoveredIndex(null);
+          }}
         />
       ))}
     </group>
