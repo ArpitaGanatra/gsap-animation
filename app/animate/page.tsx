@@ -9,16 +9,15 @@ import { geometry } from "maath";
 extend(geometry);
 
 const NUM_CARDS = 17;
-const SPACING = 1.2; // Space between cards
-const SCROLL_THRESHOLD = 40; // Pixels required to trigger movement
+const SPACING = 2; // Space between cards
+const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
 const App = () => (
   <Canvas
     dpr={[1, 1.5]}
     camera={{
-      position: [1, 0, 2.5],
-      fov: 30,
-      rotation: [0, 0, 0],
+      fov: 8,
+      position: [3, 2, 10],
     }}
   >
     <StackedCards />
@@ -31,7 +30,7 @@ function StackedCards() {
   const scrollAmount = useRef(0);
 
   useEffect(() => {
-    const handleScroll = (event) => {
+    const handleScroll = (event: { deltaY: number }) => {
       scrollAmount.current += event.deltaY;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
@@ -52,7 +51,7 @@ function StackedCards() {
       let zIndex = (index - scrollIndex) % NUM_CARDS;
       if (zIndex < 0) zIndex += NUM_CARDS;
 
-      card.position.set(0, 0, -zIndex * SPACING);
+      card.position.set(-1, -1, (-zIndex * SPACING) / 1.5);
     });
   });
 
