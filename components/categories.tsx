@@ -8,23 +8,27 @@ export default function Categories() {
         <small className="text-8 mt-[0px]">144</small>
       </button>
       <button className="button uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs">
-        <span className="translate-y-[1px]">Graphic Identity</span>
+        <span className="translate-y-[1px]">Founders</span>
         <small className="text-8 mt-[0px]">43</small>
       </button>
       <button className="button uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs">
-        <span className="translate-y-[1px]">Site design</span>
+        <span className="translate-y-[1px]">VCs</span>
         <small className="text-8 mt-[0px]">25</small>
       </button>
       <button className="button uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs">
-        <span className="translate-y-[1px]">AI</span>
+        <span className="translate-y-[1px]">Operators</span>
         <small className="text-8 mt-[0px]">61</small>
       </button>
       <button className="button uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs">
-        <span className="translate-y-[1px]">Video</span>
+        <span className="translate-y-[1px]">Dubai</span>
         <small className="text-8 mt-[0px]">14</small>
       </button>
       <button className="button uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs">
-        <span className="translate-y-[1px]">3D</span>
+        <span className="translate-y-[1px]">NYC</span>
+        <small className="text-8 mt-[0px]">17</small>
+      </button>
+      <button className="button uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs">
+        <span className="translate-y-[1px]">SF</span>
         <small className="text-8 mt-[0px]">17</small>
       </button>
     </div>
