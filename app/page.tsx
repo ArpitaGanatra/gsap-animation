@@ -58,10 +58,13 @@ function StackedCards({ category }) {
     cardsRef.current.forEach((card, index) => {
       if (!card) return;
 
+      // Calculate normalized index that wraps around
       let zIndex = (index - scrollIndex) % currentPodcasts.length;
       if (zIndex < 0) zIndex += currentPodcasts.length;
 
-      const zOffset = (-zIndex * SPACING) / 1.5;
+      // Adjust the zOffset calculation to start cards inside the screen
+      // and create a circular effect
+      const zOffset = (-zIndex * SPACING) / 1.5 + 3; // Added +3 to bring cards forward
       const isHovered = index === hoveredIndex;
 
       card.position.lerp(
@@ -72,7 +75,6 @@ function StackedCards({ category }) {
         },
         0.1
       );
-      // card.rotation.y = isHovered ? -0.1 : -0.3;
     });
   });
 
