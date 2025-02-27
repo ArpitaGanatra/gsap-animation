@@ -155,6 +155,11 @@ function StackedCards({ category }: StackedCardsProps) {
             url={podcast.image}
             alt={`${podcast.guest} - ${podcast.company}`}
             title={podcast.guest}
+            onError={(e) => {
+              console.warn(`Failed to load image for ${podcast.guest}:`, e);
+              // Optionally set a fallback image
+              e.target.src = "/logos/polygon.png"; // Add a fallback image to your public directory
+            }}
           >
             <Html
               position={[mousePosition.x, mousePosition.y + 0.2, 0]}
