@@ -38,6 +38,7 @@ function StackedCards({ category }) {
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cardDimensions, setCardDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     const handleScroll = (event: { deltaY: number }) => {
@@ -103,11 +104,18 @@ function StackedCards({ category }) {
 
   const currentPodcasts = getPodcastsByCategory();
 
-  // Add mouse move handler
-  const handlePointerMove = (event) => {
-    setMousePosition({
-      x: (event.clientX / window.innerWidth) * 2 - 1,
-      y: -(event.clientY / window.innerHeight) * 2 + 1,
+  // Update handlePointerMove to calculate position relative to card
+  const handlePointerMove = (event, mesh) => {
+    if (!mesh) return;
+
+    const rect = event.target.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+    setMousePosition({ x, y });
+    setCardDimensions({
+      width: rect.width,
+      height: rect.height,
     });
   };
 
@@ -118,7 +126,7 @@ function StackedCards({ category }) {
           key={i}
           onPointerEnter={() => setHoveredIndex(i)}
           onPointerLeave={() => setHoveredIndex(null)}
-          onPointerMove={handlePointerMove}
+          onPointerMove={(e) => handlePointerMove(e, e.object)}
         >
           <Image
             ref={(el) => (cardsRef.current[i] = el)}
@@ -130,7 +138,7 @@ function StackedCards({ category }) {
             title={podcast.guest}
           >
             <Html
-              position={[mousePosition.x, mousePosition.y + 0.1, 0]}
+              position={[mousePosition.x, mousePosition.y + 0.2, 0]}
               center
               style={{ pointerEvents: "none" }}
             >
@@ -146,7 +154,7 @@ function StackedCards({ category }) {
                   fontSize: "16px",
                   fontWeight: "bold",
                   whiteSpace: "nowrap",
-                  transform: "translateY(-100%)", // Move text above cursor
+                  transform: "translateY(-100%)", // Move tooltip above cursor
                 }}
               >
                 {podcast.guest}
