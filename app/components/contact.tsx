@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
 export default function Contact({ onClose }: { onClose: () => void }) {
   const containerRef = useRef(null);
@@ -39,18 +40,26 @@ export default function Contact({ onClose }: { onClose: () => void }) {
         className="gap-2 flex justify-center items-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-[0.375rem] px-4 py-2 hover:text-black transition-colors duration-200">
-          cryptotownpod@gmail.com
-        </button>
-        <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-full px-4 py-2 hover:text-black transition-colors duration-200">
-          Instagram
-        </button>
-        <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-full px-4 py-2 hover:text-black transition-colors duration-200">
-          Twitter
-        </button>
-        <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-[0.375rem] px-4 py-2 hover:text-black transition-colors duration-200">
-          25, RUE HENREY MONNIER, 75010 PARIS
-        </button>
+        <Link href="mailto:cryptotownpod@gmail.com" target="_blank">
+          <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-[0.375rem] px-4 py-2 hover:text-black transition-colors duration-200">
+            cryptotownpod@gmail.com
+          </button>
+        </Link>
+        <Link href="https://www.youtube.com/@CryptoTownPod" target="_blank">
+          <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-full px-4 py-2 hover:text-black transition-colors duration-200">
+            YouTube
+          </button>
+        </Link>
+        <Link href="https://x.com/sharvilmalik" target="_blank">
+          <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-full px-4 py-2 hover:text-black transition-colors duration-200">
+            Twitter
+          </button>
+        </Link>
+        <Link href="https://pods.media/crypto-town" target="_blank">
+          <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-[0.375rem] px-4 py-2 hover:text-black transition-colors duration-200">
+            Pods Media
+          </button>
+        </Link>
       </div>
     </div>
   );

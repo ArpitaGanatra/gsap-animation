@@ -4,6 +4,9 @@ import { Image } from "@react-three/drei";
 import { Canvas, extend, useFrame } from "@react-three/fiber";
 import { geometry } from "maath";
 import { useEffect, useRef, useState } from "react";
+import { useCategory } from "./context/CategoryContext";
+import BottomNav from "@/components/bottom-nav";
+import { podcastData } from "@/lib/podcast-data";
 
 extend(geometry);
 
@@ -11,19 +14,26 @@ const NUM_CARDS = 17;
 const SPACING = 2; // Space between cards
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
-const Home = () => (
-  <Canvas
-    dpr={[1, 1.5]}
-    camera={{
-      fov: 8,
-      position: [3, 2, 10],
-    }}
-  >
-    <StackedCards />
-  </Canvas>
-);
+const Home = () => {
+  const { selectedCategory } = useCategory();
 
-function StackedCards() {
+  return (
+    <>
+      <Canvas
+        dpr={[1, 1.5]}
+        camera={{
+          fov: 8,
+          position: [3, 2, 10],
+        }}
+      >
+        <StackedCards category={selectedCategory} />
+      </Canvas>
+      <BottomNav />
+    </>
+  );
+};
+
+function StackedCards({ category }) {
   const cardsRef = useRef([]);
   const [scrollIndex, setScrollIndex] = useState(0);
   const scrollAmount = useRef(0);
@@ -57,26 +67,41 @@ function StackedCards() {
     });
   });
 
-  const images = [
-    "https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=1200",
-    "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=1200",
-    "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200",
-    "https://images.unsplash.com/photo-1521747116042-5a810fda9664?w=1200",
-    "https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?w=1200",
-  ];
+  // Filter podcast data based on category
+  const getPodcastsByCategory = () => {
+    if (category === "/") return podcastData;
+    if (category === "/founders")
+      return podcastData.filter((p) => p.category === "Founder");
+    if (category === "/vcs")
+      return podcastData.filter((p) => p.category === "VC");
+    if (category === "/operators") {
+      return podcastData.filter((p) =>
+        ["COO", "CEO", "Ecosystem", "Growth"].includes(p.category)
+      );
+    }
+    return podcastData; // Default fallback
+  };
+
+  const currentPodcasts = getPodcastsByCategory();
 
   return (
     <group>
       {Array.from({ length: NUM_CARDS }, (_, i) => (
-        <Image
-          key={i}
-          ref={(el) => (cardsRef.current[i] = el)}
-          transparent
-          opacity={1}
-          position={[0, 0, -i * SPACING]}
-          url={images[i % images.length]}
-          alt={`card-${i}`}
-        />
+        <div key={i} className="card" title={podcast.guest}>
+          <Image
+            key={i}
+            ref={(el) => (cardsRef.current[i] = el)}
+            transparent
+            opacity={1}
+            position={[0, 0, -i * SPACING]}
+            url={currentPodcasts[i % currentPodcasts.length].image}
+            alt={`${currentPodcasts[i % currentPodcasts.length].guest} - ${
+              currentPodcasts[i % currentPodcasts.length].company
+            }`}
+            title={currentPodcasts[i % currentPodcasts.length].guest}
+            className="podcast-card"
+          />
+        </div>
       ))}
     </group>
   );
