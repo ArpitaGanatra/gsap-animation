@@ -1,6 +1,6 @@
 "use client";
 
-import { Image } from "@react-three/drei";
+import { Image, Html } from "@react-three/drei";
 import { Canvas, extend, useFrame } from "@react-three/fiber";
 import { geometry } from "maath";
 import { useEffect, useRef, useState } from "react";
@@ -10,7 +10,6 @@ import { podcastData } from "@/lib/podcast-data";
 
 extend(geometry);
 
-const NUM_CARDS = 17;
 const SPACING = 2; // Space between cards
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
@@ -57,8 +56,8 @@ function StackedCards({ category }) {
     cardsRef.current.forEach((card, index) => {
       if (!card) return;
 
-      let zIndex = (index - scrollIndex) % NUM_CARDS;
-      if (zIndex < 0) zIndex += NUM_CARDS;
+      let zIndex = (index - scrollIndex) % currentPodcasts.length;
+      if (zIndex < 0) zIndex += currentPodcasts.length;
 
       const zOffset = (-zIndex * SPACING) / 1.5;
 
@@ -86,22 +85,40 @@ function StackedCards({ category }) {
 
   return (
     <group>
-      {Array.from({ length: NUM_CARDS }, (_, i) => (
-        <div key={i} className="card" title={podcast.guest}>
+      {currentPodcasts.map((podcast, i) => (
+        <mesh key={i}>
           <Image
-            key={i}
             ref={(el) => (cardsRef.current[i] = el)}
             transparent
             opacity={1}
             position={[0, 0, -i * SPACING]}
-            url={currentPodcasts[i % currentPodcasts.length].image}
-            alt={`${currentPodcasts[i % currentPodcasts.length].guest} - ${
-              currentPodcasts[i % currentPodcasts.length].company
-            }`}
-            title={currentPodcasts[i % currentPodcasts.length].guest}
-            className="podcast-card"
-          />
-        </div>
+            url={podcast.image}
+            alt={`${podcast.guest} - ${podcast.company}`}
+            title={podcast.guest}
+          >
+            <Html>
+              <div
+                className="hover-content"
+                style={{
+                  opacity: 0,
+                  transition: "opacity 0.3s",
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  color: "white",
+                  padding: "8px",
+                  borderRadius: "4px",
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "0")}
+              >
+                {podcast.guest} - {podcast.company}
+              </div>
+            </Html>
+          </Image>
+        </mesh>
       ))}
     </group>
   );
