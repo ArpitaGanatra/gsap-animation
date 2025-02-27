@@ -37,6 +37,7 @@ function StackedCards({ category }) {
   const [scrollIndex, setScrollIndex] = useState(0);
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleScroll = (event: { deltaY: number }) => {
@@ -92,6 +93,14 @@ function StackedCards({ category }) {
 
   const currentPodcasts = getPodcastsByCategory();
 
+  // Add mouse move handler
+  const handlePointerMove = (event) => {
+    setMousePosition({
+      x: (event.clientX / window.innerWidth) * 2 - 1,
+      y: -(event.clientY / window.innerHeight) * 2 + 1,
+    });
+  };
+
   return (
     <group>
       {currentPodcasts.map((podcast, i) => (
@@ -99,6 +108,7 @@ function StackedCards({ category }) {
           key={i}
           onPointerEnter={() => setHoveredIndex(i)}
           onPointerLeave={() => setHoveredIndex(null)}
+          onPointerMove={handlePointerMove}
         >
           <Image
             ref={(el) => (cardsRef.current[i] = el)}
@@ -109,25 +119,27 @@ function StackedCards({ category }) {
             alt={`${podcast.guest} - ${podcast.company}`}
             title={podcast.guest}
           >
-            <Html>
+            <Html
+              position={[mousePosition.x, mousePosition.y + 0.1, 0]}
+              center
+              style={{ pointerEvents: "none" }}
+            >
               <div
                 className="hover-content"
                 style={{
-                  opacity: 0,
+                  opacity: hoveredIndex === i ? 1 : 0,
                   transition: "opacity 0.3s",
-                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  backgroundColor: "rgba(0, 0, 0, 0.8)",
                   color: "white",
-                  padding: "8px",
-                  borderRadius: "4px",
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
+                  padding: "12px 20px",
+                  borderRadius: "8px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  whiteSpace: "nowrap",
+                  transform: "translateY(-100%)", // Move text above cursor
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "0")}
               >
-                {podcast.guest} - {podcast.company}
+                {podcast.guest}
               </div>
             </Html>
           </Image>
