@@ -63,9 +63,12 @@ function StackedCards({ category }) {
       if (zIndex < 0) zIndex += currentPodcasts.length;
 
       // Adjust the zOffset calculation to start cards inside the screen
-      // and create a circular effect
-      const zOffset = (-zIndex * SPACING) / 1.5 + 3; // Added +3 to bring cards forward
+      const zOffset = (-zIndex * SPACING) / 1.5 + 3;
       const isHovered = index === hoveredIndex;
+
+      // Calculate opacity based on position
+      // Cards will fade out when they're in the "back" half of the rotation
+      const opacity = zIndex > currentPodcasts.length / 2 ? 0 : 1;
 
       card.position.lerp(
         {
@@ -75,6 +78,11 @@ function StackedCards({ category }) {
         },
         0.1
       );
+
+      // Update material opacity
+      if (card.material) {
+        card.material.opacity = opacity;
+      }
     });
   });
 
