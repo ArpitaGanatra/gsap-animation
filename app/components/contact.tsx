@@ -6,10 +6,11 @@ export default function Contact({ onClose }: { onClose: () => void }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    gsap.set(containerRef.current, { opacity: 0 });
+    const container = containerRef.current;
+    gsap.set(container, { opacity: 0 });
 
     requestAnimationFrame(() => {
-      gsap.to(containerRef.current, {
+      gsap.to(container, {
         opacity: 1,
         duration: 1.5,
         ease: "power2.inOut",
@@ -17,7 +18,9 @@ export default function Contact({ onClose }: { onClose: () => void }) {
     });
 
     return () => {
-      gsap.killTweensOf(containerRef?.current);
+      if (container) {
+        gsap.killTweensOf(container);
+      }
     };
   }, []);
 

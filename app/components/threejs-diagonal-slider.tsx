@@ -40,7 +40,9 @@ export const ThreeDiagonalSlider = ({
   const cardsRef = useRef<THREE.Mesh[]>([]);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    const cards = cardsRef.current;
+    if (!container) return;
 
     // Setup scene
     const scene = new THREE.Scene();
@@ -63,7 +65,7 @@ export const ThreeDiagonalSlider = ({
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Create cards - Increased dimensions from 600x400 to 800x600
@@ -130,7 +132,7 @@ export const ThreeDiagonalSlider = ({
       });
     };
 
-    containerRef.current.addEventListener("wheel", handleWheel, {
+    container.addEventListener("wheel", handleWheel, {
       passive: false,
     });
 
@@ -147,8 +149,8 @@ export const ThreeDiagonalSlider = ({
 
     // Cleanup
     return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener("wheel", handleWheel);
+      if (container) {
+        container.removeEventListener("wheel", handleWheel);
       }
       window.removeEventListener("resize", handleResize);
 
@@ -156,11 +158,13 @@ export const ThreeDiagonalSlider = ({
         rendererRef.current.dispose();
       }
 
-      cardsRef.current.forEach((card) => {
-        scene.remove(card);
-        card.geometry.dispose();
-        (card.material as THREE.MeshBasicMaterial).dispose();
-      });
+      if (cards) {
+        cards.forEach((card) => {
+          scene.remove(card);
+          card.geometry.dispose();
+          (card.material as THREE.MeshBasicMaterial).dispose();
+        });
+      }
     };
   }, [items, offset, colors]);
 

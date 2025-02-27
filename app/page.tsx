@@ -1,14 +1,12 @@
 "use client";
 
 import { Image, Html } from "@react-three/drei";
-import { Canvas, extend, useFrame } from "@react-three/fiber";
-import { geometry } from "maath";
+import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { useCategory } from "./context/CategoryContext";
 import BottomNav from "@/components/bottom-nav";
 import { podcastData } from "@/lib/podcast-data";
-
-extend(geometry);
+import * as THREE from "three";
 
 const SPACING = 2; // Space between cards
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
@@ -32,31 +30,49 @@ const Home = () => {
   );
 };
 
-function StackedCards({ category }) {
-  const cardsRef = useRef([]);
+// Update the CardElement type
+type CardElement = THREE.Mesh & {
+  material: THREE.Material & { opacity: number };
+};
+
+interface StackedCardsProps {
+  category: string;
+}
+
+function StackedCards({ category }: StackedCardsProps) {
+  const cardsRef = useRef<(CardElement | null)[]>([]);
   const [scrollIndex, setScrollIndex] = useState(0);
   const scrollAmount = useRef(0);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cardDimensions, setCardDimensions] = useState({ width: 0, height: 0 });
+  // const [cardDimensions, setCardDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    const handleScroll = (event: { deltaY: number }) => {
-      event.preventDefault(); // Prevent default scroll behavior
+    const handleScroll = (event: WheelEvent) => {
+      event.preventDefault();
       scrollAmount.current += event.deltaY;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
-        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current)); // Move one step
-        scrollAmount.current = 0; // Reset accumulator
+        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
+        scrollAmount.current = 0;
       }
     };
 
-    window.addEventListener("wheel", handleScroll, { passive: false }); // Add { passive: false } to allow preventDefault
-    return () => window.removeEventListener("wheel", handleScroll);
+    // Fix the ref warning by copying the ref value
+    const options = { passive: false };
+    window.addEventListener("wheel", handleScroll, options);
+
+    return () => {
+      window.removeEventListener("wheel", handleScroll);
+    };
   }, []);
 
   useFrame(() => {
-    cardsRef.current.forEach((card, index) => {
+    // Copy ref to local variable to avoid stale closure warning
+    const currentCards = cardsRef.current;
+    if (!currentCards) return;
+
+    currentCards.forEach((card, index) => {
       if (!card) return;
 
       // Calculate normalized index that wraps around
@@ -104,19 +120,20 @@ function StackedCards({ category }) {
 
   const currentPodcasts = getPodcastsByCategory();
 
-  // Update handlePointerMove to calculate position relative to card
-  const handlePointerMove = (event, mesh) => {
+  // Update handlePointerMove to use ThreeEvent
+  const handlePointerMove = (
+    event: ThreeEvent<PointerEvent>,
+    mesh: THREE.Mesh
+  ) => {
     if (!mesh) return;
 
-    const rect = event.target.getBoundingClientRect();
+    const rect = (event.target as HTMLElement)?.getBoundingClientRect();
+    if (!rect) return;
+
     const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
     setMousePosition({ x, y });
-    setCardDimensions({
-      width: rect.width,
-      height: rect.height,
-    });
   };
 
   return (
@@ -126,10 +143,12 @@ function StackedCards({ category }) {
           key={i}
           onPointerEnter={() => setHoveredIndex(i)}
           onPointerLeave={() => setHoveredIndex(null)}
-          onPointerMove={(e) => handlePointerMove(e, e.object)}
+          onPointerMove={(e) => handlePointerMove(e, e.object as THREE.Mesh)}
         >
           <Image
-            ref={(el) => (cardsRef.current[i] = el)}
+            ref={(el: CardElement | null) => {
+              cardsRef.current[i] = el;
+            }}
             transparent
             opacity={1}
             position={[0, 0, -i * SPACING]}
