@@ -36,6 +36,7 @@ function StackedCards({ category }) {
   const cardsRef = useRef([]);
   const [scrollIndex, setScrollIndex] = useState(0);
   const scrollAmount = useRef(0);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   useEffect(() => {
     const handleScroll = (event: { deltaY: number }) => {
@@ -60,9 +61,17 @@ function StackedCards({ category }) {
       if (zIndex < 0) zIndex += currentPodcasts.length;
 
       const zOffset = (-zIndex * SPACING) / 1.5;
+      const isHovered = index === hoveredIndex;
 
-      card.position.set(-1, -0.5, zOffset);
-      card.rotation.set(0, -0.3, 0);
+      card.position.lerp(
+        {
+          x: isHovered ? -0.5 : -1,
+          y: -0.5,
+          z: zOffset,
+        },
+        0.1
+      );
+      // card.rotation.y = isHovered ? -0.1 : -0.3;
     });
   });
 
@@ -86,7 +95,11 @@ function StackedCards({ category }) {
   return (
     <group>
       {currentPodcasts.map((podcast, i) => (
-        <mesh key={i}>
+        <mesh
+          key={i}
+          onPointerEnter={() => setHoveredIndex(i)}
+          onPointerLeave={() => setHoveredIndex(null)}
+        >
           <Image
             ref={(el) => (cardsRef.current[i] = el)}
             transparent
