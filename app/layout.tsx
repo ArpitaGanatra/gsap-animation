@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Categories from "@/components/categories";
 import { CategoryProvider } from "./context/CategoryContext";
+import SplashScreen from "@/components/SplashScreen";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen`}
       >
         <CategoryProvider>
+          <SplashScreen />
           <Navbar />
           {children}
           <Categories />
