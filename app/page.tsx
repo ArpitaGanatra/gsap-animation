@@ -22,6 +22,11 @@ const Home = () => {
           fov: 8,
           position: [3, 2, 10],
         }}
+        gl={{
+          powerPreference: "high-performance",
+          antialias: true,
+          preserveDrawingBuffer: true,
+        }}
       >
         <StackedCards category={selectedCategory} />
       </Canvas>
