@@ -66,9 +66,9 @@ function StackedCards({ category }) {
       const zOffset = (-zIndex * SPACING) / 1.5 + 3;
       const isHovered = index === hoveredIndex;
 
-      // Calculate opacity based on position
-      // Cards will fade out when they're in the "back" half of the rotation
-      const opacity = zIndex > currentPodcasts.length / 2 ? 0 : 1;
+      // Modified opacity calculation
+      // Make cards invisible when they're near the start or end of the sequence
+      const opacity = zIndex < 1 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
 
       card.position.lerp(
         {
