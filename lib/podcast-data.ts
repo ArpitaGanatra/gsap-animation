@@ -3,7 +3,7 @@ export const podcastData = [
     guest: "Rushi",
     company: "Movement Labs",
     category: "Founder",
-    image: "/logos/Movement-Labs.png",
+    image: "/logos/movement-labs.png",
   },
   {
     guest: "Eunice",
