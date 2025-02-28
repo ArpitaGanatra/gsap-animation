@@ -33,7 +33,7 @@ export default function AnimatedLogo() {
 
   return (
     <div ref={logoRef} className="absolute top-1 right-1 z-30">
-      <Image src="/logo.jpg" alt="logo" width={60} height={60} />
+      <img src="/logo.png" alt="logo" width={60} height={60} />
     </div>
   );
 }
