@@ -50,6 +50,7 @@ function StackedCards({ category }: StackedCardsProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const SPACING = isMobile ? 1 : 2; // Space between cards
+  const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
@@ -62,12 +63,39 @@ function StackedCards({ category }: StackedCardsProps) {
       }
     };
 
-    // Fix the ref warning by copying the ref value
+    // Add touch event handlers
+    const handleTouchStart = (event: TouchEvent) => {
+      touchStartY.current = event.touches[0].clientY;
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      if (touchStartY.current === null) return;
+
+      const touchDelta = touchStartY.current - event.touches[0].clientY;
+      scrollAmount.current += touchDelta;
+
+      if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
+        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
+        scrollAmount.current = 0;
+        touchStartY.current = event.touches[0].clientY;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      touchStartY.current = null;
+    };
+
     const options = { passive: false };
     window.addEventListener("wheel", handleScroll, options);
+    window.addEventListener("touchstart", handleTouchStart, options);
+    window.addEventListener("touchmove", handleTouchMove, options);
+    window.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
