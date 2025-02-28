@@ -10,6 +10,7 @@ export default function BottomNav() {
   return (
     <div className="absolute left-0.5 bottom-0.5 z-20">
       <div className="fixed inset-0 bg-gradient-radial from-white/50 via-transparent to-transparent from-0% via-30% to-100% pointer-events-none bottom-0 left-0 bg-[radial-gradient(at_bottom_left,_var(--tw-gradient-stops))]" />
+      <div className="fixed inset-0 bg-gradient-radial to-white/50 via-transparent from-transparent from-0% via-30% to-100% pointer-events-none top-0 right-0 -z-10 bg-[radial-gradient(at_bottom_left,_var(--tw-gradient-stops))]" />
 
       <div className="flex items-center gap-0.5 p-0.5">
         <button
