@@ -40,7 +40,7 @@ export default function Contact({ onClose }: { onClose: () => void }) {
       onClick={handleClose}
     >
       <div
-        className="gap-2 flex justify-center items-center"
+        className="gap-2 flex justify-center items-center flex-wrap"
         onClick={(e) => e.stopPropagation()}
       >
         <Link href="mailto:cryptotownpod@gmail.com" target="_blank">

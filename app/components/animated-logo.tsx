@@ -32,7 +32,7 @@ export default function AnimatedLogo() {
   }, [pathname]);
 
   return (
-    <div ref={logoRef} className="absolute top-1 right-1 z-30">
+    <div ref={logoRef} className="hidden md:block absolute top-1 right-1 z-30">
       <Image src="/logo.png" alt="logo" width={60} height={60} />
     </div>
   );

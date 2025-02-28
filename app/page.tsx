@@ -8,7 +8,6 @@ import BottomNav from "@/components/bottom-nav";
 import { podcastData } from "@/lib/podcast-data";
 import * as THREE from "three";
 
-const SPACING = 2; // Space between cards
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
 const Home = () => {
@@ -50,7 +49,8 @@ function StackedCards({ category }: StackedCardsProps) {
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  // const [cardDimensions, setCardDimensions] = useState({ width: 0, height: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+  const SPACING = isMobile ? 1 : 2; // Space between cards
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
@@ -108,6 +108,18 @@ function StackedCards({ category }: StackedCardsProps) {
     });
   });
 
+  // Add useEffect to detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // 768px is typical tablet/mobile breakpoint
+    };
+
+    checkMobile(); // Check on initial render
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // Filter podcast data based on category
   const getPodcastsByCategory = () => {
     if (category === "/") return podcastData;
@@ -156,6 +168,7 @@ function StackedCards({ category }: StackedCardsProps) {
             }}
             transparent
             opacity={1}
+            scale={isMobile ? [0.4, 0.4, 0.4] : [1, 1, 1]}
             position={[0, 0, -i * SPACING]}
             url={podcast.image}
             alt={`${podcast.guest} - ${podcast.company}`}

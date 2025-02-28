@@ -3,9 +3,11 @@
 import React from "react";
 import { useCategory } from "@/app/context/CategoryContext";
 import { podcastData } from "@/lib/podcast-data";
+import { usePathname } from "next/navigation";
 
 export default function Categories() {
   const { selectedCategory, setSelectedCategory } = useCategory();
+  const pathname = usePathname();
 
   // Calculate counts
   const counts = {
@@ -18,7 +20,11 @@ export default function Categories() {
   };
 
   return (
-    <div className="flex flex-col gap-0.5 items-end absolute bottom-0.5 right-0.5">
+    <div
+      className={`${
+        pathname === "/" ? "flex" : "hidden"
+      } md:flex flex-col gap-0.5 items-end absolute bottom-0.5 right-0.5`}
+    >
       {[
         { name: "All", count: counts.all, path: "/" },
         { name: "Founders", count: counts.founders, path: "/founders" },
