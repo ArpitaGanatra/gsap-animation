@@ -57,7 +57,7 @@ export const podcastData = [
     guest: "Rob",
     company: "Dragonfly",
     category: "VC",
-    image: "/logos/Dragonfly.png",
+    image: "/logos/dragonfly.png",
   },
   {
     guest: "Shayon",
