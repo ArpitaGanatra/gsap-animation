@@ -162,7 +162,6 @@ function StackedCards({ category }: StackedCardsProps) {
             title={podcast.guest}
             onError={(e: { target: HTMLImageElement }) => {
               console.warn(`Failed to load image for ${podcast.guest}:`, e);
-
               e.target.src = "/logos/polygon.png";
             }}
           >

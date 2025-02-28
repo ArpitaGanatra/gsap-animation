@@ -1,10 +1,11 @@
+import SplashScreen from "@/components/SplashScreen";
+import Categories from "@/components/categories";
+import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/navbar";
-import Categories from "@/components/categories";
+import AnimatedLogo from "./components/animated-logo";
 import { CategoryProvider } from "./context/CategoryContext";
-import SplashScreen from "@/components/SplashScreen";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <CategoryProvider>
           <SplashScreen />
+          <AnimatedLogo />
           <Navbar />
           {children}
           <Categories />
