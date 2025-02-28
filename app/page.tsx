@@ -34,7 +34,6 @@ const Home = () => {
   );
 };
 
-// Update the CardElement type
 type CardElement = THREE.Mesh & {
   material: THREE.Material & { opacity: number };
 };
