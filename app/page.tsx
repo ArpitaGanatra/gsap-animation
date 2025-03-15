@@ -100,23 +100,24 @@ function StackedCards({ category }: StackedCardsProps) {
   }, []);
 
   useFrame(() => {
-    // Copy ref to local variable to avoid stale closure warning
     const currentCards = cardsRef.current;
     if (!currentCards) return;
+
+    // Calculate total visible cards (excluding first and last card which are invisible)
+    const visibleCards = currentPodcasts.length - 2;
+    // Calculate center offset based on total cards
+    const centerOffset = (visibleCards * SPACING) / 4;
 
     currentCards.forEach((card, index) => {
       if (!card) return;
 
-      // Calculate normalized index that wraps around
       let zIndex = (index - scrollIndex) % currentPodcasts.length;
       if (zIndex < 0) zIndex += currentPodcasts.length;
 
-      // Adjust the zOffset calculation to start cards inside the screen
-      const zOffset = (-zIndex * SPACING) / 1.5 + 3;
+      // Adjust zOffset to center the cards
+      const zOffset = (-zIndex * SPACING) / 1.5 + centerOffset;
       const isHovered = index === hoveredIndex;
 
-      // Modified opacity calculation
-      // Make cards invisible when they're near the start or end of the sequence
       const opacity = zIndex < 1 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
 
       card.position.lerp(
@@ -128,7 +129,6 @@ function StackedCards({ category }: StackedCardsProps) {
         0.1
       );
 
-      // Update material opacity
       if (card.material) {
         card.material.opacity = opacity;
       }
