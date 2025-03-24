@@ -213,7 +213,7 @@ function StackedCards({ category }: StackedCardsProps) {
               <div
                 className="hover-content"
                 style={{
-                  opacity: hoveredIndex === i ? 1 : 0,
+                  opacity: hoveredIndex === i && !isMobile ? 1 : 0,
                   transition: "opacity 0.3s",
                   backgroundColor: "rgba(0, 0, 0, 0.8)",
                   color: "white",
