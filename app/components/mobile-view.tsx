@@ -32,7 +32,7 @@ const MobileView = () => {
         dpr={[1, 1.5]}
         camera={{
           fov: 40,
-          position: [0, 0, 5],
+          position: [0, 0, 6],
         }}
         gl={{
           powerPreference: "high-performance",
@@ -62,7 +62,7 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const SPACING = 0.15;
+  const SPACING = 0.11;
   const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
@@ -129,11 +129,16 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
       const isHovered = index === hoveredIndex;
 
       // Calculate diagonal position for mobile devices
-      const diagonalOffset = zIndex * 0.25;
+      const diagonalOffset = zIndex * 0.14;
+
+      const centerIndex = 8;
+      const isCenterCard = zIndex === centerIndex;
 
       card.position.lerp(
         {
-          x: isHovered ? -0.8 : -1.5 + diagonalOffset * 1.2,
+          x: isHovered
+            ? -0.8
+            : -1.5 + diagonalOffset * 1.2 + (isCenterCard ? 0.3 : 0), // shift center card
           y: -1.5 + diagonalOffset * 1.2,
           z: zOffset,
         },
