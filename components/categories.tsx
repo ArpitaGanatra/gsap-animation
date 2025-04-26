@@ -22,7 +22,7 @@ export default function Categories() {
     <div
       className={`${
         pathname === "/" || pathname === "/index-page" ? "flex" : "hidden"
-      } flex md:flex-col gap-0.5 items-stretch md:items-end absolute left-1 z-[9999] w-screen bottom-0.5 right-0.5 overflow-scroll`}
+      } flex md:flex-col gap-0.5 items-stretch md:items-end absolute left-1 z-[19] bottom-0.5 right-0.5 overflow-scroll `}
     >
       <button
         className={`md:hidden button rounded-lg px-3 py-2 backdrop-blur-[16px] backdrop-saturate-[180%] bg-[#F2F2F2]/40 border border-[#D3D3D3]/50 hover:bg-[#F2F2F2]/50 transition-all duration-300 text-xs text-black hover:text-opacity-[1]`}
@@ -103,7 +103,7 @@ export default function Categories() {
           key={category.name}
           onClick={() => setSelectedCategory(category.path)}
           className={`button uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 text-xs text-black 
-          backdrop-blur-[16px] backdrop-saturate-[180%] bg-[#F2F2F2]/40 border border-[#D3D3D3]/50 hover:bg-[#F2F2F2]/50 transition-all duration-300
+          backdrop-blur-[16px] backdrop-saturate-[180%] bg-[#F2F2F2]/40 border border-[#D3D3D3]/50 hover:bg-[#F2F2F2]/50 transition-all duration-300 
           ${
             selectedCategory === category.path
               ? "text-opacity-[1] bg-[#F2F2F2]/50"

@@ -15,7 +15,7 @@ export default function BottomNav() {
       <div className="flex items-center gap-0.5 p-0.5">
         <button
           onClick={() => router.push("/")}
-          className={`z-20 button text-[10px] uppercase flex w-fit  border border-black/30 items-start gap-x-[2px] rounded-[0.375rem] p-4 py-3.5  text-black backdrop-blur-lg ${
+          className={` button text-[10px] uppercase flex w-fit  border border-black/30 items-start gap-x-[2px] rounded-[0.375rem] p-4 py-3.5  text-black backdrop-blur-lg z-[9999] ${
             pathname === "/overview" ? "text-opacity-[1]" : "text-opacity-[0.3]"
           } hover:text-opacity-[1]`}
         >
@@ -30,7 +30,7 @@ export default function BottomNav() {
 
         <button
           onClick={() => router.push("/index-page")}
-          className={`button text-[10px] uppercase flex w-fit  border border-black/30 items-start gap-x-[2px] rounded-[0.375rem] p-4 py-3.5   text-black backdrop-blur-lg ${
+          className={`button text-[10px] uppercase flex w-fit  border border-black/30 items-start gap-x-[2px] rounded-[0.375rem] p-4 py-3.5   text-black backdrop-blur-lg z-[9999] ${
             pathname === "/index" ? "text-opacity-[1]" : "text-opacity-[0.3]"
           } hover:text-opacity-[1]`}
         >
