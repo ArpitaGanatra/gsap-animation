@@ -58,8 +58,11 @@ function StackedCards({ category }: StackedCardsProps) {
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
       event.preventDefault();
-      // Limit the maximum scroll speed
-      const maxScrollSpeed = 50;
+      // Different speed limits for forward and reverse scrolling
+      const maxForwardScrollSpeed = 50;
+      const maxReverseScrollSpeed = 30; // More restrictive for reverse scrolling
+      const maxScrollSpeed =
+        event.deltaY > 0 ? maxForwardScrollSpeed : maxReverseScrollSpeed;
       const limitedDelta =
         Math.sign(event.deltaY) *
         Math.min(Math.abs(event.deltaY), maxScrollSpeed);
@@ -90,8 +93,11 @@ function StackedCards({ category }: StackedCardsProps) {
       if (touchStartY.current === null) return;
 
       const touchDelta = touchStartY.current - event.touches[0].clientY;
-      // Limit touch movement speed
-      const maxTouchSpeed = 30;
+      // Different speed limits for forward and reverse scrolling
+      const maxForwardTouchSpeed = 30;
+      const maxReverseTouchSpeed = 20; // More restrictive for reverse scrolling
+      const maxTouchSpeed =
+        touchDelta > 0 ? maxForwardTouchSpeed : maxReverseTouchSpeed;
       const limitedDelta =
         Math.sign(touchDelta) * Math.min(Math.abs(touchDelta), maxTouchSpeed);
       scrollAmount.current += limitedDelta;
