@@ -128,18 +128,18 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
       const zOffset = (-zIndex * SPACING) / 1.5 + 3;
       const isHovered = index === hoveredIndex;
 
-      // Calculate diagonal position for mobile devices
-      const diagonalOffset = zIndex * 0.14;
-
-      const centerIndex = 8;
+      // Center the stack on the 5th card (index 4)
+      const centerIndex = Math.floor(currentCards.length / 4);
+      console.log("current carddss", currentCards, centerIndex);
       const isCenterCard = zIndex === centerIndex;
+      const diagonalOffset = zIndex * 0.14;
 
       card.position.lerp(
         {
           x: isHovered
-            ? -0.8
-            : -1.5 + diagonalOffset * 1.2 + (isCenterCard ? 0.3 : 0), // shift center card
-          y: -1.5 + diagonalOffset * 1.2,
+            ? 0.8
+            : -1 + diagonalOffset * 1.2 + (isCenterCard ? 0.3 : 0),
+          y: -1 + diagonalOffset * 1.2,
           z: zOffset,
         },
         0.1
