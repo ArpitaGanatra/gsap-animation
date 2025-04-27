@@ -59,11 +59,14 @@ interface StackedCardsProps {
 function StackedCards({ category, isMobile }: StackedCardsProps) {
   const cardsRef = useRef<(CardElement | null)[]>([]);
   const [scrollIndex, setScrollIndex] = useState(0);
+  const targetScrollIndex = useRef(0); // For smooth scrolling
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const SPACING = 0.11;
   const touchStartY = useRef<number | null>(null);
+  const targetCenterIndex = useRef(4); // Default center index
+  const currentCenterIndex = useRef(4);
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
@@ -71,7 +74,7 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
       scrollAmount.current += event.deltaY;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
-        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
+        targetScrollIndex.current += Math.sign(scrollAmount.current);
         scrollAmount.current = 0;
       }
     };
@@ -88,7 +91,7 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
       scrollAmount.current += touchDelta;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
-        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
+        targetScrollIndex.current += Math.sign(scrollAmount.current);
         scrollAmount.current = 0;
         touchStartY.current = event.touches[0].clientY;
       }
@@ -113,6 +116,19 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
   }, []);
 
   useFrame(() => {
+    // Smoothly interpolate scrollIndex toward targetScrollIndex
+    setScrollIndex((prev) => {
+      const lerped = prev + (targetScrollIndex.current - prev) * 0.15;
+      // Snap to integer if close enough
+      if (Math.abs(lerped - targetScrollIndex.current) < 0.01)
+        return targetScrollIndex.current;
+      return lerped;
+    });
+
+    // Smoothly interpolate center index
+    currentCenterIndex.current +=
+      (targetCenterIndex.current - currentCenterIndex.current) * 0.15;
+
     // Copy ref to local variable to avoid stale closure warning
     const currentCards = cardsRef.current;
     if (!currentCards) return;
@@ -128,10 +144,13 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
       const zOffset = (-zIndex * SPACING) / 1.5 + 3;
       const isHovered = index === hoveredIndex;
 
-      // Center the stack on the 5th card (index 4)
-      const centerIndex = Math.floor(currentCards.length / 4);
-      console.log("current carddss", currentCards, centerIndex);
-      const isCenterCard = zIndex === centerIndex;
+      console.log("currentCards.length", currentPodcasts.length);
+      // Use the smoothly animated center index
+      const isCenterCard =
+        currentPodcasts.length < 10
+          ? Math.abs(zIndex - currentCenterIndex.current) < 0.1
+          : Math.abs(zIndex - currentCenterIndex.current - 2) < 0.1;
+
       const diagonalOffset = zIndex * 0.14;
 
       card.position.lerp(
@@ -142,13 +161,13 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
           y: -1 + diagonalOffset * 1.2,
           z: zOffset,
         },
-        0.1
+        0.15
       );
 
       // Update material opacity
       if (card.material) {
         const opacity =
-          zIndex < 1 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
+          zIndex < -2 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
         card.material.opacity = opacity;
       }
     });
