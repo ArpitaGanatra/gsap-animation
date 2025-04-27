@@ -55,7 +55,12 @@ function StackedCards({ category }: StackedCardsProps) {
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
       event.preventDefault();
-      scrollAmount.current += event.deltaY;
+      // Limit the maximum scroll speed
+      const maxScrollSpeed = 50;
+      const limitedDelta =
+        Math.sign(event.deltaY) *
+        Math.min(Math.abs(event.deltaY), maxScrollSpeed);
+      scrollAmount.current += limitedDelta;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
         setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
@@ -63,7 +68,7 @@ function StackedCards({ category }: StackedCardsProps) {
       }
     };
 
-    // Add touch event handlers
+    // Add touch event handlers with speed limiting
     const handleTouchStart = (event: TouchEvent) => {
       touchStartY.current = event.touches[0].clientY;
     };
@@ -72,7 +77,11 @@ function StackedCards({ category }: StackedCardsProps) {
       if (touchStartY.current === null) return;
 
       const touchDelta = touchStartY.current - event.touches[0].clientY;
-      scrollAmount.current += touchDelta;
+      // Limit touch movement speed
+      const maxTouchSpeed = 30;
+      const limitedDelta =
+        Math.sign(touchDelta) * Math.min(Math.abs(touchDelta), maxTouchSpeed);
+      scrollAmount.current += limitedDelta;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
         setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
@@ -119,13 +128,24 @@ function StackedCards({ category }: StackedCardsProps) {
       // Make cards invisible when they're near the start or end of the sequence
       const opacity = zIndex < 1 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
 
+      // Enhanced lerp factor calculation with better responsiveness
+      const baseLerp = 0.1;
+      const scrollSpeed = Math.abs(scrollAmount.current);
+      const acceleration = Math.min(0.4, baseLerp + scrollSpeed * 0.02);
+      const lerpFactor = isHovered ? 0.2 : acceleration; // Faster response on hover
+
+      // Calculate target position with dynamic hover effect
+      const targetX = isHovered ? -0.5 : -1;
+      const targetY = isHovered ? -0.3 : -0.5; // Slight lift on hover
+      const targetZ = zOffset;
+
       card.position.lerp(
         {
-          x: isHovered ? -0.5 : -1,
-          y: -0.5,
-          z: zOffset,
+          x: targetX,
+          y: targetY,
+          z: targetZ,
         },
-        0.1
+        lerpFactor
       );
 
       // Update material opacity
