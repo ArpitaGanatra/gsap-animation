@@ -45,12 +45,15 @@ interface StackedCardsProps {
 function StackedCards({ category }: StackedCardsProps) {
   const cardsRef = useRef<(CardElement | null)[]>([]);
   const [scrollIndex, setScrollIndex] = useState(0);
+  const targetScrollIndex = useRef(0); // For smooth scrolling
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const SPACING = 2; // Space between cards
   const touchStartY = useRef<number | null>(null);
+  const lastScrollTime = useRef(0);
+  const scrollVelocity = useRef(0);
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
@@ -62,8 +65,16 @@ function StackedCards({ category }: StackedCardsProps) {
         Math.min(Math.abs(event.deltaY), maxScrollSpeed);
       scrollAmount.current += limitedDelta;
 
+      // Calculate scroll velocity
+      const now = Date.now();
+      const timeDelta = now - lastScrollTime.current;
+      if (timeDelta > 0) {
+        scrollVelocity.current = limitedDelta / timeDelta;
+      }
+      lastScrollTime.current = now;
+
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
-        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
+        targetScrollIndex.current += Math.sign(scrollAmount.current);
         scrollAmount.current = 0;
       }
     };
@@ -71,6 +82,8 @@ function StackedCards({ category }: StackedCardsProps) {
     // Add touch event handlers with speed limiting
     const handleTouchStart = (event: TouchEvent) => {
       touchStartY.current = event.touches[0].clientY;
+      lastScrollTime.current = Date.now();
+      scrollVelocity.current = 0;
     };
 
     const handleTouchMove = (event: TouchEvent) => {
@@ -83,8 +96,16 @@ function StackedCards({ category }: StackedCardsProps) {
         Math.sign(touchDelta) * Math.min(Math.abs(touchDelta), maxTouchSpeed);
       scrollAmount.current += limitedDelta;
 
+      // Calculate touch velocity
+      const now = Date.now();
+      const timeDelta = now - lastScrollTime.current;
+      if (timeDelta > 0) {
+        scrollVelocity.current = limitedDelta / timeDelta;
+      }
+      lastScrollTime.current = now;
+
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
-        setScrollIndex((prev) => prev + Math.sign(scrollAmount.current));
+        targetScrollIndex.current += Math.sign(scrollAmount.current);
         scrollAmount.current = 0;
         touchStartY.current = event.touches[0].clientY;
       }
@@ -92,6 +113,14 @@ function StackedCards({ category }: StackedCardsProps) {
 
     const handleTouchEnd = () => {
       touchStartY.current = null;
+      // Apply momentum scrolling
+      if (Math.abs(scrollVelocity.current) > 0.1) {
+        const momentum =
+          Math.sign(scrollVelocity.current) *
+          Math.min(Math.abs(scrollVelocity.current) * 10, 3);
+        targetScrollIndex.current += momentum;
+      }
+      scrollVelocity.current = 0;
     };
 
     const options = { passive: false };
@@ -109,7 +138,19 @@ function StackedCards({ category }: StackedCardsProps) {
   }, []);
 
   useFrame(() => {
-    // Copy ref to local variable to avoid stale closure warning
+    // Smoothly interpolate scrollIndex toward targetScrollIndex with velocity-based lerp
+    setScrollIndex((prev) => {
+      const lerpFactor = Math.min(
+        0.3,
+        0.1 + Math.abs(scrollVelocity.current) * 0.1
+      );
+      const lerped = prev + (targetScrollIndex.current - prev) * lerpFactor;
+      // Snap to integer if close enough
+      if (Math.abs(lerped - targetScrollIndex.current) < 0.01)
+        return targetScrollIndex.current;
+      return lerped;
+    });
+
     const currentCards = cardsRef.current;
     if (!currentCards) return;
 
@@ -128,22 +169,17 @@ function StackedCards({ category }: StackedCardsProps) {
       // Make cards invisible when they're near the start or end of the sequence
       const opacity = zIndex < 1 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
 
-      // Enhanced lerp factor calculation with better responsiveness
-      const baseLerp = 0.1;
-      const scrollSpeed = Math.abs(scrollAmount.current);
-      const acceleration = Math.min(0.4, baseLerp + scrollSpeed * 0.02);
-      const lerpFactor = isHovered ? 0.2 : acceleration; // Faster response on hover
-
-      // Calculate target position with dynamic hover effect
-      const targetX = isHovered ? -0.5 : -1;
-      const targetY = isHovered ? -0.3 : -0.5; // Slight lift on hover
-      const targetZ = zOffset;
+      // Calculate lerp factor based on scroll velocity
+      const lerpFactor = Math.min(
+        0.3,
+        0.1 + Math.abs(scrollVelocity.current) * 0.1
+      );
 
       card.position.lerp(
         {
-          x: targetX,
-          y: targetY,
-          z: targetZ,
+          x: isHovered ? -0.5 : -1,
+          y: -0.5,
+          z: zOffset,
         },
         lerpFactor
       );

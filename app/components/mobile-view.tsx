@@ -67,11 +67,26 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
   const touchStartY = useRef<number | null>(null);
   const targetCenterIndex = useRef(4); // Default center index
   const currentCenterIndex = useRef(4);
+  const lastScrollTime = useRef(0);
+  const scrollVelocity = useRef(0);
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
       event.preventDefault();
-      scrollAmount.current += event.deltaY;
+      // Limit the maximum scroll speed
+      const maxScrollSpeed = 50;
+      const limitedDelta =
+        Math.sign(event.deltaY) *
+        Math.min(Math.abs(event.deltaY), maxScrollSpeed);
+      scrollAmount.current += limitedDelta;
+
+      // Calculate scroll velocity
+      const now = Date.now();
+      const timeDelta = now - lastScrollTime.current;
+      if (timeDelta > 0) {
+        scrollVelocity.current = limitedDelta / timeDelta;
+      }
+      lastScrollTime.current = now;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
         targetScrollIndex.current += Math.sign(scrollAmount.current);
@@ -79,16 +94,30 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
       }
     };
 
-    // Add touch event handlers
+    // Add touch event handlers with speed limiting
     const handleTouchStart = (event: TouchEvent) => {
       touchStartY.current = event.touches[0].clientY;
+      lastScrollTime.current = Date.now();
+      scrollVelocity.current = 0;
     };
 
     const handleTouchMove = (event: TouchEvent) => {
       if (touchStartY.current === null) return;
 
       const touchDelta = touchStartY.current - event.touches[0].clientY;
-      scrollAmount.current += touchDelta;
+      // Limit touch movement speed
+      const maxTouchSpeed = 30;
+      const limitedDelta =
+        Math.sign(touchDelta) * Math.min(Math.abs(touchDelta), maxTouchSpeed);
+      scrollAmount.current += limitedDelta;
+
+      // Calculate touch velocity
+      const now = Date.now();
+      const timeDelta = now - lastScrollTime.current;
+      if (timeDelta > 0) {
+        scrollVelocity.current = limitedDelta / timeDelta;
+      }
+      lastScrollTime.current = now;
 
       if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
         targetScrollIndex.current += Math.sign(scrollAmount.current);
@@ -99,6 +128,14 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
 
     const handleTouchEnd = () => {
       touchStartY.current = null;
+      // Apply momentum scrolling
+      if (Math.abs(scrollVelocity.current) > 0.1) {
+        const momentum =
+          Math.sign(scrollVelocity.current) *
+          Math.min(Math.abs(scrollVelocity.current) * 10, 3);
+        targetScrollIndex.current += momentum;
+      }
+      scrollVelocity.current = 0;
     };
 
     const options = { passive: false };
@@ -116,9 +153,13 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
   }, []);
 
   useFrame(() => {
-    // Smoothly interpolate scrollIndex toward targetScrollIndex
+    // Smoothly interpolate scrollIndex toward targetScrollIndex with velocity-based lerp
     setScrollIndex((prev) => {
-      const lerped = prev + (targetScrollIndex.current - prev) * 0.15;
+      const lerpFactor = Math.min(
+        0.3,
+        0.1 + Math.abs(scrollVelocity.current) * 0.1
+      );
+      const lerped = prev + (targetScrollIndex.current - prev) * lerpFactor;
       // Snap to integer if close enough
       if (Math.abs(lerped - targetScrollIndex.current) < 0.01)
         return targetScrollIndex.current;
@@ -153,6 +194,12 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
 
       const diagonalOffset = zIndex * 0.14;
 
+      // Calculate lerp factor based on scroll velocity
+      const lerpFactor = Math.min(
+        0.3,
+        0.1 + Math.abs(scrollVelocity.current) * 0.1
+      );
+
       card.position.lerp(
         {
           x: isHovered
@@ -161,7 +208,7 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
           y: -1 + diagonalOffset * 1.2,
           z: zOffset,
         },
-        0.15
+        lerpFactor
       );
 
       // Update material opacity
