@@ -214,7 +214,7 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
       // Update material opacity
       if (card.material) {
         const opacity =
-          zIndex < -2 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
+          zIndex < 1 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
         card.material.opacity = opacity;
       }
     });
