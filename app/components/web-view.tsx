@@ -50,7 +50,7 @@ function StackedCards({ category }: StackedCardsProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
-  const SPACING = 2; // Space between cards
+  const SPACING = 1.5; // Space between cards
   const touchStartY = useRef<number | null>(null);
   const lastScrollTime = useRef(0);
   const scrollVelocity = useRef(0);
@@ -181,6 +181,9 @@ function StackedCards({ category }: StackedCardsProps) {
         0.1 + Math.abs(scrollVelocity.current) * 0.1
       );
 
+      // Add skew/rotation effect
+      card.rotation.set(0, -0.2, 0);
+
       card.position.lerp(
         {
           x: isHovered ? -0.5 : -1,
@@ -257,7 +260,7 @@ function StackedCards({ category }: StackedCardsProps) {
             }}
             transparent
             opacity={1}
-            scale={[1, 1, 1]}
+            scale={[0.9, 0.9, 0.9]}
             position={[0, 0, -i * SPACING]}
             url={podcast.image}
             alt={`${podcast.guest} - ${podcast.company}`}
