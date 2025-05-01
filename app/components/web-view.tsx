@@ -173,7 +173,7 @@ function StackedCards({ category }: StackedCardsProps) {
 
       // Modified opacity calculation
       // Make cards invisible when they're near the start or end of the sequence
-      const opacity = zIndex < 1 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
+      const opacity = zIndex < 0 || zIndex > currentPodcasts.length - 1 ? 0 : 1;
 
       // Calculate lerp factor based on scroll velocity
       const lerpFactor = Math.min(
@@ -186,8 +186,9 @@ function StackedCards({ category }: StackedCardsProps) {
 
       card.position.lerp(
         {
-          x: isHovered ? -0.5 : -1,
-          y: -0.5,
+          x: isHovered ? -0.5 : -0.1,
+          // x: isHovered ? 0 : -0.5 + zIndex * 0.3,
+          y: -0,
           z: zOffset,
         },
         lerpFactor
@@ -260,7 +261,7 @@ function StackedCards({ category }: StackedCardsProps) {
             }}
             transparent
             opacity={1}
-            scale={[0.9, 0.9, 0.9]}
+            scale={[0.8, 0.8, 0.8]}
             position={[0, 0, -i * SPACING]}
             url={podcast.image}
             alt={`${podcast.guest} - ${podcast.company}`}
