@@ -60,7 +60,7 @@ function StackedCards({ category }: StackedCardsProps) {
       event.preventDefault();
       // Different speed limits for forward and reverse scrolling
       const maxForwardScrollSpeed = 50;
-      const maxReverseScrollSpeed = 30; // More restrictive for reverse scrolling
+      const maxReverseScrollSpeed = 80; // Increased reverse scroll speed
       const maxScrollSpeed =
         event.deltaY > 0 ? maxForwardScrollSpeed : maxReverseScrollSpeed;
       const limitedDelta =
@@ -147,8 +147,8 @@ function StackedCards({ category }: StackedCardsProps) {
     // Smoothly interpolate scrollIndex toward targetScrollIndex with velocity-based lerp
     setScrollIndex((prev) => {
       const lerpFactor = Math.min(
-        0.3,
-        0.1 + Math.abs(scrollVelocity.current) * 0.1
+        0.5, // Increased base lerp factor
+        0.2 + Math.abs(scrollVelocity.current) * 0.2
       );
       const lerped = prev + (targetScrollIndex.current - prev) * lerpFactor;
       // Snap to integer if close enough
@@ -172,13 +172,14 @@ function StackedCards({ category }: StackedCardsProps) {
       const isHovered = index === hoveredIndex;
 
       // Modified opacity calculation
-      // Make cards invisible when they're near the start or end of the sequence
-      const opacity = zIndex < 0 || zIndex > currentPodcasts.length - 1 ? 0 : 1;
+      // Balance visibility for both forward and reverse scrolling
+      const opacity =
+        zIndex < -2 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
 
-      // Calculate lerp factor based on scroll velocity
+      // Calculate lerp factor based on scroll velocity and direction
       const lerpFactor = Math.min(
-        0.3,
-        0.1 + Math.abs(scrollVelocity.current) * 0.1
+        0.5, // Increased base lerp factor
+        0.2 + Math.abs(scrollVelocity.current) * 0.2
       );
 
       // Add skew/rotation effect
