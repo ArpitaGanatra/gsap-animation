@@ -187,7 +187,7 @@ function StackedCards({ category }: StackedCardsProps) {
 
       card.position.lerp(
         {
-          x: isHovered ? -0.5 : -0.1,
+          x: isHovered ? 0.3 : -0.1,
           // x: isHovered ? 0 : -0.5 + zIndex * 0.3,
           y: -0,
           z: zOffset,
