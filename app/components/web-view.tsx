@@ -282,12 +282,11 @@ function StackedCards({ category }: StackedCardsProps) {
                 style={{
                   opacity: hoveredIndex === i && !isMobile ? 1 : 0,
                   transition: "opacity 0.3s",
-                  backgroundColor: "rgba(0, 0, 0, 0.8)",
                   color: "white",
                   padding: "12px 20px",
                   borderRadius: "8px",
-                  fontSize: "16px",
-                  fontWeight: "bold",
+                  fontSize: "14px",
+                  fontWeight: "normal",
                   whiteSpace: "nowrap",
                   transform: "translateY(-100%)", // Move tooltip above cursor
                 }}
