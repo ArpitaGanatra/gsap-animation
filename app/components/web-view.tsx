@@ -21,7 +21,7 @@ const WebView = () => {
         dpr={[1, 1.5]}
         camera={{
           fov: 9,
-          position: [3, 2, 10],
+          position: [2, 2, 10],
         }}
         gl={{
           powerPreference: "high-performance",
@@ -287,7 +287,7 @@ function StackedCards({ category }: StackedCardsProps) {
             }}
             transparent
             opacity={1}
-            scale={[0.8, 0.8, 0.8]}
+            scale={[0.7, 0.7, 0.7]}
             position={[0, 0, -i * SPACING]}
             url={podcast.image}
             alt={`${podcast.guest} - ${podcast.company}`}
@@ -310,11 +310,12 @@ function StackedCards({ category }: StackedCardsProps) {
                   color: "white",
                   padding: "12px 20px",
                   borderRadius: "8px",
-                  fontSize: "14px",
-                  fontWeight: "normal",
+                  fontSize: "16px",
+                  fontWeight: "600",
                   whiteSpace: "nowrap",
                   transform: "translateY(-100%)",
                   pointerEvents: "none",
+                  textTransform: "uppercase",
                 }}
               >
                 {podcast.guest}
