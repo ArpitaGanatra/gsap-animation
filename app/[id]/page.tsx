@@ -56,7 +56,7 @@ export default function CompanyDetail() {
         Category: {data.category}
       </span>
 
-      <div className="grid md:grid-cols-2 gap-8 w-full mt-4 ml-auto max-w-[90%]">
+      <div className="grid md:grid-cols-2 gap-8 w-full mt-4">
         {episodes.map((episode, index) => (
           <div key={episode.id} className="flex flex-col gap-4">
             <Image
