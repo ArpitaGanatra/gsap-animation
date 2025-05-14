@@ -1,50 +1,82 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { useParams } from "next/navigation";
+import { Playlist } from "@/playlist";
+import Image from "next/image";
+import React from "react";
+import { podcastData } from "@/lib/podcast-data";
+import slugify from "slugify";
 
-gsap.registerPlugin(ScrollTrigger);
+export default function CompanyDetail() {
+  const params = useParams();
+  const id = params?.id as string;
 
-const HorizontalScrollCarousel = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const data = podcastData.find(
+    (item) => slugify(item.company, { lower: true }) === id
+  );
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  // Find the company data from Playlist
+  const companyData = Playlist[data?.company as keyof typeof Playlist];
+  console.log(
+    data?.company,
+    data?.guest,
+    Playlist[data?.company as keyof typeof Playlist]
+  );
 
-    const totalWidth = container.scrollWidth;
-    const viewportWidth = window.innerWidth;
+  if (!companyData || !data) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-center">
+        <h1 className="text-2xl font-bold mb-4">Not Found</h1>
+        <p className="text-lg text-gray-500">No company found for this page.</p>
+      </div>
+    );
+  }
 
-    gsap.to(container, {
-      x: () => -(totalWidth - viewportWidth),
-      ease: "none",
-      scrollTrigger: {
-        trigger: container,
-        start: "top top",
-        end: () => `+=${totalWidth - viewportWidth}`,
-        pin: true,
-        scrub: 1,
-      },
-    });
-
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
-  }, []);
+  // Convert episodes object to array
+  const episodes = Object.entries(companyData).map(([key, value]) => ({
+    id: key,
+    name: value.name,
+    company: value.company,
+    topic: value.topic,
+    thumbnail: value.thumbnail,
+  }));
 
   return (
-    <div className="relative w-full h-screen">
-      <div ref={containerRef} className="flex h-full w-[500vw]">
-        {["blue", "red", "orange", "purple", "green"].map((color, index) => (
-          <section
-            key={index}
-            className={`w-screen h-full flex items-center justify-center bg-${color}-500 text-white text-4xl`}
-          >
-            Slide {index + 1}
-          </section>
+    <div className="flex flex-col min-h-screen bg-background px-4 py-24">
+      <span
+        className="leading-[1.25] text-[.65625rem]/[.8125rem] "
+        style={{ width: "200px" }}
+      >
+        Company: {data.company}
+      </span>
+      <span
+        className="leading-[1.25] text-[.65625rem]/[.8125rem] "
+        style={{ width: "200px" }}
+      >
+        Category: {data.category}
+      </span>
+
+      <div className="grid grid-cols-2 gap-8 w-full mt-4">
+        {episodes.map((episode, index) => (
+          <div key={episode.id} className="flex flex-col gap-4">
+            <Image
+              src={episode.thumbnail}
+              alt={`${episode.company} thumbnail ${index + 1}`}
+              width={600}
+              height={400}
+              className="w-full h-[300px] max-w-[600px] object-cover shadow-lg rounded-lg"
+            />
+            <div className="flex flex-col gap-2">
+              <span className="text-[.65625rem]/[.8125rem]">
+                Guest: {episode.name}
+              </span>
+              <span className="text-[.65625rem]/[.8125rem] flex flex-wrap w-full">
+                Topic: {episode.topic}
+              </span>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   );
-};
-
-export default HorizontalScrollCarousel;
+}

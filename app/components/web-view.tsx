@@ -7,6 +7,8 @@ import { useCategory } from "../context/CategoryContext";
 import BottomNav from "@/components/bottom-nav";
 import { podcastData } from "@/lib/podcast-data";
 import * as THREE from "three";
+import { useRouter } from "next/navigation";
+import slugify from "slugify";
 
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
@@ -45,18 +47,21 @@ interface StackedCardsProps {
 function StackedCards({ category }: StackedCardsProps) {
   const cardsRef = useRef<(CardElement | null)[]>([]);
   const [scrollIndex, setScrollIndex] = useState(0);
-  const targetScrollIndex = useRef(0); // For smooth scrolling
+  const targetScrollIndex = useRef(0);
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
-  const SPACING = 1.5; // Space between cards
+  const SPACING = 1.5;
   const touchStartY = useRef<number | null>(null);
   const lastScrollTime = useRef(0);
   const scrollVelocity = useRef(0);
+  const router = useRouter();
+  const [clickDisabled, setClickDisabled] = useState(false);
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
+      if (clickDisabled) return; // Prevent scroll/animation during cooldown
       event.preventDefault();
       // Different speed limits for forward and reverse scrolling
       const maxForwardScrollSpeed = 50;
@@ -84,12 +89,14 @@ function StackedCards({ category }: StackedCardsProps) {
 
     // Add touch event handlers with speed limiting
     const handleTouchStart = (event: TouchEvent) => {
+      if (clickDisabled) return; // Prevent scroll/animation during cooldown
       touchStartY.current = event.touches[0].clientY;
       lastScrollTime.current = Date.now();
       scrollVelocity.current = 0;
     };
 
     const handleTouchMove = (event: TouchEvent) => {
+      if (clickDisabled) return; // Prevent scroll/animation during cooldown
       if (touchStartY.current === null) return;
 
       const touchDelta = touchStartY.current - event.touches[0].clientY;
@@ -255,6 +262,24 @@ function StackedCards({ category }: StackedCardsProps) {
           onPointerEnter={() => setHoveredIndex(i)}
           onPointerLeave={() => setHoveredIndex(null)}
           onPointerMove={(e) => handlePointerMove(e, e.object as THREE.Mesh)}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (clickDisabled) {
+              console.log("Click ignored: cooldown active");
+              return;
+            }
+            setClickDisabled(true);
+            const lockedIndex = i;
+            const podcast = currentPodcasts[lockedIndex];
+            setTimeout(() => setClickDisabled(false), 3000);
+            console.log(
+              "Navigating to:",
+              podcast.company,
+              "at index",
+              lockedIndex
+            );
+            router.push(`/${slugify(podcast.company, { lower: true })}`);
+          }}
         >
           <Image
             ref={(el: CardElement | null) => {
@@ -288,7 +313,8 @@ function StackedCards({ category }: StackedCardsProps) {
                   fontSize: "14px",
                   fontWeight: "normal",
                   whiteSpace: "nowrap",
-                  transform: "translateY(-100%)", // Move tooltip above cursor
+                  transform: "translateY(-100%)",
+                  pointerEvents: "none",
                 }}
               >
                 {podcast.guest}

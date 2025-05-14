@@ -11,15 +11,15 @@ export const podcastData = [
     category: "Founder",
     image: "/logos/Monad.png",
   },
-  {
-    guest: "Yano",
-    company: "Blockworks",
-    category: "Founder",
-    image: "/logos/Blockworks.png",
-  },
+  // {
+  //   guest: "Yano",
+  //   company: "Blockworks",
+  //   category: "Founder",
+  //   image: "/logos/Blockworks.png",
+  // },
   {
     guest: "Michael",
-    company: "0G",
+    company: "OG",
     category: "Founder",
     image: "/logos/0G-Labs.png",
   },
@@ -61,7 +61,7 @@ export const podcastData = [
   },
   {
     guest: "Shayon",
-    company: "Multicoin",
+    company: "Multicoin Capital",
     category: "VC",
     image: "/logos/multicoin-capital.png",
   },
@@ -73,16 +73,16 @@ export const podcastData = [
   },
   {
     guest: "Austin",
-    company: "CoinFund",
+    company: "Relayer Capital",
     category: "VC",
     image: "/logos/Relayer-Capital.png",
   },
-  {
-    guest: "Peter",
-    company: "Fenbushi",
-    category: "VC",
-    image: "/logos/Fenbushi-Capital.png",
-  },
+  // {
+  //   guest: "Peter",
+  //   company: "Fenbushi",
+  //   category: "VC",
+  //   image: "/logos/Fenbushi-Capital.png",
+  // },
   {
     guest: "Belinda",
     company: "Sharding Capital",
@@ -101,15 +101,15 @@ export const podcastData = [
     category: "VC",
     image: "/logos/new-tribe-capital.png",
   },
-  {
-    guest: "Jason",
-    company: "OKX",
-    category: "COO",
-    image: "/logos/OKX.png",
-  },
+  // {
+  //   guest: "Jason",
+  //   company: "OKX",
+  //   category: "COO",
+  //   image: "/logos/OKX.png",
+  // },
   {
     guest: "Mark",
-    company: "Polygon",
+    company: "Polygon Labs",
     category: "CEO",
     image: "/logos/Polygon.png",
   },
@@ -125,16 +125,16 @@ export const podcastData = [
     category: "Growth",
     image: "/logos/Ethena-Labs.png",
   },
-  {
-    guest: "Binji",
-    company: "Optimism",
-    category: "Growth",
-    image: "/logos/Optimism.png",
-  },
-  {
-    guest: "Saneel",
-    company: "Ritual",
-    category: "Growth",
-    image: "/logos/Ritual.png",
-  },
+  // {
+  //   guest: "Binji",
+  //   company: "Optimism",
+  //   category: "Growth",
+  //   image: "/logos/Optimism.png",
+  // },
+  // {
+  //   guest: "Saneel",
+  //   company: "Ritual",
+  //   category: "Growth",
+  //   image: "/logos/Ritual.png",
+  // },
 ];

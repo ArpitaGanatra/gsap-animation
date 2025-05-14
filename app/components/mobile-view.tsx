@@ -7,6 +7,8 @@ import { useCategory } from "../context/CategoryContext";
 import BottomNav from "@/components/bottom-nav";
 import { podcastData } from "@/lib/podcast-data";
 import * as THREE from "three";
+import { useRouter } from "next/navigation";
+import slugify from "slugify";
 
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
@@ -69,6 +71,7 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
   const currentCenterIndex = useRef(4);
   const lastScrollTime = useRef(0);
   const scrollVelocity = useRef(0);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
@@ -261,6 +264,9 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
           onPointerEnter={() => setHoveredIndex(i)}
           onPointerLeave={() => setHoveredIndex(null)}
           onPointerMove={(e) => handlePointerMove(e, e.object as THREE.Mesh)}
+          onClick={() =>
+            router.push(`/${slugify(podcast.company, { lower: true })}`)
+          }
         >
           <Image
             ref={(el: CardElement | null) => {
