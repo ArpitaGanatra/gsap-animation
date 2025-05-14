@@ -1,4 +1,6 @@
 import { podcastData } from "@/lib/podcast-data";
+import Link from "next/link";
+import slugify from "slugify";
 
 export default function Index() {
   return (
@@ -17,14 +19,18 @@ export default function Index() {
                 className="flex opacity-0"
                 style={{ opacity: "1" }}
               >
-                <div className="flex w-auto flex-shrink-0 py-[0.325rem] opacity-[0.3] hover:opacity-[1]">
-                  <span className="w-[120px] flex-shrink-0">{data.guest}</span>
-                  <span className="w-[170px] flex-shrink-0">
-                    {data.company}
-                  </span>
-                  <span className="flex flex-shrink-0">{data.category}</span>
-                </div>
-                <div className="pointer-events-none w-[calc(80px)] flex-shrink-0 sm:hidden"></div>
+                <Link href={`/${slugify(data.company, { lower: true })}`}>
+                  <div className="flex w-auto flex-shrink-0 py-[0.325rem] opacity-[0.3] hover:opacity-[1]">
+                    <span className="w-[120px] flex-shrink-0">
+                      {data.guest}
+                    </span>
+                    <span className="w-[170px] flex-shrink-0">
+                      {data.company}
+                    </span>
+                    <span className="flex flex-shrink-0">{data.category}</span>
+                  </div>
+                  <div className="pointer-events-none w-[calc(80px)] flex-shrink-0 sm:hidden"></div>
+                </Link>
               </li>
             );
           })}

@@ -94,10 +94,10 @@ export default function Categories() {
         { name: "All", count: counts.all, path: "/" },
         { name: "Founders", count: counts.founders, path: "/founders" },
         { name: "VCs", count: counts.vcs, path: "/vcs" },
-        { name: "Operators", count: counts.operators, path: "/operators" },
-        { name: "Dubai", count: 0, path: "/dubai" },
-        { name: "NYC", count: 0, path: "/nyc" },
-        { name: "SF", count: 0, path: "/sf" },
+        // { name: "Operators", count: counts.operators, path: "/operators" },
+        // { name: "Dubai", count: 0, path: "/dubai" },
+        // { name: "NYC", count: 0, path: "/nyc" },
+        // { name: "SF", count: 0, path: "/sf" },
       ].map((category) => (
         <button
           key={category.name}
