@@ -1,6 +1,6 @@
 export const podcastData = [
   {
-    guest: "Rushi",
+    guest: "Rushi Manche",
     company: "Movement Labs",
     category: "Founder",
     image: "/logos/movement-labs.png",
@@ -18,13 +18,13 @@ export const podcastData = [
   //   image: "/logos/Blockworks.png",
   // },
   {
-    guest: "Michael",
+    guest: "Michael Heinrich",
     company: "OG",
     category: "Founder",
     image: "/logos/0G-Labs.png",
   },
   {
-    guest: "Prabal",
+    guest: "Prabal Banerjee",
     company: "Avail",
     category: "Founder",
     image: "/logos/Prabal-Avail.png",
@@ -36,26 +36,26 @@ export const podcastData = [
     image: "/logos/Symbiotic.png",
   },
   {
-    guest: "Kenny",
+    guest: "Kenny Li",
     company: "Manta",
     category: "Founder",
     image: "/logos/Manta-Network.png",
   },
   {
-    guest: "Sandeep",
+    guest: "Sandeep Nailwal",
     company: "Polygon",
     category: "Founder",
     image: "/logos/Polygon.png",
   },
   {
-    guest: "Kash",
+    guest: "Kash Dhandha",
     company: "Superteam",
     category: "Founder",
     image: "/logos/Kash-Superteam.png",
   },
   {
-    guest: "Rob",
-    company: "Dragonfly",
+    guest: "Rob Hadick",
+    company: "Dragonfly Capital",
     category: "VC",
     image: "/logos/dragonfly.png",
   },
@@ -72,7 +72,7 @@ export const podcastData = [
     image: "/logos/Maelstrom.png",
   },
   {
-    guest: "Austin",
+    guest: "Austin Barack",
     company: "Relayer Capital",
     category: "VC",
     image: "/logos/Relayer-Capital.png",
@@ -84,19 +84,19 @@ export const podcastData = [
   //   image: "/logos/Fenbushi-Capital.png",
   // },
   {
-    guest: "Belinda",
+    guest: "Belinda Zhou",
     company: "Sharding Capital",
     category: "VC",
     image: "/logos/Sharding-Capital.png",
   },
   {
-    guest: "Sachi",
+    guest: "Sachi Kamiya",
     company: "Polygon Ventures",
     category: "VC",
     image: "/logos/Polygon.png",
   },
   {
-    guest: "Juliet",
+    guest: "Juliet Su",
     company: "New Tribe Capital",
     category: "VC",
     image: "/logos/new-tribe-capital.png",
@@ -108,13 +108,13 @@ export const podcastData = [
   //   image: "/logos/OKX.png",
   // },
   {
-    guest: "Mark",
+    guest: "Marc Boiron",
     company: "Polygon Labs",
     category: "CEO",
     image: "/logos/Polygon.png",
   },
   {
-    guest: "Alessia",
+    guest: "Alessia Baumgar",
     company: "DWF",
     category: "Ecosystem",
     image: "/logos/DWF-Labs.png",

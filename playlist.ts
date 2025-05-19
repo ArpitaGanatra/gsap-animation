@@ -6,6 +6,7 @@ export const Playlist = {
       topic: "Inside the Mind of Multicoin Capital with Investment Partner",
       thumbnail:
         "https://i.ytimg.com/vi/lXxyZaduCNA/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCZLLzi6xk1zON_61uvzkPqwdNumw",
+      link: "https://www.youtube.com/watch?v=lXxyZaduCNA&list=PLc_HqTUOhvLY6C_wEKHY0VvzU9ArmDnJu&index=1&pp=iAQB",
     },
   },
 
@@ -74,22 +75,25 @@ export const Playlist = {
       topic: "Learn how to Raise Capital like a $650M fund manager",
       thumbnail:
         "https://i.ytimg.com/vi/WjFgHPG6mYY/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCOEqcFy_EtfuMNFWgiUxHU7uMfpA",
+      link: "https://www.youtube.com/watch?v=WjFgHPG6mYY&list=PLc_HqTUOhvLZamOWtb31-D_WziROpDRgn&index=1&pp=iAQB",
     },
   },
   Symbiotic: {
     "1": {
       name: "Misha",
       company: "Symbiotic",
-      topic: "Restaking and shared security explained from scratch",
+      topic: "FULL POD - Symbiotic Deep Dive with Misha",
       thumbnail:
-        "https://i.ytimg.com/vi/ct15rikp6M0/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCArtHTH-7fVTjAIqC9-d6KfWjOUw",
+        "https://i.ytimg.com/vi/vAeXTbwt9u4/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBng_gjgfCdbSy4amW1MZZUj_WKcg",
+      link: "https://www.youtube.com/watch?v=vAeXTbwt9u4&list=PLc_HqTUOhvLYnyTtULK09qbTl1uPUyBHs&index=4&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "2": {
       name: "Misha",
       company: "Symbiotic",
-      topic: "How to research well? #crypto #researchmethods #podcast",
+      topic: "Restaking and shared security explained from scratch",
       thumbnail:
-        "https://i.ytimg.com/vi/kwll2NJ9JiQ/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIACgA-KAgwIABABGGUgUyhUMA8=&rs=AOn4CLCIPJcXQIVD4UJYJRJqfgH5_dqwjA",
+        "https://i.ytimg.com/vi/ct15rikp6M0/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCArtHTH-7fVTjAIqC9-d6KfWjOUw",
+      link: "https://www.youtube.com/watch?v=ct15rikp6M0&list=PLc_HqTUOhvLYnyTtULK09qbTl1uPUyBHs&index=1&pp=iAQB",
     },
     "3": {
       name: "Misha",
@@ -97,64 +101,65 @@ export const Playlist = {
       topic: "How to Master Research like a pro",
       thumbnail:
         "https://i.ytimg.com/vi/iZpdlpHaWV8/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDWunbnfDhqkdKyuDRk4kNVMnMxqw",
-    },
-    "4": {
-      name: "Misha",
-      company: "Symbiotic",
-      topic: "FULL POD - Symbiotic Deep Dive with Misha",
-      thumbnail:
-        "https://i.ytimg.com/vi/vAeXTbwt9u4/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBng_gjgfCdbSy4amW1MZZUj_WKcg",
+      link: "https://www.youtube.com/watch?v=iZpdlpHaWV8&list=PLc_HqTUOhvLYnyTtULK09qbTl1uPUyBHs&index=3&pp=iAQB",
     },
   },
   "Relayer Capital": {
     "1": {
       name: "Austin Barack",
       company: "Relayer Capital",
+      topic: "FULL POD - Liquid Funds & Token Analysis with Austin Barrack",
+      thumbnail:
+        "https://i.ytimg.com/vi/hJAHH2EFEOc/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCa1rbBEc7bw1P6oCATeWgjAk7Tiw",
+      link: "https://www.youtube.com/watch?v=hJAHH2EFEOc&list=PLc_HqTUOhvLalju-cUoFhfgzVHSrfIfZ6&index=7&pp=iAQB",
+    },
+    "2": {
+      name: "Austin Barack",
+      company: "Relayer Capital",
       topic: "Who is Austin?",
       thumbnail:
         "https://i.ytimg.com/vi/t9jKqdYRvJM/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGD0gVyhyMA8=&rs=AOn4CLCEpna6nx1wbpZm_y5Ej54jpcYSow",
+      link: "https://www.youtube.com/watch?v=t9jKqdYRvJM&list=PLc_HqTUOhvLalju-cUoFhfgzVHSrfIfZ6&index=6&pp=iAQB",
     },
-    "2": {
+    "3": {
       name: "Austin Barack",
       company: "Relayer Capital",
       topic: "Liquid Funds Explained",
       thumbnail:
         "https://i.ytimg.com/vi/SZvgPhJ4I10/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAUl_Zytk3kf3m7NGa7B5Kc3MAjIg",
+      link: "https://www.youtube.com/watch?v=SZvgPhJ4I10&list=PLc_HqTUOhvLalju-cUoFhfgzVHSrfIfZ6&index=5&pp=iAQB",
     },
-    "3": {
+    "4": {
       name: "Austin Barack",
       company: "Relayer Capital",
       topic: "Masterclass on Token Analysis",
       thumbnail:
         "https://i.ytimg.com/vi/zpkIRUpP_vY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA32UJUOjumCWtRE3As21hSXkmveA",
+      link: "https://www.youtube.com/watch?v=zpkIRUpP_vY&list=PLc_HqTUOhvLalju-cUoFhfgzVHSrfIfZ6&index=4&pp=iAQB",
     },
-    "4": {
+    "5": {
       name: "Austin Barack",
       company: "Relayer Capital",
       topic: "How can you become a VC?",
       thumbnail:
         "https://i.ytimg.com/vi/SxY2vi-96YM/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDPbSVbunMepQDpzOBYHkk8fQYPew",
+      link: "https://www.youtube.com/watch?v=SxY2vi-96YM&list=PLc_HqTUOhvLalju-cUoFhfgzVHSrfIfZ6&index=3&pp=iAQB",
     },
-    "5": {
+    "6": {
       name: "Austin Barack",
       company: "Relayer Capital",
       topic: "Opening your own fund",
       thumbnail:
         "https://i.ytimg.com/vi/SZvgPhJ4I10/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAUl_Zytk3kf3m7NGa7B5Kc3MAjIg",
+      link: "https://www.youtube.com/watch?v=1fh5dhQvd1M&list=PLc_HqTUOhvLalju-cUoFhfgzVHSrfIfZ6&index=2&pp=iAQB",
     },
-    "6": {
+    "7": {
       name: "Austin Barack",
       company: "Relayer Capital",
       topic: "Watch This Before Investing in Crypto",
       thumbnail:
         "https://i.ytimg.com/vi/e6yKHtOKN_o/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBRn7ZeU0xDWeQlHEpcRC8RUFtGCg",
-    },
-    "7": {
-      name: "Austin Barack",
-      company: "Relayer Capital",
-      topic: "FULL POD - Liquid Funds & Token Analysis with Austin Barrack",
-      thumbnail:
-        "https://i.ytimg.com/vi/hJAHH2EFEOc/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCa1rbBEc7bw1P6oCATeWgjAk7Tiw",
+      link: "https://www.youtube.com/watch?v=e6yKHtOKN_o&list=PLc_HqTUOhvLalju-cUoFhfgzVHSrfIfZ6&index=1&pp=iAQB0gcJCY0JAYcqIYzv",
     },
   },
   Superteam: {
@@ -164,6 +169,7 @@ export const Playlist = {
       topic: "Who is Kash?",
       thumbnail:
         "https://i.ytimg.com/vi/KBV0kwaav9A/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGFIgXyhlMA8=&rs=AOn4CLCFfWR7cPkC88uHhEb8bNVEwTA1jA",
+      link: "https://www.youtube.com/watch?v=KBV0kwaav9A&list=PLc_HqTUOhvLYefH1A3ogtXgdcmRMRYfm_&index=2&pp=iAQB",
     },
     "2": {
       name: "Kash Dhanda",
@@ -171,6 +177,7 @@ export const Playlist = {
       topic: "Solana's Community & Talent building Playbook",
       thumbnail:
         "https://i.ytimg.com/vi/FnzCyBcEBTY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBt-KD9m5YjBWdwPqHN8-o7sGPomQ",
+      link: "https://www.youtube.com/watch?v=FnzCyBcEBTY&list=PLc_HqTUOhvLYefH1A3ogtXgdcmRMRYfm_&index=1&pp=iAQB",
     },
   },
   Maelstrom: {
@@ -180,6 +187,7 @@ export const Playlist = {
       topic: "Who is Akshat?",
       thumbnail:
         "https://i.ytimg.com/vi/03caSAGOkcI/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB3oIrgIC7k_DUpaIAO2qY4dVwGoA",
+      link: "https://www.youtube.com/watch?v=03caSAGOkcI&list=PLc_HqTUOhvLYG0wb_S_eHV2QxBuPeoJan&index=6&pp=iAQB",
     },
 
     "2": {
@@ -188,6 +196,7 @@ export const Playlist = {
       topic: "Everything you need to know about Maelstrom",
       thumbnail:
         "https://i.ytimg.com/vi/PaTI1Bh9yAQ/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLADbmDxwMQQ-thUK9gqJ_PE1leemw",
+      link: "https://www.youtube.com/watch?v=PaTI1Bh9yAQ&list=PLc_HqTUOhvLYG0wb_S_eHV2QxBuPeoJan&index=5&pp=iAQB",
     },
     "3": {
       name: "Akshat",
@@ -195,6 +204,7 @@ export const Playlist = {
       topic: "Exploring Hong Kong Crypto Mafia",
       thumbnail:
         "https://i.ytimg.com/vi/W1hu2C-C9qo/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDkI2ixFEWFv-_MwrYFt35WQbns7w",
+      link: "https://www.youtube.com/watch?v=W1hu2C-C9qo&list=PLc_HqTUOhvLYG0wb_S_eHV2QxBuPeoJan&index=4&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "4": {
       name: "Akshat",
@@ -202,6 +212,7 @@ export const Playlist = {
       topic: "Fundraise Masterclass",
       thumbnail:
         "https://i.ytimg.com/vi/mqQrvyhkTIE/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC6d6MVANXjt26G6SfPBAl01ZK2mw",
+      link: "https://www.youtube.com/watch?v=mqQrvyhkTIE&list=PLc_HqTUOhvLYG0wb_S_eHV2QxBuPeoJan&index=3&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "5": {
       name: "Akshat",
@@ -209,6 +220,7 @@ export const Playlist = {
       topic: "KOLs vs VCs",
       thumbnail:
         "https://i.ytimg.com/vi/DpPEI1rz14I/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA29NfhV4IcaTZV8rboG4O1Hh0Nug",
+      link: "https://www.youtube.com/watch?v=DpPEI1rz14I&list=PLc_HqTUOhvLYG0wb_S_eHV2QxBuPeoJan&index=2&pp=iAQB",
     },
     "6": {
       name: "Akshat",
@@ -216,6 +228,7 @@ export const Playlist = {
       topic: "Stablecoin Thesis & Bullish Narratives",
       thumbnail:
         "https://i.ytimg.com/vi/FvBzUwYA3As/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCOxlNo7GTIFd1Po-LCyDT3eCHQfg",
+      link: "https://www.youtube.com/watch?v=FvBzUwYA3As&list=PLc_HqTUOhvLYG0wb_S_eHV2QxBuPeoJan&index=1&pp=iAQB",
     },
   },
   Ethena: {
@@ -225,6 +238,7 @@ export const Playlist = {
       topic: "Who is Seraphim?",
       thumbnail:
         "https://i.ytimg.com/vi/peHtWymmdeU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAdwMyS2ZOXwb6908xDRGiyWaDUmA",
+      link: "https://www.youtube.com/watch?v=peHtWymmdeU&list=PLc_HqTUOhvLZvrc_l4OSRsHM3DpWUPFOv&index=3&pp=iAQB",
     },
     "2": {
       name: "Seraphim",
@@ -232,6 +246,7 @@ export const Playlist = {
       topic: "How to build a $3B TVL Project?",
       thumbnail:
         "https://i.ytimg.com/vi/w8lMJvptRC8/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGGMgYyhjMA8=&rs=AOn4CLCX0S_ndaDMUrAd4ndQmyH5Ph3_dw",
+      link: "https://www.youtube.com/watch?v=w8lMJvptRC8&list=PLc_HqTUOhvLZvrc_l4OSRsHM3DpWUPFOv&index=2&pp=iAQB",
     },
     "3": {
       name: "Seraphim",
@@ -239,6 +254,7 @@ export const Playlist = {
       topic: "BD & Growth Masterclass",
       thumbnail:
         "https://i.ytimg.com/vi/rBeVtUzWtIY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB2sv-J7CO8Z8QVTHzbaUy9fMPrFg",
+      link: "https://www.youtube.com/watch?v=rBeVtUzWtIY&list=PLc_HqTUOhvLZvrc_l4OSRsHM3DpWUPFOv&index=1&pp=iAQB",
     },
   },
   "Dragonfly Capital": {
@@ -247,7 +263,8 @@ export const Playlist = {
       company: "Dragonfly Capital",
       topic: "Dragonfly Capital GP, Part 1: Who is Rob Hadick?",
       thumbnail:
-        "https://www.youtube.com/watch?v=sA1XluyCR6M&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=7&pp=iAQB",
+        "https://i.ytimg.com/vi/sA1XluyCR6M/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLClIIm25ugad7qvuoGpfkMU0XtLig",
+      link: "https://www.youtube.com/watch?v=sA1XluyCR6M&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=7&pp=iAQB",
     },
     "2": {
       name: "Rob Hadick",
@@ -255,42 +272,41 @@ export const Playlist = {
       topic:
         "Dragonfly, Part 2: Everything you need to know about fundraising from Dragonfly",
       thumbnail:
-        "https://www.youtube.com/watch?v=L__vuMCi6CA&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=6&pp=iAQB",
+        "https://i.ytimg.com/vi/L__vuMCi6CA/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAS4KPqqDSeIXHd7KVjlFERkZBB5Q",
+      link: "https://www.youtube.com/watch?v=L__vuMCi6CA&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=6&pp=iAQB",
     },
     "3": {
       name: "Rob Hadick",
       company: "Dragonfly Capital",
       topic: "Dragonfly, Part 3: State of Macro",
       thumbnail:
-        "https://www.youtube.com/watch?v=Ruv8hUbumQc&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=5&pp=iAQB",
+        "https://i.ytimg.com/vi/Ruv8hUbumQc/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEogWihlMA8=&rs=AOn4CLDJOdUpIdYnqCx0ebtG8Ydkh8R_iA",
+      link: "https://www.youtube.com/watch?v=Ruv8hUbumQc&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=5&pp=iAQB",
     },
     "4": {
       name: "Rob Hadick",
       company: "Dragonfly Capital",
       topic: "Dragonfly, Part 4: Gamestop & Memecoins",
       thumbnail:
-        "https://www.youtube.com/watch?v=5YL_3-fLMdk&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=4&pp=iAQB",
+        "https://i.ytimg.com/vi/5YL_3-fLMdk/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCxvK_se6mnJnEkL9fz8t_j4TFtOQ",
+      link: "https://www.youtube.com/watch?v=5YL_3-fLMdk&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=4&pp=iAQB",
     },
     "5": {
       name: "Rob Hadick",
       company: "Dragonfly Capital",
       topic: "Dragonfly, Part 5: Bearish on Circle, Long on ?",
       thumbnail:
-        "https://www.youtube.com/watch?v=ezWcrgAzkP0&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=3&pp=iAQB",
+        "https://i.ytimg.com/vi/ezWcrgAzkP0/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDcxxewoDIiX-JNsa2MsM5FnQ_AyQQ",
+      link: "https://www.youtube.com/watch?v=ezWcrgAzkP0&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=3&pp=iAQB",
     },
+
     "6": {
-      name: "Rob Hadick",
-      company: "Dragonfly Capital",
-      topic: "UNRELEASED fundraise annoucement",
-      thumbnail:
-        "https://www.youtube.com/watch?v=nCGYHhlamJM&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=2&pp=iAQB",
-    },
-    "7": {
       name: "Rob Hadick",
       company: "Dragonfly Capital",
       topic: "Dragonfly, Part 6: Don't be Diplomatic",
       thumbnail:
-        "https://www.youtube.com/watch?v=B50OuFO3Ado&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=1&pp=iAQB",
+        "https://i.ytimg.com/vi/B50OuFO3Ado/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB66Fmrxko9G82Imw_TBe0VTtxESA",
+      link: "https://www.youtube.com/watch?v=B50OuFO3Ado&list=PLc_HqTUOhvLa0UGnX8YDukhWaNWqXuosF&index=1&pp=iAQB",
     },
   },
   "New Tribe Capital": {
@@ -300,6 +316,7 @@ export const Playlist = {
       topic: "Who is Juliet Su?",
       thumbnail:
         "https://i.ytimg.com/vi/o757bRqdv0Y/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD8nsAYzY_-H0yunZ89MkeEZDuUMQ",
+      link: "https://www.youtube.com/watch?v=o757bRqdv0Y&list=PLc_HqTUOhvLYJcX2dSXDSx7VVbKYf31jI&index=5&pp=iAQB",
     },
     "2": {
       name: "Juliet Su",
@@ -307,6 +324,7 @@ export const Playlist = {
       topic: "How VCs find the next big thing?",
       thumbnail:
         "https://i.ytimg.com/vi/LXkD4kyG-4g/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBZV1OO8Ctp7EUteMER6-h2QsUI7g",
+      link: "https://www.youtube.com/watch?v=LXkD4kyG-4g&list=PLc_HqTUOhvLYJcX2dSXDSx7VVbKYf31jI&index=4&pp=iAQB",
     },
     "3": {
       name: "Juliet Su",
@@ -314,6 +332,7 @@ export const Playlist = {
       topic: "How to pitch your idea to an investor?",
       thumbnail:
         "https://i.ytimg.com/vi/hZHEq93QY7Q/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDyPOGJvWyUMOHJZp_OqrYhtNzqXQ",
+      link: "https://www.youtube.com/watch?v=hZHEq93QY7Q&list=PLc_HqTUOhvLYJcX2dSXDSx7VVbKYf31jI&index=3&pp=iAQB",
     },
     "4": {
       name: "Juliet Su",
@@ -321,6 +340,7 @@ export const Playlist = {
       topic: "How to get your pitch deck right?",
       thumbnail:
         "https://i.ytimg.com/vi/eV0YROWpWpk/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB1ZZC86sBRR3i6eMaGkKaP4VOTKw",
+      link: "https://www.youtube.com/watch?v=eV0YROWpWpk&list=PLc_HqTUOhvLYJcX2dSXDSx7VVbKYf31jI&index=2&pp=iAQB",
     },
     "5": {
       name: "Juliet Su",
@@ -328,65 +348,65 @@ export const Playlist = {
       topic: "Who is an ideal founder?",
       thumbnail:
         "https://i.ytimg.com/vi/O1XvPiOJoFY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCKyG3eoCHjn4ExCK82-jqFs8mpPg",
+      link: "https://www.youtube.com/watch?v=O1XvPiOJoFY&list=PLc_HqTUOhvLYJcX2dSXDSx7VVbKYf31jI&index=1&pp=iAQB",
     },
   },
   "Movement Labs": {
     "1": {
       name: "Rushi Manche",
       company: "Movement Labs",
+      topic: "FULL POD - Movement Labs : Deep Dive with Rushi Manche",
+      thumbnail:
+        "https://i.ytimg.com/vi/aZ_VwlZXhwU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB43T3Oh5L678zgGYXEFzo_2SP0gA",
+      link: "https://www.youtube.com/watch?v=aZ_VwlZXhwU&list=PLc_HqTUOhvLaRa6loyDR_1ZBkIY0g7tzy&index=1&pp=iAQB",
+    },
+    "2": {
+      name: "Rushi Manche",
+      company: "Movement Labs",
       topic: "Who is Rushi Manche?",
       thumbnail:
         "https://i.ytimg.com/vi/LSI_x93WGKQ/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBhN0iiplo17VJ3XFWy_k9Mx2ukJQ",
+      link: "https://www.youtube.com/watch?v=LSI_x93WGKQ&list=PLc_HqTUOhvLaRa6loyDR_1ZBkIY0g7tzy&index=8&pp=iAQB",
     },
-    "2": {
+    "3": {
       name: "Rushi Manche",
       company: "Movement Labs",
       topic: "The $41.5M fundraise story",
       thumbnail:
         "https://i.ytimg.com/vi/wIBUBP1MJfE/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCHX4G-yFMxEyUdtPs8Yb1SWBYJvw",
+      link: "https://www.youtube.com/watch?v=wIBUBP1MJfE&list=PLc_HqTUOhvLaRa6loyDR_1ZBkIY0g7tzy&index=7&pp=iAQB",
     },
-    "3": {
+    "4": {
       name: "Rushi Manche",
       company: "Movement Labs",
       topic: "Explaining Move & the plan to leapfrog Solana?",
       thumbnail:
         "https://i.ytimg.com/vi/OTs-x7LeiOQ/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDgAmPfi4_46a5ZblD-w8mMjV3cQw",
+      link: "https://www.youtube.com/watch?v=OTs-x7LeiOQ&list=PLc_HqTUOhvLaRa6loyDR_1ZBkIY0g7tzy&index=6&pp=iAQB",
     },
-    "4": {
+    "5": {
       name: "Rushi Manche",
       company: "Movement Labs",
       topic: "Building the Move ecosystems and gaining market share",
       thumbnail:
         "https://i.ytimg.com/vi/l0iclF_ajkg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDpZ5zZN_7u3lfcBj9AraqrQ-aWNw",
+      link: "https://www.youtube.com/watch?v=l0iclF_ajkg&list=PLc_HqTUOhvLaRa6loyDR_1ZBkIY0g7tzy&index=5&pp=iAQB",
     },
-    "5": {
+    "6": {
       name: "Rushi Manche",
       company: "Movement Labs",
       topic: "The art of fundraising $41.5M",
       thumbnail:
         "https://i.ytimg.com/vi/YsQ5YN15mcg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBy8FjUZj_4-Jjp42MamijebHbU1A",
+      link: "https://www.youtube.com/watch?v=YsQ5YN15mcg&list=PLc_HqTUOhvLaRa6loyDR_1ZBkIY0g7tzy&index=4&pp=iAQB",
     },
-    "6": {
+    "7": {
       name: "Rushi Manche",
       company: "Movement Labs",
       topic: "Movement tech stack, Move VM, M1 & M2",
       thumbnail:
         "https://i.ytimg.com/vi/8VCvcXc3ucY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCyxhihAovn12ZBdafRZCpJRli7fw",
-    },
-    "7": {
-      name: "Rushi Manche",
-      company: "Movement Labs",
-      topic: "bhai alignment",
-      thumbnail:
-        "https://i.ytimg.com/vi/Igg-vyHmL80/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCw-1WDNZzFSgkuQcBKNu9GDLuZmQ",
-    },
-
-    "8": {
-      name: "Rushi Manche",
-      company: "Movement Labs",
-      topic: "FULL POD - Movement Labs : Deep Dive with Rushi Manche",
-      thumbnail:
-        "https://i.ytimg.com/vi/aZ_VwlZXhwU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB43T3Oh5L678zgGYXEFzo_2SP0gA",
+      link: "https://www.youtube.com/watch?v=8VCvcXc3ucY&list=PLc_HqTUOhvLaRa6loyDR_1ZBkIY0g7tzy&index=2&pp=iAQB",
     },
   },
   Polygon: {
@@ -396,6 +416,7 @@ export const Playlist = {
       topic: "Who is Sandeep Nailwal",
       thumbnail:
         "https://i.ytimg.com/vi/ePhnyg66np0/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDe6Iy3KlPVv24uPGcn3-tW7-9t5w",
+      link: "https://www.youtube.com/watch?v=ePhnyg66np0&list=PLc_HqTUOhvLanP3v4I8BDABClSNcekoDv&index=1&pp=iAQB",
     },
     "2": {
       name: "Sandeep Nailwal",
@@ -403,6 +424,7 @@ export const Playlist = {
       topic: "How Polygon started",
       thumbnail:
         "https://i.ytimg.com/vi/ghrWUfpOKOQ/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDTnNY8cZgibD-ACMz6Uz24-j4hAQ",
+      link: "https://www.youtube.com/watch?v=ghrWUfpOKOQ&list=PLc_HqTUOhvLanP3v4I8BDABClSNcekoDv&index=2&pp=iAQB",
     },
     "3": {
       name: "Sandeep Nailwal",
@@ -410,6 +432,7 @@ export const Playlist = {
       topic: "Polygon's biggest challenge",
       thumbnail:
         "https://i.ytimg.com/vi/Q3bERpBAog0/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDZDfBGiTOQSOMZGQouve5ROT4nGQ",
+      link: "https://www.youtube.com/watch?v=Q3bERpBAog0&list=PLc_HqTUOhvLanP3v4I8BDABClSNcekoDv&index=3&pp=iAQB",
     },
     "4": {
       name: "Sandeep Nailwal",
@@ -417,6 +440,7 @@ export const Playlist = {
       topic: "The art of building a $30B Crypto Company",
       thumbnail:
         "https://i.ytimg.com/vi/I_4TLzmQozg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD4x40-Yol8s9nB6t1kBk6ncdW3lA",
+      link: "https://www.youtube.com/watch?v=I_4TLzmQozg&list=PLc_HqTUOhvLanP3v4I8BDABClSNcekoDv&index=4&pp=iAQB",
     },
     "5": {
       name: "Sandeep Nailwal",
@@ -424,6 +448,7 @@ export const Playlist = {
       topic: "Memecoins on Polygon",
       thumbnail:
         "https://i.ytimg.com/vi/XFSc-9G33eQ/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAObtyAhO3FznN3YqwJ9VNlLvV-yQ",
+      link: "https://www.youtube.com/watch?v=XFSc-9G33eQ&list=PLc_HqTUOhvLanP3v4I8BDABClSNcekoDv&index=5&pp=iAQB",
     },
     "6": {
       name: "Sandeep Nailwal",
@@ -431,6 +456,7 @@ export const Playlist = {
       topic: "Polygon's biggest Competition (& Confidants)",
       thumbnail:
         "https://i.ytimg.com/vi/aHzaNPpUysg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBRPR9Ys3p6MFqwEoUA7hkRnx7Ajw",
+      link: "https://www.youtube.com/watch?v=aHzaNPpUysg&list=PLc_HqTUOhvLanP3v4I8BDABClSNcekoDv&index=6&pp=iAQB",
     },
     "7": {
       name: "Sandeep Nailwal",
@@ -438,6 +464,7 @@ export const Playlist = {
       topic: "What is Polygon's AggLayer?",
       thumbnail:
         "https://i.ytimg.com/vi/sHjFHORvAiA/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA_nxvqjjrvazc4XKL8a6hhKOVMDw",
+      link: "https://www.youtube.com/watch?v=sHjFHORvAiA&list=PLc_HqTUOhvLanP3v4I8BDABClSNcekoDv&index=7&pp=iAQBB",
     },
     "8": {
       name: "Sandeep Nailwal",
@@ -445,6 +472,7 @@ export const Playlist = {
       topic: "How does Polygon's founder do BD deals?",
       thumbnail:
         "https://i.ytimg.com/vi/0qSmj67TjUA/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAtd8zppx2sQN7D_PClDSx-YNcbOQ",
+      link: "https://www.youtube.com/watch?v=0qSmj67TjUA&list=PLc_HqTUOhvLanP3v4I8BDABClSNcekoDv&index=8&pp=iAQB",
     },
   },
   DWF: {
@@ -454,6 +482,7 @@ export const Playlist = {
       topic: "Intern to Head of Ecosystem, ft. Alessia",
       thumbnail:
         "https://i.ytimg.com/vi/3P1In626u3g/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDM9dHbrHw7CJ9SiboN0m6WgZR9sw",
+      link: "https://www.youtube.com/watch?v=3P1In626u3g&list=PLc_HqTUOhvLbg8hEpBWhMuASvrSxCVDcL&index=1&pp=iAQB",
     },
     "2": {
       name: "Alessia Baumgar",
@@ -461,6 +490,7 @@ export const Playlist = {
       topic: "Market Making explain me like i'm 5",
       thumbnail:
         "https://i.ytimg.com/vi/4YmBBQsmtMk/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBl0_rjiE-yeh6TeBkztU315-gDdg",
+      link: "https://www.youtube.com/watch?v=4YmBBQsmtMk&list=PLc_HqTUOhvLbg8hEpBWhMuASvrSxCVDcL&index=2&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "3": {
       name: "Alessia Baumgar",
@@ -468,6 +498,7 @@ export const Playlist = {
       topic: "DWF Labs deep dive & how they support their portcos",
       thumbnail:
         "https://i.ytimg.com/vi/D_-ybi91HJA/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBP461nuoLQZyr1E53_NsDTAc_mqQ",
+      link: "https://www.youtube.com/watch?v=D_-ybi91HJA&list=PLc_HqTUOhvLbg8hEpBWhMuASvrSxCVDcL&index=3&pp=iAQB",
     },
     "4": {
       name: "Alessia Baumgar",
@@ -475,6 +506,7 @@ export const Playlist = {
       topic: "How tokens get listed on major exchanges?",
       thumbnail:
         "https://i.ytimg.com/vi/JyL7jQf3IzY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC4cLCKIH22Ij3G8TBojK7CK1qpUg",
+      link: "https://www.youtube.com/watch?v=JyL7jQf3IzY&list=PLc_HqTUOhvLbg8hEpBWhMuASvrSxCVDcL&index=4&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "5": {
       name: "Alessia Baumgar",
@@ -482,6 +514,7 @@ export const Playlist = {
       topic: "DWF Ventures - 2023's top lead crypto investor",
       thumbnail:
         "https://i.ytimg.com/vi/-UNziCBccUw/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCRWrn8KssjM3CHbXlCpaghQUejswhttps://i.ytimg.com/vi/-UNziCBccUw/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCRWrn8KssjM3CHbXlCpaghQUejsw",
+      link: "https://www.youtube.com/watch?v=-UNziCBccUw&list=PLc_HqTUOhvLbg8hEpBWhMuASvrSxCVDcL&index=5&pp=iAQB",
     },
     "6": {
       name: "Alessia Baumgar",
@@ -489,6 +522,7 @@ export const Playlist = {
       topic: "Don't be diplomatic",
       thumbnail:
         "https://i.ytimg.com/vi/ZoSMR55dL_E/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCCtZdLye5K-iyTiIgPize1oaL4RA",
+      link: "https://www.youtube.com/watch?v=ZoSMR55dL_E&list=PLc_HqTUOhvLbg8hEpBWhMuASvrSxCVDcL&index=6&pp=iAQB",
     },
   },
   "Sharding Capital": {
@@ -498,6 +532,7 @@ export const Playlist = {
       topic: "Who is Belinda - Founding Partner of Sharding Capital",
       thumbnail:
         "https://i.ytimg.com/vi/BUT4YgwUbt4/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD0E28Am18uEVIO09QDhrXXw3bBpA",
+      link: "https://www.youtube.com/watch?v=BUT4YgwUbt4&list=PLc_HqTUOhvLZFhCxRWR9gWjcq_vtbP4Sy&index=1&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "2": {
       name: "Belinda Zhou",
@@ -505,6 +540,7 @@ export const Playlist = {
       topic: "Analyzing Early Stage Founders",
       thumbnail:
         "https://i.ytimg.com/vi/C0a61I7kIRI/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAh32q_9e3aYpVULTOw6juzQvx7fg",
+      link: "https://www.youtube.com/watch?v=C0a61I7kIRI&list=PLc_HqTUOhvLZFhCxRWR9gWjcq_vtbP4Sy&index=2&pp=iAQB",
     },
     "3": {
       name: "Belinda Zhou",
@@ -512,6 +548,7 @@ export const Playlist = {
       topic: "Demystifying Token Pumpamentals",
       thumbnail:
         "https://i.ytimg.com/vi/aEcZKTG5VXY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAger0jPJEvXJ7zR0qTVpuGTwEmHA",
+      link: "https://www.youtube.com/watch?v=aEcZKTG5VXY&list=PLc_HqTUOhvLZFhCxRWR9gWjcq_vtbP4Sy&index=3&pp=iAQB",
     },
     "4": {
       name: "Belinda Zhou",
@@ -519,6 +556,7 @@ export const Playlist = {
       topic: "What is Sharding Capital?",
       thumbnail:
         "https://i.ytimg.com/vi/Ipr1DpNlXks/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCsNUdlsUXO1uPK0Hv_GCx02LKGog",
+      link: "https://www.youtube.com/watch?v=Ipr1DpNlXks&list=PLc_HqTUOhvLZFhCxRWR9gWjcq_vtbP4Sy&index=4&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "5": {
       name: "Belinda Zhou",
@@ -526,13 +564,7 @@ export const Playlist = {
       topic: "don't be diplomatic belinda",
       thumbnail:
         "https://i.ytimg.com/vi/-Mw4cunZTG4/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAigZgvCPzB6-R0jabn8dj0cnQa2A",
-    },
-    "6": {
-      name: "Belinda Zhou",
-      company: "Sharding Capital",
-      topic: "Memecoins : good or bad?",
-      thumbnail:
-        "https://i.ytimg.com/vi/rsysHR2FKr8/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIACgA-KAgwIABABGGUgZShlMA8=&rs=AOn4CLBqcE8y4OshK7RZ-i7eDsOC2T6kiw",
+      link: "https://www.youtube.com/watch?v=-Mw4cunZTG4&list=PLc_HqTUOhvLZFhCxRWR9gWjcq_vtbP4Sy&index=5&pp=iAQB",
     },
   },
   OG: {
@@ -543,6 +575,7 @@ export const Playlist = {
         "Who is Michael - top harvard alumni building the first modular AI Chain",
       thumbnail:
         "https://i.ytimg.com/vi/wAY-xL8SQog/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLChrQ7N-4qSDPMvn4eXzqXyeegPlw",
+      link: "https://www.youtube.com/watch?v=wAY-xL8SQog&list=PLc_HqTUOhvLYMWPyY0Y3Ggj80UhxpQzsk&index=2",
     },
     "2": {
       name: "Michael Heinrich",
@@ -550,6 +583,7 @@ export const Playlist = {
       topic: " What does one learn after getting into YCombinator?",
       thumbnail:
         "https://i.ytimg.com/vi/QCfuHhQNvyo/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDv-oAyknsv2FPhATRLeAbim5vrRg",
+      link: "https://www.youtube.com/watch?v=QCfuHhQNvyo&list=PLc_HqTUOhvLYMWPyY0Y3Ggj80UhxpQzsk&index=2",
     },
     "3": {
       name: "Michael Heinrich",
@@ -557,6 +591,7 @@ export const Playlist = {
       topic: "Building the First Modular AI Chain",
       thumbnail:
         "https://i.ytimg.com/vi/bWE4MqPZhfI/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAUYaMrq_oIkysBJ_1-r5PQgVwkJQ",
+      link: "https://www.youtube.com/watch?v=bWE4MqPZhfI&list=PLc_HqTUOhvLYMWPyY0Y3Ggj80UhxpQzsk&index=3",
     },
     "4": {
       name: "Michael Heinrich",
@@ -564,6 +599,7 @@ export const Playlist = {
       topic: "The art of building a Unicorn",
       thumbnail:
         "https://i.ytimg.com/vi/2-pttehajS0/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCx21xisfRbCsOoqZHLfpGkMOaK9A",
+      link: "https://www.youtube.com/watch?v=2-pttehajS0&list=PLc_HqTUOhvLYMWPyY0Y3Ggj80UhxpQzsk&index=4",
     },
     "5": {
       name: "Michael Heinrich",
@@ -571,6 +607,7 @@ export const Playlist = {
       topic: "Raising $35M in Pre-Seed",
       thumbnail:
         "https://i.ytimg.com/vi/_v8r4yNFGyg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCbXOkh5QNhdKB_IpA5OK_GhvCgIA",
+      link: "https://www.youtube.com/watch?v=_v8r4yNFGyg&list=PLc_HqTUOhvLYMWPyY0Y3Ggj80UhxpQzsk&index=5",
     },
   },
   Avail: {
@@ -580,6 +617,7 @@ export const Playlist = {
       topic: "Who is Prabal Banerjee",
       thumbnail:
         "https://i.ytimg.com/vi/QiYIL0w_ch8/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCaViXg3231Bf6evDrUQcne-RFCtA",
+      link: "https://www.youtube.com/watch?v=QiYIL0w_ch8&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6",
     },
     "2": {
       name: "Prabal Banerjee",
@@ -587,6 +625,7 @@ export const Playlist = {
       topic: "Data availability explained by Prof. Prabal",
       thumbnail:
         "https://i.ytimg.com/vi/9ZSXb8BD5uY/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGE0gVihlMA8=&rs=AOn4CLAdvWPK5T7arfHSsCST5OqE8I4XDw",
+      link: "https://www.youtube.com/watch?v=9ZSXb8BD5uY&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6&index=2",
     },
     "3": {
       name: "Prabal Banerjee",
@@ -594,6 +633,7 @@ export const Playlist = {
       topic: "Avail's hello world story",
       thumbnail:
         "https://i.ytimg.com/vi/ny1L_RnSM60/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEYgWShlMA8=&rs=AOn4CLDq8keHJz1HalaWP9Vnaog69xPJKw",
+      link: "https://www.youtube.com/watch?v=ny1L_RnSM60&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6&index=3",
     },
     "4": {
       name: "Prabal Banerjee",
@@ -601,6 +641,7 @@ export const Playlist = {
       topic: "Avail vs Celestia vs Eigen Layer",
       thumbnail:
         "https://i.ytimg.com/vi/whHxPp2zGgY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLADl5R0Su8rSU5-Qw9UYJ6_7vwIkQ",
+      link: "https://www.youtube.com/watch?v=whHxPp2zGgY&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6&index=4",
     },
     "5": {
       name: "Prabal Banerjee",
@@ -608,6 +649,7 @@ export const Playlist = {
       topic: "Current state of Avail & Avail Points?",
       thumbnail:
         "https://i.ytimg.com/vi/_AaOVrz6-LI/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEIgUihlMA8=&rs=AOn4CLCRpwsMxsb4DvHivV9x39brsFATSg",
+      link: "https://www.youtube.com/watch?v=_AaOVrz6-LI&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6&index=5",
     },
     "6": {
       name: "Prabal Banerjee",
@@ -615,6 +657,7 @@ export const Playlist = {
       topic: "The art of being a researcher",
       thumbnail:
         "https://i.ytimg.com/vi/uZcwSEcUqrg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB1hoMdxoux98QZ5yv6GpkDDY_yjw",
+      link: "https://www.youtube.com/watch?v=uZcwSEcUqrg&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6&index=6",
     },
     "7": {
       name: "Prabal Banerjee",
@@ -623,6 +666,7 @@ export const Playlist = {
         "Comparing Rollup Stacks - Pol vs OP vs zkSync vs Arb vs Starkware",
       thumbnail:
         "https://i.ytimg.com/vi/l2fRqkQ0mnk/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEIgUShlMA8=&rs=AOn4CLBeSyCdc3LJLNu_ZYlbQhNyQ6oykQ",
+      link: "https://www.youtube.com/watch?v=l2fRqkQ0mnk&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6&index=7",
     },
     "8": {
       name: "Prabal Banerjee",
@@ -630,6 +674,7 @@ export const Playlist = {
       topic: "VM Layer & State bloat problem",
       thumbnail:
         "https://i.ytimg.com/vi/C7fRef0RohY/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGE8gVihlMA8=&rs=AOn4CLAutas_ZL-UvnhzgKBmaVMAQoPw9Q",
+      link: "https://www.youtube.com/watch?v=C7fRef0RohY&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6&index=9",
     },
     "9": {
       name: "Prabal Banerjee",
@@ -637,6 +682,7 @@ export const Playlist = {
       topic: "Centralized vs Decentralized Sequencers",
       thumbnail:
         "https://i.ytimg.com/vi/pGv1CJhPyrM/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGE8gXyhlMA8=&rs=AOn4CLAzo5G_rbj9Wrn1SUYUb550b4GZBA",
+      link: "https://www.youtube.com/watch?v=pGv1CJhPyrM&list=PLc_HqTUOhvLa6V0aoeM7Mirt54MHcr7U6&index=8",
     },
   },
   "Polygon Labs": {
@@ -646,6 +692,7 @@ export const Playlist = {
       topic: "Who is Marc Boiron, CEO of Polygon Labs",
       thumbnail:
         "https://i.ytimg.com/vi/WdF0sbQ1gVs/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEIgUyhlMA8=&rs=AOn4CLDLCVUCsghscNjLefO6HF05pSUuYQ",
+      link: "https://www.youtube.com/watch?v=WdF0sbQ1gVs&list=PLc_HqTUOhvLbiM7graQBgUiVgUmM-F7-e&index=1&pp=iAQB",
     },
     "2": {
       name: "Marc Boiron",
@@ -653,6 +700,7 @@ export const Playlist = {
       topic: "The art of being a CEO of a $30B company",
       thumbnail:
         "https://i.ytimg.com/vi/fHnULUVXkps/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGFIgWShlMA8=&rs=AOn4CLC1jEJSy9kZF2T76gbt8Rauwz4V6A",
+      link: "https://www.youtube.com/watch?v=fHnULUVXkps&list=PLc_HqTUOhvLbiM7graQBgUiVgUmM-F7-e&index=2&pp=iAQB",
     },
     "3": {
       name: "Marc Boiron",
@@ -660,6 +708,7 @@ export const Playlist = {
       topic: "Legal DOs and DONTs for crypto companies",
       thumbnail:
         "https://i.ytimg.com/vi/VQpTqmb8mp8/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGDYgVyh_MA8=&rs=AOn4CLBx7nM5CRMzLpwRsc_e7xIk9dJPIw",
+      link: "https://www.youtube.com/watch?v=VQpTqmb8mp8&list=PLc_HqTUOhvLbiM7graQBgUiVgUmM-F7-e&index=3&pp=iAQB",
     },
     "4": {
       name: "Marc Boiron",
@@ -667,6 +716,7 @@ export const Playlist = {
       topic: "Crypto Funds' Legal due diligence ft. Variant Fund",
       thumbnail:
         "https://i.ytimg.com/vi/ZXKNoOhHI_I/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGD8gUyhlMA8=&rs=AOn4CLDacEAI0t0mnd17VwKyi9dk-vAq1g",
+      link: "https://www.youtube.com/watch?v=ZXKNoOhHI_I&list=PLc_HqTUOhvLbiM7graQBgUiVgUmM-F7-e&index=4&pp=iAQB",
     },
     "5": {
       name: "Marc Boiron",
@@ -675,6 +725,7 @@ export const Playlist = {
         "Understanding Crypto Mergers & Acquisitions using polygon's example",
       thumbnail:
         "https://i.ytimg.com/vi/GVqykxLrTRw/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEAgUShlMA8=&rs=AOn4CLAo6ctLh2mxXVWsmmU_yBknyeNO9g",
+      link: "https://www.youtube.com/watch?v=GVqykxLrTRw&list=PLc_HqTUOhvLbiM7graQBgUiVgUmM-F7-e&index=5&pp=iAQB",
     },
     "6": {
       name: "Marc Boiron",
@@ -683,6 +734,7 @@ export const Playlist = {
         "Polygon's pitch against Solana, Avalanche, Arbitrum, ZKSync, Scroll, Linea",
       thumbnail:
         "https://i.ytimg.com/vi/suO5Iw6UL1I/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEMgXChyMA8=&rs=AOn4CLBkhudvp3_dUr9RZbjceZKLbDF2Ww",
+      link: "https://www.youtube.com/watch?v=suO5Iw6UL1I&list=PLc_HqTUOhvLbiM7graQBgUiVgUmM-F7-e&index=6&pp=iAQB",
     },
     "7": {
       name: "Marc Boiron",
@@ -690,6 +742,7 @@ export const Playlist = {
       topic: "Explain CDK like I'm 5",
       thumbnail:
         "https://i.ytimg.com/vi/nBPeSE64yPI/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEwgVihlMA8=&rs=AOn4CLA3tmn4CHmdp6adzazj-CsEQmegLQ",
+      link: "https://www.youtube.com/watch?v=nBPeSE64yPI&list=PLc_HqTUOhvLbiM7graQBgUiVgUmM-F7-e&index=7&pp=iAQB",
     },
     "8": {
       name: "Marc Boiron",
@@ -697,6 +750,7 @@ export const Playlist = {
       topic: "Don't be diplomatic",
       thumbnail:
         "htthttps://i.ytimg.com/vi/iEdw4OYGejs/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGE8gXihlMA8=&rs=AOn4CLBOw89WX75alKwlg-I0dNelvNtZKw",
+      link: "https://i.ytimg.com/vi/iEdw4OYGejs/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGE8gXihlMA8=&rs=AOn4CLBOw89WX75alKwlg-I0dNelvNtZKw",
     },
     "9": {
       name: "Marc Boiron",
@@ -704,6 +758,7 @@ export const Playlist = {
       topic: "Polygon Labs CEO, Bonus Clip: Alpha Cam",
       thumbnail:
         "https://i.ytimg.com/vi/wPF3XvRh99c/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGDwgVihyMA8=&rs=AOn4CLCNNRfcdIqM89e_WdN-ZquX1dhypQ",
+      link: "https://www.youtube.com/watch?v=wPF3XvRh99c&list=PLc_HqTUOhvLbiM7graQBgUiVgUmM-F7-e&index=9&pp=iAQB",
     },
   },
   "Polygon Ventures": {
@@ -713,6 +768,7 @@ export const Playlist = {
       topic: "Who is Sachi Kamiya - Polygon Ventures Lead",
       thumbnail:
         "https://i.ytimg.com/vi/PPuCGcoziXU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDoDhkBU7Pi-RKO9pJjKLDuv7afnw",
+      link: "https://www.youtube.com/watch?v=PPuCGcoziXU&list=PLc_HqTUOhvLaQByykV_4DJkzzfHAyXwKi&index=1&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "2": {
       name: "Sachi Kamiya",
@@ -720,6 +776,7 @@ export const Playlist = {
       topic: "Sachi Kamiya, Part 2: The art of fundraising $450M",
       thumbnail:
         "https://i.ytimg.com/vi/6B8pbPsXsWQ/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDMQaEWU3AVLuQ7nzlAmyjZ_jtt7w",
+      link: "https://www.youtube.com/watch?v=6B8pbPsXsWQ&list=PLc_HqTUOhvLaQByykV_4DJkzzfHAyXwKi&index=2&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "3": {
       name: "Sachi Kamiya",
@@ -727,6 +784,7 @@ export const Playlist = {
       topic: "Sachi Kamiya, Part 3: The Investment Process Flowchart",
       thumbnail:
         "https://i.ytimg.com/vi/YfK0bV58RJQ/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCUAfKZ2Z7xku1jKVAIbwbtshZDBg",
+      link: "https://www.youtube.com/watch?v=YfK0bV58RJQ&list=PLc_HqTUOhvLaQByykV_4DJkzzfHAyXwKi&index=3&pp=iAQB",
     },
     "4": {
       name: "Sachi Kamiya",
@@ -734,6 +792,7 @@ export const Playlist = {
       topic: "Sachi Kamiya, Part 4: Crypto Funds - team & structure",
       thumbnail:
         "https://i.ytimg.com/vi/aUfeKekvrr0/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGE0gVShlMA8=&rs=AOn4CLCspvBNkheNCRBMepybFng1oQ6VuA",
+      link: "https://www.youtube.com/watch?v=aUfeKekvrr0&list=PLc_HqTUOhvLaQByykV_4DJkzzfHAyXwKi&index=4&pp=iAQB",
     },
     "5": {
       name: "Sachi Kamiya",
@@ -741,6 +800,7 @@ export const Playlist = {
       topic: "Sachi Kamiya, Part 5: The Fundraising Playbook",
       thumbnail:
         "https://i.ytimg.com/vi/_xU89TKfGvo/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCLHzP1AQSAp3FG0NwjdI3C3A7oDg",
+      link: "https://www.youtube.com/watch?v=_xU89TKfGvo&list=PLc_HqTUOhvLaQByykV_4DJkzzfHAyXwKi&index=5&pp=iAQB",
     },
     "6": {
       name: "Sachi Kamiya",
@@ -748,6 +808,7 @@ export const Playlist = {
       topic: "Sachi Kamiya, Part 6: State of Polygon 2024",
       thumbnail:
         "https://i.ytimg.com/vi/N62_P1f2mp8/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAo5k3oLPNos0IBkUXWiKV_it69Jg",
+      link: "https://www.youtube.com/watch?v=N62_P1f2mp8&list=PLc_HqTUOhvLaQByykV_4DJkzzfHAyXwKi&index=6&pp=iAQB",
     },
     "7": {
       name: "Sachi Kamiya",
@@ -755,6 +816,7 @@ export const Playlist = {
       topic: "Sachi Kamiya, Part 7: All about Polygon's $100M Ecosystem Fund",
       thumbnail:
         "https://i.ytimg.com/vi/kG_VztFvAbM/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGFEgXChlMA8=&rs=AOn4CLClscy6-Sn25mOu_OQOKosdHVaDiw",
+      link: "https://www.youtube.com/watch?v=kG_VztFvAbM&list=PLc_HqTUOhvLaQByykV_4DJkzzfHAyXwKi&index=7&pp=iAQB",
     },
     "8": {
       name: "Sachi Kamiya",
@@ -762,6 +824,7 @@ export const Playlist = {
       topic: "Sachi Kamiya, Part 8: don't be diplomatic",
       thumbnail:
         "https://i.ytimg.com/vi/gKaahotauj8/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEwgXShlMA8=&rs=AOn4CLCevDD6JbQd-T1bsSRyt5KpXv8Dog",
+      link: "https://www.youtube.com/watch?v=gKaahotauj8&list=PLc_HqTUOhvLaQByykV_4DJkzzfHAyXwKi&index=8&pp=iAQB",
     },
   },
   Manta: {
@@ -771,6 +834,7 @@ export const Playlist = {
       topic: "Who is Kenny Li - Co-Founder of Manta Network",
       thumbnail:
         "https://i.ytimg.com/vi/fbMcxHBDZ7M/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC7CCcFxjX_uOBJuN9qzWwGaa6x0w",
+      link: "https://www.youtube.com/watch?v=fbMcxHBDZ7M&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=1&pp=iAQB",
     },
     "2": {
       name: "Kenny Li",
@@ -778,6 +842,7 @@ export const Playlist = {
       topic: "The art of fundraising $60M",
       thumbnail:
         "https://i.ytimg.com/vi/cNMjPkop6JU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDm71cTxrmeQpAUBo01tdTH-w9hMQ",
+      link: "https://www.youtube.com/watch?v=cNMjPkop6JU&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=2&pp=iAQB",
     },
     "3": {
       name: "Kenny Li",
@@ -785,6 +850,7 @@ export const Playlist = {
       topic: "How did Manta decide to switch from OP Stack to ZK Stack.",
       thumbnail:
         "https://i.ytimg.com/vi/T0OLoNQzMDY/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGFQgXChlMA8=&rs=AOn4CLC__ykCFWLydm5S4wY_US0nwEqaMw",
+      link: "https://www.youtube.com/watch?v=T0OLoNQzMDY&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=3&pp=iAQB",
     },
     "4": {
       name: "Kenny Li",
@@ -792,6 +858,7 @@ export const Playlist = {
       topic: "Kenny's Experience with Gary Gensler",
       thumbnail:
         "https://i.ytimg.com/vi/Oy143z9d0hw/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDqBuDzZJYFLsNqfYptGp4JX3e3uQ",
+      link: "https://www.youtube.com/watch?v=Oy143z9d0hw&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=4&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "5": {
       name: "Kenny Li",
@@ -799,6 +866,7 @@ export const Playlist = {
       topic: "What is Manta?",
       thumbnail:
         "https://i.ytimg.com/vi/fyIRfhKhGMg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAmsGTwDJINSQwZFN_7qSgf42GT_Q",
+      link: "https://www.youtube.com/watch?v=fyIRfhKhGMg&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=5&pp=iAQB",
     },
     "6": {
       name: "Kenny Li",
@@ -806,13 +874,7 @@ export const Playlist = {
       topic: "Don't be Diplomatic",
       thumbnail:
         "https://i.ytimg.com/vi/2EeEazA0Xkw/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGGUgYyhVMA8=&rs=AOn4CLDOGCVFKsQauUHT8_5yUvYxJPM7Qw",
-    },
-    "7": {
-      name: "Kenny Li",
-      company: "Manta Network",
-      topic: "How to fundraise $60M?",
-      thumbnail:
-        "https://i.ytimg.com/vi/59MP0kYDvLg/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIACgA-KAgwIABABGHIgUSg-MA8=&rs=AOn4CLBS6UuOIgqyqZ02gzcOq5IfE_xXJQ",
+      link: "https://www.youtube.com/watch?v=2EeEazA0Xkw&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=6&pp=iAQB",
     },
   },
 };
