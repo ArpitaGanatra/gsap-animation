@@ -7,6 +7,8 @@ export const Playlist = {
       thumbnail:
         "https://i.ytimg.com/vi/lXxyZaduCNA/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCZLLzi6xk1zON_61uvzkPqwdNumw",
       link: "https://www.youtube.com/watch?v=lXxyZaduCNA&list=PLc_HqTUOhvLY6C_wEKHY0VvzU9ArmDnJu&index=1&pp=iAQB",
+      mintLink:
+        "https://pods.media/crypto-town/inside-the-mind-of-multicoin-capital",
     },
   },
 
@@ -18,6 +20,8 @@ export const Playlist = {
       thumbnail:
         "https://i.ytimg.com/vi/Gm4J9SqTrpg/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCG4t8WSye4Tnz2n42cUg8as56GDQ",
       link: "https://www.youtube.com/watch?v=Gm4J9SqTrpg&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=8&pp=iAQB",
+      mintLink:
+        "https://pods.media/crypto-town/life-lessons-for-entrepreneurs-with-haseeb-dragonfly",
     },
     "2": {
       name: "Haseeb",
@@ -84,6 +88,7 @@ export const Playlist = {
       thumbnail:
         "https://i.ytimg.com/vi/WjFgHPG6mYY/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCOEqcFy_EtfuMNFWgiUxHU7uMfpA",
       link: "https://www.youtube.com/watch?v=WjFgHPG6mYY&list=PLc_HqTUOhvLZamOWtb31-D_WziROpDRgn&index=1&pp=iAQB",
+      mintLink: "https://pods.media/crypto-town/monad-madness",
     },
   },
   Symbiotic: {
@@ -94,6 +99,7 @@ export const Playlist = {
       thumbnail:
         "https://i.ytimg.com/vi/vAeXTbwt9u4/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBng_gjgfCdbSy4amW1MZZUj_WKcg",
       link: "https://www.youtube.com/watch?v=vAeXTbwt9u4&list=PLc_HqTUOhvLYnyTtULK09qbTl1uPUyBHs&index=4&pp=iAQB0gcJCY0JAYcqIYzv",
+      mintLink: "https://pods.media/crypto-town/symbiotic-deep-dive",
     },
     "2": {
       name: "Misha",
@@ -120,6 +126,8 @@ export const Playlist = {
       thumbnail:
         "https://i.ytimg.com/vi/hJAHH2EFEOc/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCa1rbBEc7bw1P6oCATeWgjAk7Tiw",
       link: "https://www.youtube.com/watch?v=hJAHH2EFEOc&list=PLc_HqTUOhvLalju-cUoFhfgzVHSrfIfZ6&index=7&pp=iAQB",
+      mintLink:
+        "https://pods.media/crypto-town/learning-about-token-analysis-liquid-funds",
     },
     "2": {
       name: "Austin Barack",
@@ -367,6 +375,7 @@ export const Playlist = {
       thumbnail:
         "https://i.ytimg.com/vi/aZ_VwlZXhwU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB43T3Oh5L678zgGYXEFzo_2SP0gA",
       link: "https://www.youtube.com/watch?v=aZ_VwlZXhwU&list=PLc_HqTUOhvLaRa6loyDR_1ZBkIY0g7tzy&index=1&pp=iAQB",
+      mintLink: "https://pods.media/crypto-town/movement-labs-deep-dive",
     },
     "2": {
       name: "Rushi Manche",

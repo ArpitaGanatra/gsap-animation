@@ -7,6 +7,16 @@ import React from "react";
 import { podcastData } from "@/lib/podcast-data";
 import slugify from "slugify";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
+interface EpisodeData {
+  name: string;
+  company: string;
+  topic: string;
+  thumbnail: string;
+  link: string;
+  mintLink?: string;
+}
 
 export default function CompanyDetail() {
   const params = useParams();
@@ -17,7 +27,9 @@ export default function CompanyDetail() {
   );
 
   // Find the company data from Playlist
-  const companyData = Playlist[data?.company as keyof typeof Playlist];
+  const companyData = Playlist[
+    data?.company as keyof typeof Playlist
+  ] as Record<string, EpisodeData>;
   console.log(
     data?.company,
     data?.guest,
@@ -41,6 +53,7 @@ export default function CompanyDetail() {
     topic: value.topic,
     thumbnail: value.thumbnail,
     link: value.link,
+    mintLink: value?.mintLink || undefined,
   }));
 
   return (
@@ -63,6 +76,13 @@ export default function CompanyDetail() {
       >
         Guest: {data.guest}
       </span>
+      {episodes[0]?.mintLink && (
+        <div className="mt-2">
+          <Link href={episodes[0].mintLink} target="_blank">
+            <Button className="w-fit rounded-full">Mint</Button>
+          </Link>
+        </div>
+      )}
 
       <div className="grid md:grid-cols-2 gap-8 w-full mt-4">
         {episodes.map((episode, index) => (
