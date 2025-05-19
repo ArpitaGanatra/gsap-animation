@@ -48,12 +48,12 @@ export default function Contact({ onClose }: { onClose: () => void }) {
             cryptotownpod@gmail.com
           </button>
         </Link>
-        <Link href="https://www.youtube.com/@CryptoTownPod" target="_blank">
+        <Link href="https://www.youtube.com/@CryptoTownCo" target="_blank">
           <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-full px-4 py-2 hover:text-black transition-colors duration-200">
             YouTube
           </button>
         </Link>
-        <Link href="https://x.com/sharvilmalik" target="_blank">
+        <Link href="https://x.com/cryptotownco" target="_blank">
           <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-full px-4 py-2 hover:text-black transition-colors duration-200">
             Twitter
           </button>
