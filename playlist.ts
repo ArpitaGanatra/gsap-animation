@@ -14,58 +14,66 @@ export const Playlist = {
     "1": {
       name: "Haseeb",
       company: "Dragonfly",
+      topic: "Poker Prodigy to a Tier1 Crypto Venture Capitalist",
+      thumbnail:
+        "https://i.ytimg.com/vi/Gm4J9SqTrpg/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCG4t8WSye4Tnz2n42cUg8as56GDQ",
+      link: "https://www.youtube.com/watch?v=Gm4J9SqTrpg&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=8&pp=iAQB",
+    },
+    "2": {
+      name: "Haseeb",
+      company: "Dragonfly",
       topic: "Learn how to Raise Capital like a $650M fund manager",
       thumbnail:
         "https://i.ytimg.com/vi/a4Fs6mUqjtI/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCOreKEOVjUVd2ZzV9VRWkqe4gWSA",
+      link: "https://www.youtube.com/watch?v=a4Fs6mUqjtI&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=1&pp=iAQB",
     },
-    "2": {
+    "3": {
       name: "Haseeb",
       company: "Dragonfly",
       topic: "The ART Of LEARNING Revealed",
       thumbnail:
         "https://i.ytimg.com/vi/C--W7fi7zRM/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB1AXQ7wyKXEdDNceaF23utDKweWw",
+      link: "https://www.youtube.com/watch?v=C--W7fi7zRM&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=2&pp=iAQB",
     },
-    "3": {
+    "4": {
       name: "Haseeb",
       company: "Dragonfly",
       topic: "Steps to Start a Career in Crypto Today",
       thumbnail:
         "https://i.ytimg.com/vi/bNVDmGe3IdQ/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLC3eiOBeVGAt1BUCgOFyZNwV0QYSw",
+      link: "https://www.youtube.com/watch?v=bNVDmGe3IdQ&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=3&pp=iAQB",
     },
-    "4": {
+    "5": {
       name: "Haseeb",
       company: "Dragonfly",
       topic: "Secrets NEGOTIATION Experts Use",
       thumbnail:
         "https://i.ytimg.com/vi/qy6AZK36ya8/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLDFQBj0Jri-akPL3-NwtWHdFlmHog",
+      link: "https://www.youtube.com/watch?v=qy6AZK36ya8&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=4&pp=iAQB",
     },
-    "5": {
+    "6": {
       name: "Haseeb",
       company: "Dragonfly",
       topic: "What are Top Investors Learning From Poker",
       thumbnail:
         "https://i.ytimg.com/vi/8tKMXgAkvB8/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgALQBYoCDAgAEAEYZSBbKFEwDw==&rs=AOn4CLCNvsDh0fTrjUpWD-283RDR1YfWoA",
+      link: "https://www.youtube.com/watch?v=8tKMXgAkvB8&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=5&pp=iAQB",
     },
-    "6": {
+    "7": {
       name: "Haseeb",
       company: "Dragonfly",
       topic: "The $25 to $2 Million Journey of a teenager",
       thumbnail:
         "https://i.ytimg.com/vi/GcVlVeQa2J8/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLA7-m9-0mBk3adh5TiAB36uhWYj1Q",
+      link: "https://www.youtube.com/watch?v=GcVlVeQa2J8&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=6&pp=iAQB",
     },
-    "7": {
+    "8": {
       name: "Haseeb",
       company: "Dragonfly",
       topic: "Who is Haseeb, Professional Poker to Tier1 VC",
       thumbnail:
         "https://i.ytimg.com/vi/NvBNMx0bsYU/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLC-hINk1NZAiLw5IaFJXmpj8u0ByA",
-    },
-    "8": {
-      name: "Haseeb",
-      company: "Dragonfly",
-      topic: "Poker Prodigy to a Tier1 Crypto Venture Capitalist",
-      thumbnail:
-        "https://i.ytimg.com/vi/Gm4J9SqTrpg/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCG4t8WSye4Tnz2n42cUg8as56GDQ",
+      link: "https://www.youtube.com/watch?v=NvBNMx0bsYU&list=PLc_HqTUOhvLZb6hbEjyF_Qgz3W-XT8lIa&index=7&pp=iAQB",
     },
   },
   Monad: {
