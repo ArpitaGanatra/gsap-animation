@@ -1,7 +1,12 @@
+"use client";
 import { podcastData } from "@/lib/podcast-data";
 // import { ThreeDiagonalSlider } from "./components/threejs-diagonal-slider";
+import { useRouter } from "next/navigation";
+import { useCategory } from "../context/CategoryContext";
 
 export default function About() {
+  const router = useRouter();
+  const { setSelectedCategory } = useCategory();
   return (
     <>
       <section className="flex w-full flex-col gap-y-5 mt-[125px] absolute inset-0 sm:max-w-[27rem] p-1 overflow-y-auto">
@@ -103,6 +108,10 @@ export default function About() {
               <button
                 className="uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs text-black text-opacity-[0.3] hover:text-opacity-[1]"
                 type="button"
+                onClick={() => {
+                  setSelectedCategory("/founders");
+                  router.push("/");
+                }}
               >
                 <span className="translate-y-[1px]">Founders</span>
                 <small className="text-8 mt-[0px]">
@@ -112,6 +121,10 @@ export default function About() {
               <button
                 className="uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs text-black text-opacity-[0.3] hover:text-opacity-[1]"
                 type="button"
+                onClick={() => {
+                  setSelectedCategory("/vcs");
+                  router.push("/");
+                }}
               >
                 <span className="translate-y-[1px]">VCs</span>
                 <small className="text-8 mt-[0px]">
@@ -121,6 +134,10 @@ export default function About() {
               <button
                 className="uppercase flex items-start gap-x-[3px] rounded-full px-4 py-3 bg-gray-100 border border-gray-200 text-xs text-black text-opacity-[0.3] hover:text-opacity-[1]"
                 type="button"
+                onClick={() => {
+                  setSelectedCategory("/operators");
+                  router.push("/");
+                }}
               >
                 <span className="translate-y-[1px]">Operators</span>
                 <small className="text-8 mt-[0px]">
