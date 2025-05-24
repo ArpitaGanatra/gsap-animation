@@ -116,6 +116,13 @@ export const podcastData = [
     image: "/logos/new-tribe-capital.png",
     episode: "10",
   },
+  {
+    guest: "Haseeb",
+    company: "Dragonfly",
+    category: "VC",
+    image: "/logos/dragonfly.png",
+    episode: "11",
+  },
   // {
   //   guest: "Jason",
   //   company: "OKX",
