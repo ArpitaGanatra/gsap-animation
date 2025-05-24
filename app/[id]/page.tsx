@@ -58,31 +58,34 @@ export default function CompanyDetail() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background px-4 py-24">
-      <span
-        className="leading-[1.25] text-[.65625rem]/[.8125rem] "
-        style={{ width: "200px" }}
-      >
-        Company: {data.company}
-      </span>
-      <span
-        className="leading-[1.25] text-[.65625rem]/[.8125rem] "
-        style={{ width: "200px" }}
-      >
-        Category: {data.category}
-      </span>
-      <span
-        className="leading-[1.25] text-[.65625rem]/[.8125rem] "
-        style={{ width: "200px" }}
-      >
-        Guest: {data.guest}
-      </span>
-      {episodes[0]?.mintLink && (
-        <div className="mt-2">
-          <Link href={episodes[0].mintLink} target="_blank">
-            <Button className="w-fit rounded-full">Mint</Button>
-          </Link>
+      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <h2 className="text-2xl font-bold mb-2">About the episode</h2>
+
+          <div className="uppercase tracking-wider text-sm text-gray-500 font-semibold mb-1">
+            {data.company}
+          </div>
+          <div className="text-sm text-gray-500 mb-1">
+            Category:{" "}
+            <span className="font-medium text-gray-800">{data.category}</span>
+          </div>
+          <div className="text-sm text-gray-500">
+            Guest:{" "}
+            <span className="font-medium text-gray-800">{data.guest}</span>
+          </div>
         </div>
-      )}
+        {episodes[0]?.mintLink && (
+          <Link
+            href={episodes[0].mintLink}
+            target="_blank"
+            className="self-start md:self-center"
+          >
+            <Button className="w-fit rounded-full px-8 py-3 text-base font-semibold bg-black text-white hover:bg-gray-800 transition">
+              Mint
+            </Button>
+          </Link>
+        )}
+      </div>
 
       <div className="grid md:grid-cols-2 gap-8 w-full mt-4">
         {episodes.map((episode, index) => (
