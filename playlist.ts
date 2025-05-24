@@ -591,7 +591,7 @@ export const Playlist = {
       topic:
         "Who is Michael - top harvard alumni building the first modular AI Chain",
       thumbnail:
-        "https://i.ytimg.com/vi/wAY-xL8SQog/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLChrQ7N-4qSDPMvn4eXzqXyeegPlw",
+        "https://i.ytimg.com/vi/wAY-xL8SQog/mqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLChrQ7N-4qSDPMvn4eXzqXyeegPlw",
       link: "https://www.youtube.com/watch?v=wAY-xL8SQog&list=PLc_HqTUOhvLYMWPyY0Y3Ggj80UhxpQzsk&index=2",
     },
     "2": {
@@ -850,7 +850,7 @@ export const Playlist = {
       company: "Manta Network",
       topic: "Who is Kenny Li - Co-Founder of Manta Network",
       thumbnail:
-        "https://i.ytimg.com/vi/fbMcxHBDZ7M/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC7CCcFxjX_uOBJuN9qzWwGaa6x0w",
+        "https://i.ytimg.com/vi/fbMcxHBDZ7M/sddefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC7CCcFxjX_uOBJuN9qzWwGaa6x0w",
       link: "https://www.youtube.com/watch?v=fbMcxHBDZ7M&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=1&pp=iAQB",
     },
     "2": {
@@ -858,7 +858,7 @@ export const Playlist = {
       company: "Manta Network",
       topic: "The art of fundraising $60M",
       thumbnail:
-        "https://i.ytimg.com/vi/cNMjPkop6JU/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDm71cTxrmeQpAUBo01tdTH-w9hMQ",
+        "https://i.ytimg.com/vi/cNMjPkop6JU/sddefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDm71cTxrmeQpAUBo01tdTH-w9hMQ",
       link: "https://www.youtube.com/watch?v=cNMjPkop6JU&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=2&pp=iAQB",
     },
     "3": {
@@ -866,7 +866,7 @@ export const Playlist = {
       company: "Manta Network",
       topic: "How did Manta decide to switch from OP Stack to ZK Stack.",
       thumbnail:
-        "https://i.ytimg.com/vi/T0OLoNQzMDY/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGFQgXChlMA8=&rs=AOn4CLC__ykCFWLydm5S4wY_US0nwEqaMw",
+        "https://i.ytimg.com/vi/T0OLoNQzMDY/sddefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGFQgXChlMA8=&rs=AOn4CLC__ykCFWLydm5S4wY_US0nwEqaMw",
       link: "https://www.youtube.com/watch?v=T0OLoNQzMDY&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=3&pp=iAQB",
     },
     "4": {
@@ -874,7 +874,7 @@ export const Playlist = {
       company: "Manta Network",
       topic: "Kenny's Experience with Gary Gensler",
       thumbnail:
-        "https://i.ytimg.com/vi/Oy143z9d0hw/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDqBuDzZJYFLsNqfYptGp4JX3e3uQ",
+        "https://i.ytimg.com/vi/Oy143z9d0hw/sddefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDqBuDzZJYFLsNqfYptGp4JX3e3uQ",
       link: "https://www.youtube.com/watch?v=Oy143z9d0hw&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=4&pp=iAQB0gcJCY0JAYcqIYzv",
     },
     "5": {
@@ -882,7 +882,7 @@ export const Playlist = {
       company: "Manta Network",
       topic: "What is Manta?",
       thumbnail:
-        "https://i.ytimg.com/vi/fyIRfhKhGMg/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAmsGTwDJINSQwZFN_7qSgf42GT_Q",
+        "https://i.ytimg.com/vi/fyIRfhKhGMg/sddefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAmsGTwDJINSQwZFN_7qSgf42GT_Q",
       link: "https://www.youtube.com/watch?v=fyIRfhKhGMg&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=5&pp=iAQB",
     },
     "6": {
@@ -890,7 +890,7 @@ export const Playlist = {
       company: "Manta Network",
       topic: "Don't be Diplomatic",
       thumbnail:
-        "https://i.ytimg.com/vi/2EeEazA0Xkw/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGGUgYyhVMA8=&rs=AOn4CLDOGCVFKsQauUHT8_5yUvYxJPM7Qw",
+        "https://i.ytimg.com/vi/2EeEazA0Xkw/sddefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGGUgYyhVMA8=&rs=AOn4CLDOGCVFKsQauUHT8_5yUvYxJPM7Qw",
       link: "https://www.youtube.com/watch?v=2EeEazA0Xkw&list=PLc_HqTUOhvLbFToGE7qT1BecuAMYwCpGz&index=6&pp=iAQB",
     },
   },
