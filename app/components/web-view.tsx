@@ -5,15 +5,34 @@ import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { useCategory } from "../context/CategoryContext";
 import BottomNav from "@/components/bottom-nav";
-import { getAllCompanies, CompanyData } from "@/lib/airtable";
 import * as THREE from "three";
 import { useRouter } from "next/navigation";
 import slugify from "slugify";
+import { CompanyData } from "../api/companies/route";
 
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
 const WebView = () => {
   const { selectedCategory } = useCategory();
+  const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/api/companies");
+
+      const data = await res.json();
+      console.log("data", data);
+
+      setPodcastData(data);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -29,7 +48,7 @@ const WebView = () => {
           preserveDrawingBuffer: true,
         }}
       >
-        <StackedCards category={selectedCategory} />
+        <StackedCards category={selectedCategory} podcastData={podcastData} />
       </Canvas>
       <BottomNav />
     </>
@@ -42,9 +61,10 @@ type CardElement = THREE.Mesh & {
 
 interface StackedCardsProps {
   category: string;
+  podcastData: CompanyData[];
 }
 
-function StackedCards({ category }: StackedCardsProps) {
+function StackedCards({ category, podcastData }: StackedCardsProps) {
   const cardsRef = useRef<(CardElement | null)[]>([]);
   const [scrollIndex, setScrollIndex] = useState(0);
   const targetScrollIndex = useRef(0);
@@ -219,15 +239,6 @@ function StackedCards({ category }: StackedCardsProps) {
     window.addEventListener("resize", checkMobile);
 
     return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-  const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getAllCompanies();
-      setPodcastData(data);
-    }
-    fetchData();
   }, []);
 
   const getPodcastsByCategory = () => {

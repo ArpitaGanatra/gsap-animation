@@ -5,16 +5,19 @@ import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { useCategory } from "../context/CategoryContext";
 import BottomNav from "@/components/bottom-nav";
-import { getAllCompanies, CompanyData } from "@/lib/airtable";
 import * as THREE from "three";
 import { useRouter } from "next/navigation";
 import slugify from "slugify";
+import { CompanyData } from "../api/companies/route";
 
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
 const MobileView = () => {
   const { selectedCategory } = useCategory();
   const [isMobile, setIsMobile] = useState(false);
+
+  const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   // Add useEffect to detect mobile screen
   useEffect(() => {
@@ -26,6 +29,16 @@ const MobileView = () => {
     window.addEventListener("resize", checkMobile);
 
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/api/companies");
+      const data = await res.json();
+      setPodcastData(data);
+      setLoading(false);
+    }
+    fetchData();
   }, []);
 
   return (
@@ -42,7 +55,12 @@ const MobileView = () => {
           preserveDrawingBuffer: true,
         }}
       >
-        <StackedCards category={selectedCategory} isMobile={isMobile} />
+        <StackedCards
+          category={selectedCategory}
+          isMobile={isMobile}
+          podcastData={podcastData}
+          loading={loading}
+        />
       </Canvas>
       <BottomNav />
     </>
@@ -56,9 +74,16 @@ type CardElement = THREE.Mesh & {
 interface StackedCardsProps {
   category: string;
   isMobile: boolean;
+  podcastData: CompanyData[];
+  loading: boolean;
 }
 
-function StackedCards({ category, isMobile }: StackedCardsProps) {
+function StackedCards({
+  category,
+  isMobile,
+  podcastData,
+  loading,
+}: StackedCardsProps) {
   const cardsRef = useRef<(CardElement | null)[]>([]);
   const [scrollIndex, setScrollIndex] = useState(0);
   const targetScrollIndex = useRef(0); // For smooth scrolling
@@ -223,16 +248,6 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
     });
   });
 
-  const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getAllCompanies();
-      setPodcastData(data);
-    }
-    fetchData();
-  }, []);
-
   // Filter podcast data based on category
   const getPodcastsByCategory = () => {
     if (category === "/") return podcastData;
@@ -265,6 +280,10 @@ function StackedCards({ category, isMobile }: StackedCardsProps) {
 
     setMousePosition({ x, y });
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <group>

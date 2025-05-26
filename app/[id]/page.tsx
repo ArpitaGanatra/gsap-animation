@@ -3,48 +3,54 @@
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { getAllCompanies, CompanyData } from "@/lib/airtable";
 import slugify from "slugify";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { EpisodeData, getEpisodesByCompany } from "@/lib/airtable";
+import { CompanyData } from "../api/companies/route";
+import { EpisodeData } from "../api/podcasts/route";
 
 export default function CompanyDetail() {
   const params = useParams();
   const id = params?.id as string;
   const [companyData, setCompanyData] = useState<CompanyData | null>(null);
   const [episodes, setEpisodes] = useState<EpisodeData[]>([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
-      const allCompanies = await getAllCompanies();
-      const found = allCompanies.find(
-        (item) => slugify(item.company, { lower: true }) === id
-      );
-      setCompanyData(found || null);
+      try {
+        const res = await fetch("/api/companies");
+        const allCompanies = (await res.json()) as CompanyData[];
+        const found = allCompanies.find(
+          (item) => slugify(item.company, { lower: true }) === id
+        );
+        setCompanyData(found || null);
+
+        if (found?.company) {
+          const resEpisodes = await fetch(
+            `/api/podcasts?company=${found.company}`
+          );
+          const episodes = (await resEpisodes.json()) as EpisodeData[];
+          setEpisodes(episodes);
+        } else {
+          setEpisodes([]);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      }
     }
     fetchData();
   }, [id]);
 
-  useEffect(() => {
-    async function fetchEpisodes() {
-      if (companyData?.company) {
-        console.log("companyData.company", companyData.company);
-        const companyEpisodes = await getEpisodesByCompany(companyData.company);
-        console.log("companyEpisodes", companyEpisodes);
-        setEpisodes(companyEpisodes);
-      }
-    }
-    fetchEpisodes();
-  }, [companyData?.company]);
-
-  // if (loading) {
-  //   return (
-  //     <div className="flex flex-col items-center justify-center h-screen text-center">
-  //       <p className="text-lg text-gray-500">Loading...</p>
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-center">
+        <p className="text-lg text-gray-500">Loading...</p>
+      </div>
+    );
+  }
 
   if (!companyData) {
     return (

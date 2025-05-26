@@ -1,9 +1,9 @@
 "use client";
 
+import { CompanyData } from "@/app/api/companies/route";
 import { useCategory } from "@/app/context/CategoryContext";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getAllCompanies, CompanyData } from "@/lib/airtable";
 
 export default function Categories() {
   const { selectedCategory, setSelectedCategory } = useCategory();
@@ -14,7 +14,11 @@ export default function Categories() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getAllCompanies();
+      const res = await fetch("/api/companies");
+
+      const data = await res.json();
+      console.log("data", data);
+
       setPodcastData(data);
     }
     fetchData();
