@@ -1,42 +1,38 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Playlist } from "@/playlist";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { podcastData } from "@/lib/podcast-data";
 import slugify from "slugify";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-interface EpisodeData {
-  name: string;
-  company: string;
-  topic: string;
-  thumbnail: string;
-  link: string;
-  mintLink?: string;
-}
+import { EpisodeData, getEpisodesByCompany } from "@/lib/airtable";
 
 export default function CompanyDetail() {
   const params = useParams();
   const id = params?.id as string;
+  const [episodes, setEpisodes] = useState<EpisodeData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const data = podcastData.find(
     (item) => slugify(item.company, { lower: true }) === id
   );
 
-  // Find the company data from Playlist
-  const companyData = Playlist[
-    data?.company as keyof typeof Playlist
-  ] as Record<string, EpisodeData>;
-  console.log(
-    data?.company,
-    data?.guest,
-    Playlist[data?.company as keyof typeof Playlist]
-  );
+  useEffect(() => {
+    async function fetchEpisodes() {
+      if (data?.company) {
+        console.log("data.company", data.company);
+        const companyEpisodes = await getEpisodesByCompany(data.company);
+        console.log("companyEpisodes", companyEpisodes);
+        setEpisodes(companyEpisodes);
+      }
+      setLoading(false);
+    }
+    fetchEpisodes();
+  }, [data?.company]);
 
-  if (!companyData || !data) {
+  if (!data) {
     return (
       <div className="flex flex-col items-center justify-center h-screen text-center">
         <h1 className="text-2xl font-bold mb-4">Not Found</h1>
@@ -45,16 +41,13 @@ export default function CompanyDetail() {
     );
   }
 
-  // Convert episodes object to array
-  const episodes = Object.entries(companyData).map(([key, value]) => ({
-    id: key,
-    name: value.name,
-    company: value.company,
-    topic: value.topic,
-    thumbnail: value.thumbnail,
-    link: value.link,
-    mintLink: value?.mintLink || undefined,
-  }));
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen text-center">
+        <p className="text-lg text-gray-500">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-background px-4 py-24">
@@ -90,9 +83,9 @@ export default function CompanyDetail() {
       <div className="grid md:grid-cols-2 gap-8 w-full mt-4">
         {episodes.map((episode, index) => (
           <Link
-            key={episode.id}
+            key={index}
             href={episode.link}
-            className="flex flex-col gap-4 "
+            className="flex flex-col gap-4"
             target="_blank"
           >
             <Image
@@ -103,9 +96,6 @@ export default function CompanyDetail() {
               className="w-full h-[300px] max-w-[600px] object-cover shadow-lg rounded-lg cursor-pointer"
             />
             <div className="flex flex-col gap-2">
-              {/* <span className="text-[.65625rem]/[.8125rem]">
-                Guest: {episode.name}
-              </span> */}
               <span className="text-[.65625rem]/[.8125rem] flex flex-wrap w-full">
                 Topic: {episode.topic}
               </span>
