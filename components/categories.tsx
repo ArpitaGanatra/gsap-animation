@@ -1,14 +1,25 @@
 "use client";
 
 import { useCategory } from "@/app/context/CategoryContext";
-import { podcastData } from "@/lib/podcast-data";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getAllCompanies, CompanyData } from "@/lib/airtable";
 
 export default function Categories() {
   const { selectedCategory, setSelectedCategory } = useCategory();
   const pathname = usePathname();
   const router = useRouter();
-  // Calculate counts
+
+  const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getAllCompanies();
+      setPodcastData(data);
+    }
+    fetchData();
+  }, []);
+
   const counts = {
     all: podcastData.length,
     founders: podcastData.filter((p) => p.category === "Founder").length,

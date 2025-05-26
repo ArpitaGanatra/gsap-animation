@@ -5,7 +5,7 @@ import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { useCategory } from "../context/CategoryContext";
 import BottomNav from "@/components/bottom-nav";
-import { podcastData } from "@/lib/podcast-data";
+import { getAllCompanies, CompanyData } from "@/lib/airtable";
 import * as THREE from "three";
 import { useRouter } from "next/navigation";
 import slugify from "slugify";
@@ -220,8 +220,16 @@ function StackedCards({ category }: StackedCardsProps) {
 
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+  const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
 
-  // Filter podcast data based on category
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getAllCompanies();
+      setPodcastData(data);
+    }
+    fetchData();
+  }, []);
+
   const getPodcastsByCategory = () => {
     if (category === "/") return podcastData;
     if (category === "/founders")

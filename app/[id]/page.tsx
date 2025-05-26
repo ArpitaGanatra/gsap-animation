@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { podcastData } from "@/lib/podcast-data";
+import { getAllCompanies, CompanyData } from "@/lib/airtable";
 import slugify from "slugify";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -12,39 +12,45 @@ import { EpisodeData, getEpisodesByCompany } from "@/lib/airtable";
 export default function CompanyDetail() {
   const params = useParams();
   const id = params?.id as string;
+  const [companyData, setCompanyData] = useState<CompanyData | null>(null);
   const [episodes, setEpisodes] = useState<EpisodeData[]>([]);
-  const [loading, setLoading] = useState(true);
 
-  const data = podcastData.find(
-    (item) => slugify(item.company, { lower: true }) === id
-  );
+  useEffect(() => {
+    async function fetchData() {
+      const allCompanies = await getAllCompanies();
+      const found = allCompanies.find(
+        (item) => slugify(item.company, { lower: true }) === id
+      );
+      setCompanyData(found || null);
+    }
+    fetchData();
+  }, [id]);
 
   useEffect(() => {
     async function fetchEpisodes() {
-      if (data?.company) {
-        console.log("data.company", data.company);
-        const companyEpisodes = await getEpisodesByCompany(data.company);
+      if (companyData?.company) {
+        console.log("companyData.company", companyData.company);
+        const companyEpisodes = await getEpisodesByCompany(companyData.company);
         console.log("companyEpisodes", companyEpisodes);
         setEpisodes(companyEpisodes);
       }
-      setLoading(false);
     }
     fetchEpisodes();
-  }, [data?.company]);
+  }, [companyData?.company]);
 
-  if (!data) {
+  // if (loading) {
+  //   return (
+  //     <div className="flex flex-col items-center justify-center h-screen text-center">
+  //       <p className="text-lg text-gray-500">Loading...</p>
+  //     </div>
+  //   );
+  // }
+
+  if (!companyData) {
     return (
       <div className="flex flex-col items-center justify-center h-screen text-center">
         <h1 className="text-2xl font-bold mb-4">Not Found</h1>
         <p className="text-lg text-gray-500">No company found for this page.</p>
-      </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen text-center">
-        <p className="text-lg text-gray-500">Loading...</p>
       </div>
     );
   }
@@ -56,15 +62,19 @@ export default function CompanyDetail() {
           <h2 className="text-2xl font-bold mb-2">About the episode</h2>
 
           <div className="uppercase tracking-wider text-sm text-gray-500 font-semibold mb-1">
-            {data.company}
+            {companyData.company}
           </div>
           <div className="text-sm text-gray-500 mb-1">
             Category:{" "}
-            <span className="font-medium text-gray-800">{data.category}</span>
+            <span className="font-medium text-gray-800">
+              {companyData.category}
+            </span>
           </div>
           <div className="text-sm text-gray-500">
             Guest:{" "}
-            <span className="font-medium text-gray-800">{data.guest}</span>
+            <span className="font-medium text-gray-800">
+              {companyData.guest}
+            </span>
           </div>
         </div>
         {episodes[0]?.mintLink && (
@@ -90,7 +100,7 @@ export default function CompanyDetail() {
           >
             <Image
               src={episode.thumbnail}
-              alt={`${episode.company} thumbnail ${index + 1}`}
+              alt={`${companyData?.company} thumbnail ${index + 1}`}
               width={600}
               height={400}
               className="w-full h-[300px] max-w-[600px] object-cover shadow-lg rounded-lg cursor-pointer"

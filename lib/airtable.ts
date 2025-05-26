@@ -18,6 +18,15 @@ export interface EpisodeData {
   mintLink?: string;
 }
 
+// Interface for company data
+export interface CompanyData {
+  guest: string;
+  company: string;
+  category: string;
+  image: string; // This will be the URL
+  episode: string;
+}
+
 // Function to fetch episodes by company
 export async function getEpisodesByCompany(
   company: string
@@ -58,26 +67,35 @@ export async function getEpisodesByCompany(
 }
 
 // Function to fetch all companies
-export async function getAllCompanies(): Promise<string[]> {
+export async function getAllCompanies(): Promise<CompanyData[]> {
   try {
-    const records = await base("imported table")
+    const records = await base("Company")
       .select({
-        fields: ["company"],
-        sort: [{ field: "episode_id", direction: "asc" }],
+        sort: [{ field: "episode", direction: "asc" }],
       })
       .all();
 
-    // Get unique companies
-    const companies = new Set(
-      records.map((record) => record.get("company") as string)
-    );
-    return Array.from(companies);
+    return records.map((record) => {
+      // Handle image field as an array of attachments
+      const imageField = record.get("image");
+      let imageUrl = "";
+      if (
+        Array.isArray(imageField) &&
+        imageField.length > 0 &&
+        imageField[0].url
+      ) {
+        imageUrl = imageField[0].url;
+      }
+      return {
+        guest: record.get("guest") as string,
+        company: record.get("company") as string,
+        category: record.get("category") as string,
+        image: imageUrl,
+        episode: record.get("episode")?.toString() || "",
+      };
+    });
   } catch (error) {
     console.error("Error fetching companies:", error);
-    if (error instanceof Error) {
-      console.error("Error details:", error.message);
-      console.error("Error stack:", error.stack);
-    }
     return [];
   }
 }
