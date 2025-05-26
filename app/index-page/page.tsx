@@ -1,8 +1,23 @@
-import { podcastData } from "@/lib/podcast-data";
+"use client";
+
 import Link from "next/link";
 import slugify from "slugify";
+import { CompanyData } from "../api/companies/route";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function Index() {
+  const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/api/companies");
+      const data = await res.json();
+      setPodcastData(data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       <section className="text-[.65625rem]/[.8125rem] tracking-[.015em] absolute inset-0 mr-auto flex h-full w-full flex-col sm:py-0">

@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
 
     if (!records || records.length === 0) {
       console.log(`No records found for company: ${company}`);
-      return [];
+      return Response.json([]);
     }
 
     return Response.json(

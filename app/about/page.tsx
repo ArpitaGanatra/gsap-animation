@@ -1,12 +1,26 @@
 "use client";
-import { podcastData } from "@/lib/podcast-data";
 // import { ThreeDiagonalSlider } from "./components/threejs-diagonal-slider";
 import { useRouter } from "next/navigation";
 import { useCategory } from "../context/CategoryContext";
+import { useEffect } from "react";
+import { useState } from "react";
+import { CompanyData } from "../api/companies/route";
 
 export default function About() {
   const router = useRouter();
   const { setSelectedCategory } = useCategory();
+
+  const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/api/companies");
+      const data = await res.json();
+      setPodcastData(data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       <section className="flex w-full flex-col gap-y-5 mt-[125px] absolute inset-0 sm:max-w-[27rem] p-1 overflow-y-auto">
