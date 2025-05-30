@@ -5,7 +5,6 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import slugify from "slugify";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { CompanyData } from "../api/companies/route";
 import { EpisodeData } from "../api/podcasts/route";
 
@@ -13,6 +12,15 @@ function getYouTubeVideoId(url: string) {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
   return match && match[2].length === 11 ? match[2] : null;
+}
+
+function hasPublishedAt(obj: unknown): obj is { publishedAt: string } {
+  return (
+    typeof obj === "object" &&
+    obj !== null &&
+    "publishedAt" in obj &&
+    typeof (obj as { publishedAt: unknown }).publishedAt === "string"
+  );
 }
 
 export default function CompanyDetail() {
@@ -69,50 +77,46 @@ export default function CompanyDetail() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background px-4 py-24">
-      <div className="mb-12 flex flex-col md:flex-row md:items-start md:justify-between gap-8 border-b border-gray-200 pb-8">
-        <div className="flex flex-col md:flex-row gap-6 items-start">
-          <div className="w-32 h-32 rounded-xl overflow-hidden shadow-lg">
-            <Image
-              src={companyData.image}
-              alt={companyData.company}
-              width={128}
-              height={128}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="space-y-4">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                {companyData.guest}
-              </h1>
-              <p className="text-sm text-gray-500">
-                Company: {companyData.company}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
-                {companyData.category}
-              </span>
-              <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
-                {episodes.length} Episodes
-              </span>
-            </div>
-          </div>
-        </div>
-        {episodes[0]?.mintLink && (
-          <Link
-            href={episodes[0].mintLink}
-            target="_blank"
-            className="self-start md:self-center"
-          >
-            <Button className="w-fit rounded-full px-8 py-3 text-base font-semibold bg-black text-white hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md">
-              Mint
-            </Button>
-          </Link>
-        )}
-      </div>
+      {/* Header Section */}
+      <section className="max-w-2xl mx-auto px-4 py-12 text-center  rounded-xl  bg-white/80">
+        <Image
+          src={companyData.image}
+          alt={companyData.company}
+          width={80}
+          height={80}
+          className="rounded-lg mb-4 mx-auto"
+        />
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
+          {companyData.guest}{" "}
+          <span className="text-gray-400 font-normal">|</span>{" "}
+          {companyData.company}
+        </h1>
+        <p className="text-lg text-gray-600 mb-4">
+          {"intro" in companyData && typeof companyData.intro === "string"
+            ? companyData.intro
+            : "He built first modular AI chain. Let's see what he's up to now. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."}
+        </p>
 
-      <div className="grid md:grid-cols-2 md:gap-x-40 gap-8 w-full mt-4">
+        <hr className="my-4 border-gray-200" />
+        <div className="flex items-center justify-center gap-4 text-sm">
+          <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">
+            {episodes.length} Videos
+          </span>
+          <div className="flex flex-col items-center text-sm text-gray-400 justify-center">
+            <span>by cryptotown</span>
+          </div>
+          <span className="h-4 border-l border-gray-300"></span>
+          <span className="text-gray-500">
+            Publised at:{" "}
+            {episodes[0] && hasPublishedAt(episodes[0])
+              ? new Date(episodes[0].publishedAt).toLocaleDateString()
+              : "30 May 2025"}
+          </span>
+        </div>
+      </section>
+
+      {/* Videos Section */}
+      <div className="grid md:grid-cols-2 container mx-auto gap-8 w-full mt-4">
         {episodes.map((episode, index) => {
           const videoId = getYouTubeVideoId(episode.link);
           return (
