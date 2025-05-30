@@ -112,13 +112,12 @@ export default function CompanyDetail() {
             className="flex flex-col gap-4 group"
             target="_blank"
           >
-            <div className="relative overflow-hidden rounded-lg transition-all duration-200">
+            <div className="relative overflow-hidden aspect-video rounded-lg transition-all duration-200">
               <Image
                 src={episode.thumbnail}
                 alt={`${companyData?.company} thumbnail ${index + 1}`}
-                width={600}
-                height={275}
-                className="w-full rounded-lg h-[300px] max-w-[600px] object-cover transform group-hover:scale-[1.02] transition-transform duration-200"
+                fill
+                className="rounded-lg aspect-video overflow-hidden object-cover transform group-hover:scale-[1.02] transition-transform duration-200"
               />
             </div>
             <div className="flex flex-col gap-2 mt-2">
