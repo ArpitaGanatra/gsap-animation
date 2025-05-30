@@ -9,6 +9,12 @@ import { Button } from "@/components/ui/button";
 import { CompanyData } from "../api/companies/route";
 import { EpisodeData } from "../api/podcasts/route";
 
+function getYouTubeVideoId(url: string) {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return match && match[2].length === 11 ? match[2] : null;
+}
+
 export default function CompanyDetail() {
   const params = useParams();
   const id = params?.id as string;
@@ -106,29 +112,41 @@ export default function CompanyDetail() {
         )}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 w-full mt-4">
-        {episodes.map((episode, index) => (
-          <Link
-            key={index}
-            href={episode.link}
-            className="flex flex-col gap-4 group"
-            target="_blank"
-          >
-            <div className="relative overflow-hidden aspect-video rounded-lg transition-all duration-200">
-              <Image
-                src={episode.thumbnail}
-                alt={`${companyData?.company} thumbnail ${index + 1}`}
-                fill
-                className="rounded-lg aspect-video overflow-hidden object-cover transform group-hover:scale-[1.02] transition-transform duration-200"
-              />
+      <div className="grid md:grid-cols-2 md:gap-x-40 gap-8 w-full mt-4">
+        {episodes.map((episode, index) => {
+          const videoId = getYouTubeVideoId(episode.link);
+          return (
+            <div key={index} className="flex flex-col gap-3 group">
+              <div className="relative overflow-hidden aspect-video rounded-lg transition-all duration-200 shadow-md group-hover:shadow-lg ">
+                {videoId ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${videoId}`}
+                    title={`${companyData?.company} episode ${index + 1}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full rounded-lg items-start"
+                  />
+                ) : (
+                  <Link href={episode.link} target="_blank">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={episode.thumbnail}
+                        alt={`${companyData?.company} thumbnail ${index + 1}`}
+                        fill
+                        className="rounded-lg object-cover transform group-hover:scale-[1.02] transition-transform duration-200"
+                      />
+                    </div>
+                  </Link>
+                )}
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-sm font-medium text-gray-600 tracking-wide group-hover:text-gray-900 transition-colors line-clamp-2">
+                  {episode.topic}
+                </span>
+              </div>
             </div>
-            <div className="flex flex-col gap-2 mt-2">
-              <span className="text-xs font-medium text-gray-600 tracking-wide group-hover:text-gray-900 transition-colors">
-                {episode.topic}
-              </span>
-            </div>
-          </Link>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
