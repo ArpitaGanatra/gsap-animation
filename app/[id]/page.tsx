@@ -63,24 +63,32 @@ export default function CompanyDetail() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background px-4 py-24">
-      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div>
-          <h2 className="text-2xl font-bold mb-2">About the episode</h2>
-
-          <div className="uppercase tracking-wider text-sm text-gray-500 font-semibold mb-1">
-            {companyData.company}
+      <div className="mb-12 flex flex-col md:flex-row md:items-start md:justify-between gap-8 border-b border-gray-200 pb-8">
+        <div className="flex flex-col md:flex-row gap-6 items-start">
+          <div className="w-32 h-32 rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={companyData.image}
+              alt={companyData.company}
+              width={128}
+              height={128}
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div className="text-sm text-gray-500 mb-1">
-            Category:{" "}
-            <span className="font-medium text-gray-800">
-              {companyData.category}
-            </span>
-          </div>
-          <div className="text-sm text-gray-500">
-            Guest:{" "}
-            <span className="font-medium text-gray-800">
-              {companyData.guest}
-            </span>
+          <div className="space-y-4">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                {companyData.company}
+              </h1>
+              <p className="text-sm text-gray-500">{companyData.guest}</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
+                {companyData.category}
+              </span>
+              <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
+                {episodes.length} Episodes
+              </span>
+            </div>
           </div>
         </div>
         {episodes[0]?.mintLink && (
@@ -89,7 +97,7 @@ export default function CompanyDetail() {
             target="_blank"
             className="self-start md:self-center"
           >
-            <Button className="w-fit rounded-full px-8 py-3 text-base font-semibold bg-black text-white hover:bg-gray-800 transition">
+            <Button className="w-fit rounded-full px-8 py-3 text-base font-semibold bg-black text-white hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md">
               Mint
             </Button>
           </Link>
@@ -101,19 +109,21 @@ export default function CompanyDetail() {
           <Link
             key={index}
             href={episode.link}
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 group"
             target="_blank"
           >
-            <Image
-              src={episode.thumbnail}
-              alt={`${companyData?.company} thumbnail ${index + 1}`}
-              width={600}
-              height={400}
-              className="w-full h-[300px] max-w-[600px] object-cover shadow-lg rounded-lg cursor-pointer"
-            />
-            <div className="flex flex-col gap-2">
-              <span className="text-[.65625rem]/[.8125rem] flex flex-wrap w-full">
-                Topic: {episode.topic}
+            <div className="relative overflow-hidden rounded-lg transition-all duration-200">
+              <Image
+                src={episode.thumbnail}
+                alt={`${companyData?.company} thumbnail ${index + 1}`}
+                width={600}
+                height={275}
+                className="w-full rounded-lg h-[300px] max-w-[600px] object-cover transform group-hover:scale-[1.02] transition-transform duration-200"
+              />
+            </div>
+            <div className="flex flex-col gap-2 mt-2">
+              <span className="text-xs font-medium text-gray-600 tracking-wide group-hover:text-gray-900 transition-colors">
+                {episode.topic}
               </span>
             </div>
           </Link>
