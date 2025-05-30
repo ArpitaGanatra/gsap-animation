@@ -77,9 +77,11 @@ export default function CompanyDetail() {
           <div className="space-y-4">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 mb-1">
-                {companyData.company}
+                {companyData.guest}
               </h1>
-              <p className="text-sm text-gray-500">{companyData.guest}</p>
+              <p className="text-sm text-gray-500">
+                Company: {companyData.company}
+              </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
