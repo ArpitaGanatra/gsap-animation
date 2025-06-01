@@ -102,9 +102,7 @@ export default function CompanyDetail() {
           <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">
             {episodes.length} Videos
           </span>
-          <div className="flex flex-col items-center text-sm text-gray-400 justify-center">
-            <span>by cryptotown</span>
-          </div>
+
           <span className="h-4 border-l border-gray-300"></span>
           <span className="text-gray-500">
             Publised at:{" "}
@@ -143,10 +141,10 @@ export default function CompanyDetail() {
                   </Link>
                 )}
               </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-sm font-medium text-gray-600 tracking-wide group-hover:text-gray-900 transition-colors line-clamp-2">
-                  {episode.topic}
-                </span>
+              <div className="flex flex-col gap-2 p-3 bg-white/50 backdrop-blur-sm rounded-lg">
+                <h3 className="text-base font-semibold text-gray-800 group-hover:text-gray-900 transition-colors line-clamp-2">
+                  Episode {index + 1} {episode.topic}
+                </h3>
               </div>
             </div>
           );
