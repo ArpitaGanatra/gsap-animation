@@ -7,6 +7,7 @@ import slugify from "slugify";
 import Link from "next/link";
 import { CompanyData } from "../api/companies/route";
 import { EpisodeData } from "../api/podcasts/route";
+import { Button } from "@/components/ui/button";
 
 function getYouTubeVideoId(url: string) {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -86,11 +87,23 @@ export default function CompanyDetail() {
           height={80}
           className="rounded-lg mb-4 mx-auto"
         />
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
-          {companyData.guest}{" "}
-          <span className="text-gray-400 font-normal">|</span>{" "}
-          {companyData.company}
-        </h1>
+        <div className="flex items-center gap-4">
+          <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
+            {companyData.guest}{" "}
+            <span className="text-gray-400 font-normal">|</span>{" "}
+            {companyData.company}{" "}
+          </h1>
+          {episodes[0].mintLink && (
+            <Link href={episodes[0].mintLink || ""} target="_blank">
+              <Button
+                size="sm"
+                className=" bg-black text-white rounded-full hover:bg-black/90 px-6"
+              >
+                Mint
+              </Button>
+            </Link>
+          )}
+        </div>
         <p className="text-lg text-gray-600 mb-4">
           {"intro" in companyData && typeof companyData.intro === "string"
             ? companyData.intro
@@ -117,6 +130,25 @@ export default function CompanyDetail() {
       <div className="grid md:grid-cols-2 container mx-auto gap-8 w-full mt-4">
         {episodes.map((episode, index) => {
           const videoId = getYouTubeVideoId(episode.link);
+          const isFullPod = episode.topic.startsWith("FULL POD");
+
+          // Calculate episode number based on previous episodes
+          let episodeNumber = null;
+          if (!isFullPod) {
+            // Find the last FULL POD episode before this one
+            const lastFullPodIndex = episodes
+              .slice(0, index)
+              .map((ep) => ep.topic.startsWith("FULL POD"))
+              .lastIndexOf(true);
+
+            // Count regular episodes since the last FULL POD
+            const regularEpisodesSinceLastFullPod = episodes
+              .slice(lastFullPodIndex + 1, index)
+              .filter((ep) => !ep.topic.startsWith("FULL POD")).length;
+
+            episodeNumber = regularEpisodesSinceLastFullPod + 1;
+          }
+
           return (
             <div key={index} className="flex flex-col gap-3 group">
               <div className="relative overflow-hidden aspect-video rounded-lg transition-all duration-200 shadow-md group-hover:shadow-lg ">
@@ -143,7 +175,8 @@ export default function CompanyDetail() {
               </div>
               <div className="flex flex-col gap-2 p-3 bg-white/50 backdrop-blur-sm rounded-lg">
                 <h3 className="text-base font-semibold text-gray-800 group-hover:text-gray-900 transition-colors line-clamp-2">
-                  Episode {index + 1} {episode.topic}
+                  {episodeNumber ? `Episode ${episodeNumber}: ` : ""}
+                  {episode.topic}
                 </h3>
               </div>
             </div>
