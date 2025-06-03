@@ -1,14 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { usePathname } from "next/navigation";
 
 export default function AnimatedLogo() {
-  const pathname = usePathname();
-  const logoRef = useRef(null);
-
   // useEffect(() => {
   //   if (pathname === "/about") {
   //     gsap.set(logoRef.current, {
