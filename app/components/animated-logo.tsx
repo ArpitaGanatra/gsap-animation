@@ -26,7 +26,7 @@ export default function AnimatedLogo() {
   // }, [pathname]);
   return (
     <div className="hidden md:block absolute top-1 right-1 z-30 invert">
-      <Image src="/logo-no-bg.png" alt="logo" width={100} height={100} />
+      <Image src="/logo-no-bg.png" alt="logo" width={80} height={80} />
     </div>
   );
 }
