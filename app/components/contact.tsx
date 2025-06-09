@@ -43,9 +43,9 @@ export default function Contact({ onClose }: { onClose: () => void }) {
         className="gap-2 flex justify-center items-center flex-wrap"
         onClick={(e) => e.stopPropagation()}
       >
-        <Link href="mailto:cryptotownpod@gmail.com" target="_blank">
+        <Link href="mailto:hi@cryptotown.co" target="_blank">
           <button className="text-xs uppercase flex w-fit bg-gray-100/30 border border-gray-200/30 text-black/30 items-start gap-x-[2px] rounded-[0.375rem] px-4 py-2 hover:text-black transition-colors duration-200">
-            cryptotownpod@gmail.com
+            hi@cryptotown.co
           </button>
         </Link>
         <Link href="https://www.youtube.com/@CryptoTownCo" target="_blank">

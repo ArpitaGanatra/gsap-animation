@@ -49,6 +49,7 @@ export default function About() {
                 </span>
                 {podcastData
                   .filter((guest) => guest.category === "Founder")
+                  .sort((a, b) => a.guest.localeCompare(b.guest))
                   .map((guest) => (
                     <span
                       key={`${guest.guest}-${guest.company}`}
@@ -62,6 +63,7 @@ export default function About() {
                 <span className="leading-[1.25] opacity-30 mt-4 mb-2">VCs</span>
                 {podcastData
                   .filter((guest) => guest.category === "VC")
+                  .sort((a, b) => a.guest.localeCompare(b.guest))
                   .map((guest) => (
                     <span
                       key={`${guest.guest}-${guest.company}`}
@@ -79,6 +81,7 @@ export default function About() {
                   .filter(
                     (guest) => !["Founder", "VC"].includes(guest.category)
                   )
+                  .sort((a, b) => a.guest.localeCompare(b.guest))
                   .map((guest) => (
                     <span
                       key={`${guest.guest}-${guest.company}`}
