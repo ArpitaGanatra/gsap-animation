@@ -87,23 +87,13 @@ export default function CompanyDetail() {
           height={80}
           className="rounded-lg mb-4 mx-auto"
         />
-        <div className="flex items-center gap-4">
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
-            {companyData.guest}{" "}
-            <span className="text-gray-400 font-normal">|</span>{" "}
-            {companyData.company}{" "}
-          </h1>
-          {episodes[0].mintLink && (
-            <Link href={episodes[0].mintLink || ""} target="_blank">
-              <Button
-                size="sm"
-                className=" bg-black text-white rounded-full hover:bg-black/90 px-6"
-              >
-                Mint
-              </Button>
-            </Link>
-          )}
-        </div>
+
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
+          {companyData.guest}{" "}
+          <span className="text-gray-400 font-normal">|</span>{" "}
+          {companyData.company}{" "}
+        </h1>
+
         <p className="text-lg text-gray-600 mb-4">
           {"intro" in companyData && typeof companyData.intro === "string"
             ? companyData.intro
@@ -123,6 +113,19 @@ export default function CompanyDetail() {
               ? new Date(episodes[0].publishedAt).toLocaleDateString()
               : "30 May 2025"}
           </span>
+          {episodes[0].mintLink && (
+            <>
+              <span className="h-4 border-l border-gray-300"></span>
+              <Link href={episodes[0].mintLink || ""} target="_blank">
+                <Button
+                  size="sm"
+                  className=" bg-black text-white rounded-full hover:bg-black/90 px-6"
+                >
+                  Mint
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </section>
 
