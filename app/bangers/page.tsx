@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Tweet } from "react-tweet";
+import React, { useState, useEffect, Suspense } from "react";
+import { Tweet, TweetSkeleton } from "react-tweet";
 
 // Add Twitter widget type declaration
 declare global {
@@ -49,7 +49,9 @@ const Highlights = () => {
             className="flex-1 min-w-[450px] max-w-[600px] group"
             data-theme="light"
           >
-            <Tweet id={getTweetId(tweetUrl) as string} />
+            <Suspense fallback={<TweetSkeleton />}>
+              <Tweet id={getTweetId(tweetUrl) as string} />
+            </Suspense>
           </div>
         ))}
       </div>
