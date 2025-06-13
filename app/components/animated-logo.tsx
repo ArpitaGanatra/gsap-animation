@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function AnimatedLogo() {
   // useEffect(() => {
@@ -24,8 +26,25 @@ export default function AnimatedLogo() {
   //     });
   //   }
   // }, [pathname]);
+  const pathname = usePathname();
+
+  const [logo, setLogo] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/about")
+      .then((res) => res.json())
+      .then((data) => setLogo(data.image));
+  }, []);
+
+  if (pathname === "/about") {
+    return (
+      <div className="hidden md:block absolute top-1 right-1 z-30">
+        <Image src={logo || ""} alt="logo" width={360} height={360} />
+      </div>
+    );
+  }
   return (
-    <div className="hidden md:block absolute top-1 right-1 z-30 invert">
+    <div className="hidden md:block absolute top-1 right-5 z-30 invert">
       <Image src="/logo-no-bg.png" alt="logo" width={80} height={80} />
     </div>
   );

@@ -22,7 +22,6 @@ const WebView = () => {
       const res = await fetch("/api/companies");
 
       const data = await res.json();
-      console.log("data", data);
 
       setPodcastData(data);
       setLoading(false);

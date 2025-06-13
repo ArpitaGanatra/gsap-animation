@@ -10,6 +10,8 @@ export interface CompanyData {
   category: string;
   image: string; // This will be the URL
   episode: string;
+  introduction: string;
+  twitter_link: string;
 }
 
 export async function GET() {
@@ -34,6 +36,8 @@ export async function GET() {
         category: record.get("category"),
         image: imageUrl,
         episode: record.get("episode")?.toString() || "",
+        introduction: record.get("introduction")?.toString() || "",
+        twitter_link: record.get("twitter_link")?.toString() || "",
       };
     });
 

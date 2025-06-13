@@ -28,8 +28,6 @@ export async function GET() {
       })
       .all();
 
-    console.log("records", records);
-
     if (!records || records.length === 0) {
       return NextResponse.json({ highlights: [] });
     }
@@ -37,8 +35,6 @@ export async function GET() {
     const highlights = records.map((record) => {
       return record.get("x_link") as string;
     });
-
-    console.log("highlights", highlights);
 
     return NextResponse.json(highlights);
   } catch (error) {

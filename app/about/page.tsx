@@ -5,6 +5,7 @@ import { useCategory } from "../context/CategoryContext";
 import { useEffect } from "react";
 import { useState } from "react";
 import { CompanyData } from "../api/companies/route";
+import Link from "next/link";
 
 export default function About() {
   const router = useRouter();
@@ -51,12 +52,18 @@ export default function About() {
                   .filter((guest) => guest.category === "Founder")
                   .sort((a, b) => a.guest.localeCompare(b.guest))
                   .map((guest) => (
-                    <span
+                    <Link
+                      href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
-                      className="leading-[1.25]"
+                      target="_blank"
                     >
-                      {guest.guest} · {guest.company}
-                    </span>
+                      <span
+                        key={`${guest.guest}-${guest.company}`}
+                        className="leading-[1.25]"
+                      >
+                        {guest.guest} · {guest.company}
+                      </span>
+                    </Link>
                   ))}
 
                 {/* Group and render VCs */}
@@ -65,12 +72,18 @@ export default function About() {
                   .filter((guest) => guest.category === "VC")
                   .sort((a, b) => a.guest.localeCompare(b.guest))
                   .map((guest) => (
-                    <span
+                    <Link
+                      href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
-                      className="leading-[1.25]"
+                      target="_blank"
                     >
-                      {guest.guest} · {guest.company}
-                    </span>
+                      <span
+                        key={`${guest.guest}-${guest.company}`}
+                        className="leading-[1.25]"
+                      >
+                        {guest.guest} · {guest.company}
+                      </span>
+                    </Link>
                   ))}
 
                 {/* Group and render Others */}
@@ -83,12 +96,18 @@ export default function About() {
                   )
                   .sort((a, b) => a.guest.localeCompare(b.guest))
                   .map((guest) => (
-                    <span
+                    <Link
+                      href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
-                      className="leading-[1.25]"
+                      target="_blank"
                     >
-                      {guest.guest} · {guest.company} ({guest.category})
-                    </span>
+                      <span
+                        key={`${guest.guest}-${guest.company}`}
+                        className="leading-[1.25] cursor-pointer"
+                      >
+                        {guest.guest} · {guest.company} ({guest.category})
+                      </span>
+                    </Link>
                   ))}
               </section>
             </li>

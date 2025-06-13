@@ -95,9 +95,10 @@ export default function CompanyDetail() {
         </h1>
 
         <p className="text-lg text-gray-600 mb-4">
-          {"intro" in companyData && typeof companyData.intro === "string"
-            ? companyData.intro
-            : "He built first modular AI chain. Let's see what he's up to now. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."}
+          {"introduction" in companyData &&
+          typeof companyData.introduction === "string"
+            ? companyData.introduction
+            : ""}
         </p>
 
         <hr className="my-4 border-gray-200" />

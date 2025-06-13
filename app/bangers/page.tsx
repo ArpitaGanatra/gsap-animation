@@ -33,7 +33,6 @@ const Highlights = () => {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         const data = await res.json();
-        console.log("data", data);
         setAllHighlights(data);
         // Initially display first batch
         setDisplayedHighlights(data.slice(0, BATCH_SIZE));
