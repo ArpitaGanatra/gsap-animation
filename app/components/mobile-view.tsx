@@ -15,9 +15,15 @@ const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 const MobileView = () => {
   const { selectedCategory } = useCategory();
   const [isMobile, setIsMobile] = useState(false);
-
   const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  // Add useEffect to handle mounting
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   // Add useEffect to detect mobile screen
   useEffect(() => {
@@ -25,7 +31,7 @@ const MobileView = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    checkMobile(); // Check on initial render
+    checkMobile();
     window.addEventListener("resize", checkMobile);
 
     return () => window.removeEventListener("resize", checkMobile);
@@ -33,13 +39,22 @@ const MobileView = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("/api/companies");
-      const data = await res.json();
-      setPodcastData(data);
-      setLoading(false);
+      try {
+        const res = await fetch("/api/companies");
+        const data = await res.json();
+        setPodcastData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchData();
   }, []);
+
+  if (!mounted || loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -54,12 +69,14 @@ const MobileView = () => {
           antialias: true,
           preserveDrawingBuffer: true,
         }}
+        onCreated={({ gl }) => {
+          gl.setClearColor(0x000000, 0);
+        }}
       >
         <StackedCards
           category={selectedCategory}
           isMobile={isMobile}
           podcastData={podcastData}
-          loading={loading}
         />
       </Canvas>
       <BottomNav />
@@ -75,15 +92,9 @@ interface StackedCardsProps {
   category: string;
   isMobile: boolean;
   podcastData: CompanyData[];
-  loading: boolean;
 }
 
-function StackedCards({
-  category,
-  isMobile,
-  podcastData,
-  loading,
-}: StackedCardsProps) {
+function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
   const cardsRef = useRef<(CardElement | null)[]>([]);
   const [scrollIndex, setScrollIndex] = useState(0);
   const targetScrollIndex = useRef(0); // For smooth scrolling
@@ -280,10 +291,6 @@ function StackedCards({
 
     setMousePosition({ x, y });
   };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <group>

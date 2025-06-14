@@ -69,7 +69,7 @@ export default function Navbar() {
             router.push("/bangers");
           }}
         >
-          Bangers
+          Lore
         </button>
         <button
           className={`z-20 button text-[10px] uppercase flex w-full md:w-fit items-start gap-x-[2px] rounded-[0.375rem] pl-2.5 pr-10 py-2 pt-10 text-black 
