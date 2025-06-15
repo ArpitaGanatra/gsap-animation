@@ -26,10 +26,10 @@ export default function About() {
     <>
       <section className="flex w-full flex-col gap-y-5 mt-[125px] absolute inset-0 sm:max-w-[27rem] p-1 overflow-y-auto">
         <p className="text-[.65625rem]/[.8125rem] tracking-[.015em] mb-5 normal-case">
-          CryptoTown is a fun and candid show featuring tier 1 founders, VCs,
-          and operators. We dive into unhinged stories of crypto&apos;s most
-          influential figures, uncovering what worked for them - and what you
-          can learn from them.
+          CryptoTown is a curated network of the sharpest minds shaping the
+          future of crypto : Founders, VCs & Operators. It&apos;s a living
+          archive of crypto&apos;s most influential figures, uncovering what
+          worked for them and what you can learn from them.
         </p>
         <section>
           <ul
@@ -41,7 +41,7 @@ export default function About() {
                 className="leading-[1.25] opacity-30"
                 style={{ width: "200px" }}
               >
-                ctzns.
+                CTZNS.
               </span>
               <section className="flex flex-col">
                 {/* Group and render Founders */}
