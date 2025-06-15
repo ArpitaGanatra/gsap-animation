@@ -114,19 +114,21 @@ export default function CompanyDetail() {
               ? new Date(episodes[0].publishedAt).toLocaleDateString()
               : "30 May 2025"}
           </span>
-          {episodes[0].mintLink && (
-            <>
-              <span className="h-4 border-l border-gray-300"></span>
-              <Link href={episodes[0].mintLink || ""} target="_blank">
-                <Button
-                  size="sm"
-                  className=" bg-black text-white rounded-full hover:bg-black/90 px-6"
-                >
-                  Mint
-                </Button>
-              </Link>
-            </>
-          )}
+          {episodes &&
+            episodes[0]?.mintLink &&
+            episodes[0]?.mintLink !== "" && (
+              <>
+                <span className="h-4 border-l border-gray-300"></span>
+                <Link href={episodes[0].mintLink || ""} target="_blank">
+                  <Button
+                    size="sm"
+                    className=" bg-black text-white rounded-full hover:bg-black/90 px-6"
+                  >
+                    Mint
+                  </Button>
+                </Link>
+              </>
+            )}
         </div>
       </section>
 

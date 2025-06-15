@@ -41,7 +41,7 @@ export default function About() {
                 className="leading-[1.25] opacity-30"
                 style={{ width: "200px" }}
               >
-                Guests
+                ctzns.
               </span>
               <section className="flex flex-col">
                 {/* Group and render Founders */}
@@ -113,7 +113,7 @@ export default function About() {
             </li>
           </ul>
         </section>
-        <ul
+        {/* <ul
           className="text-[.65625rem]/[.8125rem] tracking-[.015em] opacity-0"
           style={{ opacity: "1" }}
         >
@@ -131,7 +131,7 @@ export default function About() {
               <span className="leading-[1.25]">Denver</span>
             </section>
           </li>
-        </ul>
+        </ul> */}
         <ul className="mt-5 opacity-0" style={{ opacity: "1" }}>
           <li className="flex">
             <span

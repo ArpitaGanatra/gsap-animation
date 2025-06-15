@@ -35,6 +35,21 @@ export default function Navbar() {
             CryptoTown
           </span>
         </button>
+
+        <button
+          className={`z-20 button text-[10px] uppercase flex w-full md:w-fit items-start gap-x-[2px] rounded-[0.375rem] pl-2.5 pr-10 py-2 pt-10 text-black 
+          backdrop-blur-[16px] backdrop-saturate-[180%] bg-[#F2F2F2]/40 border border-[#D3D3D3]/50 hover:bg-[#F2F2F2]/50 transition-all duration-300 
+          ${
+            isOpen ? "text-opacity-[1] bg-[#F2F2F2]/50" : "text-opacity-[0.3]"
+          } hover:text-opacity-[1]`}
+          onClick={() => {
+            setIsOpen(false);
+            router.push("/bangers");
+          }}
+        >
+          Lore
+        </button>
+
         <button
           onClick={() => {
             setIsOpen(false);
@@ -55,22 +70,10 @@ export default function Navbar() {
                 : "text-opacity-[0.3]"
             }`}
           >
-            About
+            [rsdnts]
           </span>
         </button>
-        <button
-          className={`z-20 button text-[10px] uppercase flex w-full md:w-fit items-start gap-x-[2px] rounded-[0.375rem] pl-2.5 pr-10 py-2 pt-10 text-black 
-          backdrop-blur-[16px] backdrop-saturate-[180%] bg-[#F2F2F2]/40 border border-[#D3D3D3]/50 hover:bg-[#F2F2F2]/50 transition-all duration-300 
-          ${
-            isOpen ? "text-opacity-[1] bg-[#F2F2F2]/50" : "text-opacity-[0.3]"
-          } hover:text-opacity-[1]`}
-          onClick={() => {
-            setIsOpen(false);
-            router.push("/bangers");
-          }}
-        >
-          Lore
-        </button>
+
         <button
           className={`z-20 button text-[10px] uppercase flex w-full md:w-fit items-start gap-x-[2px] rounded-[0.375rem] pl-2.5 pr-10 py-2 pt-10 text-black 
           backdrop-blur-[16px] backdrop-saturate-[180%] bg-[#F2F2F2]/40 border border-[#D3D3D3]/50 hover:bg-[#F2F2F2]/50 transition-all duration-300 
