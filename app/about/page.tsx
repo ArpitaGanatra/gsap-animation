@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { CompanyData } from "../api/companies/route";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function About() {
   const router = useRouter();
@@ -22,14 +23,23 @@ export default function About() {
     fetchData();
   }, []);
 
+  const [logo, setLogo] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/about")
+      .then((res) => res.json())
+      .then((data) => setLogo(data.image));
+  }, []);
+
   return (
     <>
-      <section className="flex w-full flex-col gap-y-5 mt-[125px] absolute inset-0 sm:max-w-[27rem] p-1 overflow-y-auto">
+      <section className="flex w-full flex-col gap-y-5 mt-[150px] md:mt-[125px] absolute inset-0 sm:max-w-[27rem] p-1 overflow-y-auto ">
         <p className="text-[.65625rem]/[.8125rem] tracking-[.015em] mb-5 normal-case">
-          CryptoTown is a curated network of the sharpest minds shaping the
-          future of crypto : Founders, VCs & Operators. It&apos;s a living
-          archive of crypto&apos;s most influential figures, uncovering what
-          worked for them and what you can learn from them.
+          cryptotown is a curated network of the the most influential figures in
+          the industry : Founders, VCs & Operators.
+          <br />
+          <br />a living archive of the sharpest minds shaping the future of
+          crypto, deciphering the art of building successful companies.
         </p>
         <section>
           <ul
@@ -50,7 +60,7 @@ export default function About() {
                 </span>
                 {podcastData
                   .filter((guest) => guest.category === "Founder")
-                  .sort((a, b) => a.guest.localeCompare(b.guest))
+                  .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
                     <Link
                       href={`${guest.twitter_link}`}
@@ -70,7 +80,7 @@ export default function About() {
                 <span className="leading-[1.25] opacity-30 mt-4 mb-2">VCs</span>
                 {podcastData
                   .filter((guest) => guest.category === "VC")
-                  .sort((a, b) => a.guest.localeCompare(b.guest))
+                  .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
                     <Link
                       href={`${guest.twitter_link}`}
@@ -88,13 +98,13 @@ export default function About() {
 
                 {/* Group and render Others */}
                 <span className="leading-[1.25] opacity-30 mt-4 mb-2">
-                  Others
+                  Operators
                 </span>
                 {podcastData
                   .filter(
                     (guest) => !["Founder", "VC"].includes(guest.category)
                   )
-                  .sort((a, b) => a.guest.localeCompare(b.guest))
+                  .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
                     <Link
                       href={`${guest.twitter_link}`}
@@ -187,6 +197,13 @@ export default function About() {
             </div>
           </li>
         </ul>
+        <Image
+          src={logo || ""}
+          alt="logo"
+          width={360}
+          height={360}
+          className="w-full md:hidden"
+        />
       </section>
     </>
   );

@@ -12,6 +12,7 @@ export interface CompanyData {
   episode: string;
   introduction: string;
   twitter_link: string;
+  about_index: number;
 }
 
 export async function GET() {
@@ -38,6 +39,7 @@ export async function GET() {
         episode: record.get("episode")?.toString() || "",
         introduction: record.get("introduction")?.toString() || "",
         twitter_link: record.get("twitter_link")?.toString() || "",
+        about_index: record.get("about_index")?.toString() || "",
       };
     });
 

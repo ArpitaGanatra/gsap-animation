@@ -41,12 +41,12 @@ const Highlights = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background px-4 py-24">
+    <div className="flex flex-col min-h-screen bg-background px-4 py-32 md:py-24">
       <div className="flex flex-wrap gap-8 container mx-auto">
         {allHighlights.map((tweetUrl, index) => (
           <div
             key={index}
-            className="flex-1 min-w-[450px] max-w-[600px] group"
+            className="flex-1 md:min-w-[450px] md:max-w-[600px] group"
             data-theme="light"
           >
             <Suspense fallback={<TweetSkeleton />}>
