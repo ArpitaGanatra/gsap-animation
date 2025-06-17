@@ -194,13 +194,25 @@ function StackedCards({ category, podcastData }: StackedCardsProps) {
       if (zIndex < 0) zIndex += currentPodcasts.length;
 
       // Adjust the zOffset calculation to start cards inside the screen
-      const zOffset = (-zIndex * SPACING) / 1.5 + 3;
+      // const zOffset = (-zIndex * SPACING) / 1.5 + 3;
+      const zOffset =
+        currentPodcasts.length > 10
+          ? (-zIndex * SPACING) / 1.3 + 6
+          : (-zIndex * SPACING) / 1.5 + 3;
       const isHovered = index === hoveredIndex;
 
       // Modified opacity calculation
       // Balance visibility for both forward and reverse scrolling
+      // const opacity =
+      //   zIndex < -2 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
       const opacity =
-        zIndex < -2 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
+        currentPodcasts.length > 10
+          ? zIndex < 2 || zIndex >= currentPodcasts.length - 2
+            ? 0
+            : 1
+          : zIndex < -2 || zIndex >= currentPodcasts.length - 2
+          ? 0
+          : 1;
 
       // Calculate lerp factor based on scroll velocity and direction
       const lerpFactor = Math.min(
