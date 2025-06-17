@@ -221,7 +221,11 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
       if (zIndex < 0) zIndex += currentPodcasts.length;
 
       // Adjust the zOffset calculation to start cards inside the screen
-      const zOffset = (-zIndex * SPACING) / 1.1 + 2.2; // Adjusted for wider spacing
+      // const zOffset = (-zIndex * SPACING) / 1.1 + 2.2; // Adjusted for wider spacing
+      const zOffset =
+        currentPodcasts.length > 10
+          ? (-zIndex * SPACING) / 1.2 + 2
+          : (-zIndex * SPACING) / 1.5 + 2.5;
       const isHovered = index === hoveredIndex;
 
       // Skew/rotate cards for a subtle, uniform 3D effect
@@ -229,7 +233,8 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
       card.rotation.set(0, yRotation, 0);
 
       // Use the smoothly animated center index
-      const isCenterCard = Math.abs(zIndex - currentCenterIndex.current) < 0.1;
+      const isCenterCard =
+        Math.abs(zIndex - currentCenterIndex.current - 1) < 0.1;
 
       const diagonalOffset = zIndex * 0.22; // Increased diagonal offset for wider spread
 
@@ -243,8 +248,8 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
         {
           x: isHovered
             ? 0.8
-            : -1 + diagonalOffset * 1.2 + (isCenterCard ? 0.3 : 0),
-          y: -1 + diagonalOffset * 1.2,
+            : -1.2 + diagonalOffset * 1.2 + (isCenterCard ? 0.3 : 0),
+          y: -1.3 + diagonalOffset * 1.2,
           z: zOffset,
         },
         lerpFactor
@@ -252,8 +257,16 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
 
       // Update material opacity
       if (card.material) {
+        // const opacity =
+        //   zIndex < 0 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
         const opacity =
-          zIndex < 0 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
+          currentPodcasts.length > 10
+            ? zIndex < 2 || zIndex > currentPodcasts.length - 2
+              ? 0
+              : 1
+            : zIndex < -2 || zIndex > currentPodcasts.length - 2
+            ? 0
+            : 1;
         card.material.opacity = opacity;
       }
     });
