@@ -242,15 +242,14 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
       if (!card) return;
 
       // Calculate normalized index that wraps around
-      let zIndex = (index - scrollIndex) % currentPodcasts.length;
-      if (zIndex < 0) zIndex += currentPodcasts.length;
+      // const zIndex = index - scrollIndex;
 
       // Adjust the zOffset calculation to start cards inside the screen
       // const zOffset = (-zIndex * SPACING) / 1.1 + 2.2; // Adjusted for wider spacing
-      const zOffset =
-        currentPodcasts.length > 10
-          ? (-zIndex * SPACING) / 1.2 + 2
-          : (-zIndex * SPACING) / 1.5 + 2.5;
+      // const zOffset =
+      //   currentPodcasts.length > 10
+      //     ? (-zIndex * SPACING) / 1.2 + 2
+      //     : (-zIndex * SPACING) / 1.5 + 2.5;
       const isHovered = index === hoveredIndex;
 
       // Skew/rotate cards for a subtle, uniform 3D effect
@@ -258,42 +257,37 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
       card.rotation.set(0, yRotation, 0);
 
       // Use the smoothly animated center index
-      const isCenterCard =
-        Math.abs(zIndex - currentCenterIndex.current - 1) < 0.1;
+      // const isCenterCard =
+      //   Math.abs(zIndex - currentCenterIndex.current - 1) < 0.1;
 
-      const diagonalOffset = zIndex * 0.22; // Increased diagonal offset for wider spread
+      // const diagonalOffset = zIndex * 0.22; // Increased diagonal offset for wider spread
 
       // Calculate lerp factor based on scroll velocity
       const lerpFactor = Math.min(
         0.3,
         0.1 + Math.abs(scrollVelocity.current) * 0.1
       );
+      const total = currentPodcasts.length;
+      let relativeIndex =
+        (((index - Math.round(scrollIndex)) % total) + total) % total;
+
+      // Now shift it to center the stack around the active index:
+      if (relativeIndex > total / 2) relativeIndex -= total;
+
+      const xOffset = relativeIndex * 0.2;
+      const yOffset = relativeIndex * 0.2;
+      const zOffset = -relativeIndex * SPACING;
 
       card.position.lerp(
         {
-          x: isHovered
-            ? 0.8
-            : -1.2 + diagonalOffset * 1.2 + (isCenterCard ? 0.3 : 0),
-          y: -1.3 + diagonalOffset * 1.2,
+          x: isHovered ? 0.8 : xOffset,
+          y: yOffset,
           z: zOffset,
         },
         lerpFactor
       );
 
-      // Update material opacity
-      if (card.material) {
-        // const opacity =
-        //   zIndex < 0 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
-        const opacity =
-          currentPodcasts.length > 10
-            ? zIndex < 0 || zIndex > currentPodcasts.length - 2
-              ? 0
-              : 1
-            : zIndex < -1 || zIndex > currentPodcasts.length - 2
-            ? 0
-            : 1;
-        card.material.opacity = opacity;
-      }
+      card.material.opacity = Math.abs(relativeIndex) > 8 ? 0 : 1;
     });
   });
 
