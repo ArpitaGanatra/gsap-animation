@@ -286,7 +286,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
         //   zIndex < 0 || zIndex > currentPodcasts.length - 2 ? 0 : 1;
         const opacity =
           currentPodcasts.length > 10
-            ? zIndex < 1 || zIndex > currentPodcasts.length - 2
+            ? zIndex < 0 || zIndex > currentPodcasts.length - 2
               ? 0
               : 1
             : zIndex < -1 || zIndex > currentPodcasts.length - 2
