@@ -101,7 +101,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const SPACING = 0.2; // Increased spacing for wider layout
+  const SPACING = 0.3; // Increased spacing for wider layout
   const touchStartY = useRef<number | null>(null);
   const targetCenterIndex = useRef(4); // Default center index
   const currentCenterIndex = useRef(4);
@@ -274,13 +274,21 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
       // Now shift it to center the stack around the active index:
       if (relativeIndex > total / 2) relativeIndex -= total;
 
+      const isCenterCard = relativeIndex === 0;
+
       const xOffset = relativeIndex * 0.2;
       const yOffset = relativeIndex * 0.2;
       const zOffset = -relativeIndex * SPACING;
 
+      const xTarget = isHovered
+        ? 0.8
+        : isCenterCard
+        ? xOffset + 0.3 // subtle push to the right
+        : xOffset;
+
       card.position.lerp(
         {
-          x: isHovered ? 0.8 : xOffset,
+          x: xTarget,
           y: yOffset,
           z: zOffset,
         },
