@@ -108,12 +108,18 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
   const lastScrollTime = useRef(0);
   const scrollVelocity = useRef(0);
   const router = useRouter();
+  const [clickDisabled, setClickDisabled] = useState(false);
+  const scrollCooldown = useRef(false);
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
+      if (clickDisabled) return; // Prevent scroll/animation during cooldown
       event.preventDefault();
-      // Limit the maximum scroll speed
-      const maxScrollSpeed = 50;
+      // Different speed limits for forward and reverse scrolling
+      const maxForwardScrollSpeed = 30; // More restrictive for mobile
+      const maxReverseScrollSpeed = 40; // Slightly higher for reverse
+      const maxScrollSpeed =
+        event.deltaY > 0 ? maxForwardScrollSpeed : maxReverseScrollSpeed;
       const limitedDelta =
         Math.sign(event.deltaY) *
         Math.min(Math.abs(event.deltaY), maxScrollSpeed);
@@ -127,25 +133,37 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
       }
       lastScrollTime.current = now;
 
-      if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
+      if (
+        Math.abs(scrollAmount.current) > SCROLL_THRESHOLD &&
+        !scrollCooldown.current
+      ) {
         targetScrollIndex.current += Math.sign(scrollAmount.current);
         scrollAmount.current = 0;
+        scrollCooldown.current = true;
+        setTimeout(() => {
+          scrollCooldown.current = false;
+        }, 80); // Reduced cooldown duration for better responsiveness
       }
     };
 
     // Add touch event handlers with speed limiting
     const handleTouchStart = (event: TouchEvent) => {
+      if (clickDisabled) return; // Prevent scroll/animation during cooldown
       touchStartY.current = event.touches[0].clientY;
       lastScrollTime.current = Date.now();
       scrollVelocity.current = 0;
     };
 
     const handleTouchMove = (event: TouchEvent) => {
+      if (clickDisabled) return; // Prevent scroll/animation during cooldown
       if (touchStartY.current === null) return;
 
       const touchDelta = touchStartY.current - event.touches[0].clientY;
-      // Limit touch movement speed
-      const maxTouchSpeed = 30;
+      // Different speed limits for forward and reverse scrolling
+      const maxForwardTouchSpeed = 15; // More restrictive for mobile
+      const maxReverseTouchSpeed = 10; // Even more restrictive for reverse
+      const maxTouchSpeed =
+        touchDelta > 0 ? maxForwardTouchSpeed : maxReverseTouchSpeed;
       const limitedDelta =
         Math.sign(touchDelta) * Math.min(Math.abs(touchDelta), maxTouchSpeed);
       scrollAmount.current += limitedDelta;
@@ -157,21 +175,28 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
         scrollVelocity.current = limitedDelta / timeDelta;
       }
       lastScrollTime.current = now;
-
-      if (Math.abs(scrollAmount.current) > SCROLL_THRESHOLD) {
+      if (
+        Math.abs(scrollAmount.current) > SCROLL_THRESHOLD &&
+        !scrollCooldown.current
+      ) {
         targetScrollIndex.current += Math.sign(scrollAmount.current);
         scrollAmount.current = 0;
         touchStartY.current = event.touches[0].clientY;
+
+        scrollCooldown.current = true;
+        setTimeout(() => {
+          scrollCooldown.current = false;
+        }, 80); // cooldown duration
       }
     };
 
     const handleTouchEnd = () => {
       touchStartY.current = null;
-      // Apply momentum scrolling
+      // Apply momentum scrolling with reduced intensity
       if (Math.abs(scrollVelocity.current) > 0.1) {
         const momentum =
           Math.sign(scrollVelocity.current) *
-          Math.min(Math.abs(scrollVelocity.current) * 10, 3);
+          Math.min(Math.abs(scrollVelocity.current) * 5, 2); // Reduced momentum
         targetScrollIndex.current += momentum;
       }
       scrollVelocity.current = 0;
@@ -313,9 +338,24 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
           onPointerEnter={() => setHoveredIndex(i)}
           onPointerLeave={() => setHoveredIndex(null)}
           onPointerMove={(e) => handlePointerMove(e, e.object as THREE.Mesh)}
-          onClick={() =>
-            router.push(`/${slugify(podcast.company, { lower: true })}`)
-          }
+          onClick={(e) => {
+            e.stopPropagation();
+            if (clickDisabled) {
+              console.log("Click ignored: cooldown active");
+              return;
+            }
+            setClickDisabled(true);
+            const lockedIndex = i;
+            const podcast = currentPodcasts[lockedIndex];
+            setTimeout(() => setClickDisabled(false), 3000);
+            console.log(
+              "Navigating to:",
+              podcast.company,
+              "at index",
+              lockedIndex
+            );
+            router.push(`/${slugify(podcast.company, { lower: true })}`);
+          }}
         >
           <Image
             ref={(el: CardElement | null) => {
