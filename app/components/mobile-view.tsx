@@ -274,7 +274,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
       // Now shift it to center the stack around the active index:
       if (relativeIndex > total / 2) relativeIndex -= total;
 
-      const xOffset = relativeIndex * 0.15;
+      const xOffset = relativeIndex * 0.2;
       const yOffset = relativeIndex * 0.2;
       const zOffset = -relativeIndex * SPACING;
 
@@ -287,7 +287,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
         lerpFactor
       );
 
-      card.material.opacity = Math.abs(relativeIndex) > 9 ? 0 : 1;
+      card.material.opacity = Math.abs(relativeIndex) > 8 ? 0 : 1;
     });
   });
 
