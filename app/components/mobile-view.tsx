@@ -295,7 +295,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
         lerpFactor
       );
 
-      card.material.opacity = Math.abs(relativeIndex) > 8 ? 0 : 1;
+      card.material.opacity = Math.abs(relativeIndex) > 9 ? 0 : 1;
     });
   });
 
