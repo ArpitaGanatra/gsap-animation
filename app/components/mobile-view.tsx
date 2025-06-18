@@ -101,7 +101,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const SPACING = 0.3; // Increased spacing for wider layout
+  const SPACING = 0.5; // Increased spacing for wider layout
   const touchStartY = useRef<number | null>(null);
   const targetCenterIndex = useRef(4); // Default center index
   const currentCenterIndex = useRef(4);
@@ -276,8 +276,8 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
 
       const isCenterCard = relativeIndex === 0;
 
-      const xOffset = relativeIndex * 0.2;
-      const yOffset = relativeIndex * 0.2;
+      const xOffset = relativeIndex * 0.25;
+      const yOffset = relativeIndex * 0.25;
       const zOffset = -relativeIndex * SPACING;
 
       const xTarget = isHovered
@@ -295,7 +295,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
         lerpFactor
       );
 
-      card.material.opacity = Math.abs(relativeIndex) > 9 ? 0 : 1;
+      card.material.opacity = Math.abs(relativeIndex) > 8 ? 0 : 1;
     });
   });
 
