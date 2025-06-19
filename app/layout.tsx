@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "Crypotown",
   description: "Crypotown is a podcast about the future of crypto",
   icons: {
-    icon: "/logos/logo.jpg",
+    icon: "/logos/logo.png",
   },
 };
 

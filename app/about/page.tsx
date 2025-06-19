@@ -66,10 +66,13 @@ export default function About() {
                       href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
                       target="_blank"
+                      className="cursor-pointer hover:opacity-70 transition-opacity duration-200"
+                      style={{ cursor: "pointer" }}
                     >
                       <span
                         key={`${guest.guest}-${guest.company}`}
-                        className="leading-[1.25]"
+                        className="leading-[1.25] "
+                        style={{ cursor: "pointer" }}
                       >
                         {guest.guest} · {guest.company}
                       </span>
@@ -86,10 +89,13 @@ export default function About() {
                       href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
                       target="_blank"
+                      className="cursor-pointer hover:opacity-70 transition-opacity duration-200"
+                      style={{ cursor: "pointer" }}
                     >
                       <span
                         key={`${guest.guest}-${guest.company}`}
-                        className="leading-[1.25]"
+                        className="leading-[1.25] cursor-pointer"
+                        style={{ cursor: "pointer" }}
                       >
                         {guest.guest} · {guest.company}
                       </span>
@@ -110,12 +116,15 @@ export default function About() {
                       href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
                       target="_blank"
+                      className="cursor-pointer hover:opacity-70 transition-opacity duration-200"
+                      style={{ cursor: "pointer" }}
                     >
                       <span
                         key={`${guest.guest}-${guest.company}`}
                         className="leading-[1.25] cursor-pointer"
+                        style={{ cursor: "pointer" }}
                       >
-                        {guest.guest} · {guest.company} ({guest.category})
+                        {guest.guest} · {guest.company}
                       </span>
                     </Link>
                   ))}
@@ -142,7 +151,7 @@ export default function About() {
             </section>
           </li>
         </ul> */}
-        <ul className="mt-5 opacity-0" style={{ opacity: "1" }}>
+        <ul className="mt-5 opacity-0 hidden md:block" style={{ opacity: "1" }}>
           <li className="flex">
             <span
               className="text-[.65625rem]/[.8125rem] tracking-[.015em] leading-[1.25] opacity-30"
