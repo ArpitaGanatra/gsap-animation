@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Crypotown",
-  description: "Crypotown is a podcast about the future of crypto",
+  description: "Crypotown",
   icons: {
     icon: "/logos/logo.png",
   },
