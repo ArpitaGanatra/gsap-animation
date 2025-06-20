@@ -41,7 +41,8 @@ const Highlights = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background px-4 py-32 md:py-24">
+    // <div className="flex flex-col min-h-screen bg-background px-4 py-32 md:py-24">
+    <div className="flex flex-col min-h-screen w-full pt-[150px] md:pt-[125px] absolute inset-0  p-1 overflow-y-auto ">
       <div className="flex flex-wrap gap-8 container mx-auto">
         {allHighlights.map((tweetUrl, index) => (
           <div

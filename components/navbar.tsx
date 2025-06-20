@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex flex-wrap md:flex-nowrap items-center gap-0.5 gap-y-1 absolute left-0.5 top-0.5 right-0.5 w-full pr-1">
+      <div className="flex flex-wrap absolute md:flex-nowrap items-center gap-0.5 gap-y-1 left-0.5 top-0.5 right-0.5 w-full pr-1">
         <button
           onClick={() => {
             setIsOpen(false);

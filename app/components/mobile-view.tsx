@@ -101,7 +101,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const SPACING = 0.2; // Increased spacing for wider layout
+  const SPACING = 0.6; // Increased spacing for wider layout
   const touchStartY = useRef<number | null>(null);
   const targetCenterIndex = useRef(4); // Default center index
   const currentCenterIndex = useRef(4);
@@ -365,7 +365,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
             }}
             transparent
             opacity={1}
-            scale={[0.6, 0.6, 0.6]}
+            scale={[0.9, 0.9, 0.9]}
             position={[0, 0, -i * SPACING]}
             url={podcast.image}
             alt={`${podcast.guest} - ${podcast.company}`}
