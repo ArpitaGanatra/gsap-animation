@@ -6,6 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import AnimatedLogo from "./components/animated-logo";
 import { CategoryProvider } from "./context/CategoryContext";
 import "./globals.css";
+import PosthogProvider from "@/lib/posthog-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,13 +36,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen`}
       >
-        <CategoryProvider>
-          <SplashScreen />
-          <AnimatedLogo />
-          <Navbar />
-          {children}
-          <Categories />
-        </CategoryProvider>
+        <PosthogProvider>
+          <CategoryProvider>
+            <SplashScreen />
+            <AnimatedLogo />
+            <Navbar />
+            {children}
+            <Categories />
+          </CategoryProvider>
+        </PosthogProvider>
       </body>
     </html>
   );
