@@ -17,7 +17,6 @@ body,
 
 body {
   background: #fdfdfd;
-  cursor: pointer;
 }
 
 a {
@@ -32,6 +31,7 @@ a {
 
 svg {
   fill: black;
+  cursor: pointer;
 }
 
 @keyframes fade-in {

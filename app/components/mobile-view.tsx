@@ -356,13 +356,14 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
               "at index",
               lockedIndex
             );
-            router.push(`/${slugify(podcast.company, { lower: true })}`);
+            router.push(`/${slugify(podcast.guest, { lower: true })}`);
           }}
         >
           <Image
             ref={(el: CardElement | null) => {
               cardsRef.current[i] = el;
             }}
+            className="cursor-pointer"
             transparent
             opacity={1}
             scale={[0.9, 0.9, 0.9]}

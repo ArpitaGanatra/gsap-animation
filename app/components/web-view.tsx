@@ -46,6 +46,7 @@ const WebView = () => {
           antialias: true,
           preserveDrawingBuffer: true,
         }}
+        style={{ cursor: "pointer" }}
       >
         <StackedCards category={selectedCategory} podcastData={podcastData} />
       </Canvas>
@@ -308,7 +309,7 @@ function StackedCards({ category, podcastData }: StackedCardsProps) {
               "at index",
               lockedIndex
             );
-            router.push(`/${slugify(podcast.company, { lower: true })}`);
+            router.push(`/${slugify(podcast.guest, { lower: true })}`);
           }}
         >
           <Image

@@ -1,11 +1,13 @@
 .podcast-card {
   position: absolute;
   transition: transform 0.3s ease-out;
+  cursor: pointer;
 }
 
 .podcast-card:hover {
   transform: translateX(20px);
   z-index: 100;
+  cursor: pointer;
 }
 
 .podcast-card .guest-name {

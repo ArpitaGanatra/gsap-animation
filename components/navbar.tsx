@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex flex-wrap absolute md:flex-nowrap items-center gap-0.5 gap-y-1 left-0.5 top-0.5 right-0.5 w-full pr-1">
+      <div className="flex  absolute flex-nowrap overflow-x-scroll items-center gap-0.5 gap-y-1 left-0.5 top-0.5 right-0.5 w-full pr-1">
         <button
           onClick={() => {
             setIsOpen(false);
@@ -39,19 +39,19 @@ export default function Navbar() {
         <button
           onClick={() => {
             setIsOpen(false);
-            router.push("/bangers");
+            router.push("/lore");
           }}
           className={`z-20 button text-[10px] uppercase flex w-fit items-start gap-x-[2px] rounded-[0.375rem] pl-2.5 pr-10 py-2 pt-10 text-black 
           backdrop-blur-[16px] backdrop-saturate-[180%] bg-[#F2F2F2]/40 border border-[#D3D3D3]/50 hover:bg-[#F2F2F2]/50 transition-all duration-300 
           ${
-            !isOpen && pathname === "/bangers"
+            !isOpen && pathname === "/lore"
               ? "text-opacity-[1] bg-[#F2F2F2]/50"
               : "text-opacity-[0.3]"
           } hover:text-opacity-[1]`}
         >
           <span
             className={`text-black cursor-pointer hover:text-opacity-[1] ${
-              !isOpen && pathname === "/bangers"
+              !isOpen && pathname === "/lore"
                 ? "text-opacity-[1]"
                 : "text-opacity-[0.3]"
             }`}

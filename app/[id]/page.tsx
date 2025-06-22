@@ -36,7 +36,7 @@ export default function CompanyDetail() {
         const res = await fetch("/api/companies");
         const allCompanies = (await res.json()) as CompanyData[];
         const found = allCompanies.find(
-          (item) => slugify(item.company, { lower: true }) === id
+          (item) => slugify(item.guest, { lower: true }) === id
         );
         setCompanyData(found || null);
 

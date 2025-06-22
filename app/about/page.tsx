@@ -66,16 +66,9 @@ export default function About() {
                       href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
                       target="_blank"
-                      className="cursor-pointer hover:opacity-70 transition-opacity duration-200"
-                      style={{ cursor: "pointer" }}
+                      className="cursor-pointer hover:opacity-70 transition-opacity duration-200 leading-[1.25]"
                     >
-                      <span
-                        key={`${guest.guest}-${guest.company}`}
-                        className="leading-[1.25] "
-                        style={{ cursor: "pointer" }}
-                      >
-                        {guest.guest} · {guest.company}
-                      </span>
+                      {guest.guest} · {guest.company}
                     </Link>
                   ))}
 
@@ -89,16 +82,9 @@ export default function About() {
                       href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
                       target="_blank"
-                      className="cursor-pointer hover:opacity-70 transition-opacity duration-200"
-                      style={{ cursor: "pointer" }}
+                      className="cursor-pointer hover:opacity-70 transition-opacity duration-20 leading-[1.25]"
                     >
-                      <span
-                        key={`${guest.guest}-${guest.company}`}
-                        className="leading-[1.25] cursor-pointer"
-                        style={{ cursor: "pointer" }}
-                      >
-                        {guest.guest} · {guest.company}
-                      </span>
+                      {guest.guest} · {guest.company}
                     </Link>
                   ))}
 
@@ -116,16 +102,9 @@ export default function About() {
                       href={`${guest.twitter_link}`}
                       key={`${guest.guest}-${guest.company}`}
                       target="_blank"
-                      className="cursor-pointer hover:opacity-70 transition-opacity duration-200"
-                      style={{ cursor: "pointer" }}
+                      className="cursor-pointer hover:opacity-70 transition-opacity duration-200 leading-[1.25]"
                     >
-                      <span
-                        key={`${guest.guest}-${guest.company}`}
-                        className="leading-[1.25] cursor-pointer"
-                        style={{ cursor: "pointer" }}
-                      >
-                        {guest.guest} · {guest.company}
-                      </span>
+                      {guest.guest} · {guest.company}
                     </Link>
                   ))}
               </section>
