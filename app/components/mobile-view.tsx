@@ -352,7 +352,7 @@ function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
             setTimeout(() => setClickDisabled(false), 3000);
             console.log(
               "Navigating to:",
-              podcast.company,
+              podcast.guest,
               "at index",
               lockedIndex
             );

@@ -30,6 +30,7 @@ export default function CompanyDetail() {
   const [companyData, setCompanyData] = useState<CompanyData | null>(null);
   const [episodes, setEpisodes] = useState<EpisodeData[]>([]);
   const [loading, setLoading] = useState(true);
+  console.log(id);
   useEffect(() => {
     async function fetchData() {
       try {
