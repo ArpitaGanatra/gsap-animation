@@ -66,8 +66,8 @@ interface StackedCardsProps {
 
 function StackedCards({ category, podcastData }: StackedCardsProps) {
   const cardsRef = useRef<(CardElement | null)[]>([]);
-  const [scrollIndex, setScrollIndex] = useState(0);
-  const targetScrollIndex = useRef(0);
+  const [scrollIndex, setScrollIndex] = useState(-3);
+  const targetScrollIndex = useRef(-3);
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });

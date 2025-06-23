@@ -96,15 +96,15 @@ interface StackedCardsProps {
 
 function StackedCards({ category, isMobile, podcastData }: StackedCardsProps) {
   const cardsRef = useRef<(CardElement | null)[]>([]);
-  const [scrollIndex, setScrollIndex] = useState(0);
-  const targetScrollIndex = useRef(0); // For smooth scrolling
+  const [scrollIndex, setScrollIndex] = useState(3);
+  const targetScrollIndex = useRef(3); // For smooth scrolling
   const scrollAmount = useRef(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const SPACING = 0.3; // Increased spacing for wider layout
   const touchStartY = useRef<number | null>(null);
-  const targetCenterIndex = useRef(4); // Default center index
-  const currentCenterIndex = useRef(4);
+  const targetCenterIndex = useRef(8); // Default center index
+  const currentCenterIndex = useRef(8);
   const lastScrollTime = useRef(0);
   const scrollVelocity = useRef(0);
   const router = useRouter();
