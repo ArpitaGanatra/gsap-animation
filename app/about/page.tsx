@@ -33,8 +33,8 @@ export default function About() {
 
   return (
     <>
-      <section className="flex w-full flex-col gap-y-5 pt-[80px] md:pt-[100px] absolute inset-0 sm:max-w-[27rem] p-1 overflow-y-auto ">
-        <p className="text-[.65625rem]/[.8125rem] tracking-[.015em] mb-5 normal-case">
+      <section className="flex w-full flex-col gap-y-4 md:gap-y-8 pt-[80px] md:pt-[100px] absolute inset-0 sm:max-w-[27rem] p-1 overflow-y-auto ">
+        <p className="text-[.65625rem]/[.8125rem] tracking-[.015em]  normal-case">
           cryptotown is a curated network of the the most influential figures in
           the industry : Founders, VCs & Operators.
           <br />
