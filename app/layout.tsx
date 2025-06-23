@@ -7,6 +7,7 @@ import AnimatedLogo from "./components/animated-logo";
 import { CategoryProvider } from "./context/CategoryContext";
 import "./globals.css";
 import PosthogProvider from "@/lib/posthog-provider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen`}
       >
+        <Toaster />
         <PosthogProvider>
           <CategoryProvider>
             <SplashScreen />

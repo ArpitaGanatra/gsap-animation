@@ -8,6 +8,8 @@ import Link from "next/link";
 import { CompanyData } from "../api/companies/route";
 import { EpisodeData } from "../api/podcasts/route";
 import { Button } from "@/components/ui/button";
+import { BsTwitterX } from "react-icons/bs";
+import { toast } from "sonner";
 
 function getYouTubeVideoId(url: string) {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -88,10 +90,18 @@ export default function CompanyDetail() {
           className="rounded-lg mb-4 mx-auto"
         />
 
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-2 flex items-center justify-center gap-2">
           {companyData.guest}{" "}
           <span className="text-gray-400 font-normal">|</span>{" "}
           {companyData.company}{" "}
+          <span className="text-gray-400 font-normal">|</span>{" "}
+          <Link
+            href={companyData.twitter_link}
+            target="_blank"
+            className="inline-flex items-center justify-center"
+          >
+            <BsTwitterX className="w-6 h-6" />
+          </Link>
         </h1>
 
         <p className="text-lg text-gray-600 mb-4">
@@ -129,6 +139,18 @@ export default function CompanyDetail() {
                 </Link>
               </>
             )}
+          <span className="h-4 border-l border-gray-300"></span>
+
+          <Button
+            size="sm"
+            className=" bg-black text-white rounded-full hover:bg-black/90 px-6"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              toast.success("Copied to clipboard");
+            }}
+          >
+            Share
+          </Button>
         </div>
       </section>
 
