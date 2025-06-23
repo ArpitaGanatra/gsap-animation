@@ -37,14 +37,13 @@ export default function CompanyDetail() {
         const res = await fetch("/api/companies");
         const allCompanies = (await res.json()) as CompanyData[];
         const found = allCompanies.find(
-          (item) => slugify(item.guest, { lower: true }) === id
+          (item) =>
+            slugify(item.guest, { lower: true }).replace(/-/g, "") === id
         );
         setCompanyData(found || null);
 
-        if (found?.company) {
-          const resEpisodes = await fetch(
-            `/api/podcasts?company=${found.company}`
-          );
+        if (found?.guest) {
+          const resEpisodes = await fetch(`/api/podcasts?guest=${found.guest}`);
           const episodes = (await resEpisodes.json()) as EpisodeData[];
           setEpisodes(episodes);
         } else {

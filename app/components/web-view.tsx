@@ -309,7 +309,9 @@ function StackedCards({ category, podcastData }: StackedCardsProps) {
               "at index",
               lockedIndex
             );
-            router.push(`/${slugify(podcast.guest, { lower: true })}`);
+            router.push(
+              `/${slugify(podcast.guest, { lower: true }).replace(/-/g, "")}`
+            );
           }}
         >
           <Image

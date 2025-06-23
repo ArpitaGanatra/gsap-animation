@@ -16,10 +16,11 @@ const base = new Airtable({
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const company = searchParams.get("company");
+  const guest = searchParams.get("guest");
+  console.log("guest", guest);
 
-  if (!company) {
-    return new Response(JSON.stringify({ error: "Company is required" }), {
+  if (!guest) {
+    return new Response(JSON.stringify({ error: "Guest is required" }), {
       status: 400,
     });
   }
@@ -27,13 +28,14 @@ export async function GET(req: NextRequest) {
   try {
     const records = await base("Playlist")
       .select({
-        filterByFormula: `{company} = '${company}'`,
+        filterByFormula: `{name} = '${guest}'`,
         sort: [{ field: "episode_id", direction: "asc" }],
       })
       .all();
+    console.log(records);
 
     if (!records || records.length === 0) {
-      console.log(`No records found for company: ${company}`);
+      console.log(`No records found for guest: ${guest}`);
       return Response.json([]);
     }
 
