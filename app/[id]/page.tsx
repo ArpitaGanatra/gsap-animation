@@ -8,7 +8,6 @@ import Link from "next/link";
 import { CompanyData } from "../api/companies/route";
 import { EpisodeData } from "../api/podcasts/route";
 import { Button } from "@/components/ui/button";
-import { BsTwitterX } from "react-icons/bs";
 import { toast } from "sonner";
 
 function getYouTubeVideoId(url: string) {
@@ -90,18 +89,17 @@ export default function CompanyDetail() {
           className="rounded-lg mb-4 mx-auto"
         />
 
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-2 flex items-center justify-center gap-2">
-          {companyData.guest}{" "}
-          <span className="text-gray-400 font-normal">|</span>{" "}
-          {companyData.company}{" "}
-          <span className="text-gray-400 font-normal">|</span>{" "}
+        <h1 className="text-xl md:text-3xl font-extrabold text-gray-900 mb-2 flex items-center justify-center gap-2">
           <Link
             href={companyData.twitter_link}
             target="_blank"
             className="inline-flex items-center justify-center"
           >
-            <BsTwitterX className="w-6 h-6" />
+            {" "}
+            {companyData.guest}{" "}
           </Link>
+          <span className="text-gray-400 font-normal">|</span>{" "}
+          {companyData.company}{" "}
         </h1>
 
         <p className="text-lg text-gray-600 mb-4">

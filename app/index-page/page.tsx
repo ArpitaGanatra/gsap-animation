@@ -26,7 +26,6 @@ export default function Index() {
             <span className="w-[120px] flex-shrink-0">GUEST</span>
             <span className="w-[170px] flex-shrink-0">COMPANY</span>
             <span className="w-[170px]">CATEGORY</span>
-            <span className="">EPISODE</span>
           </li>
           {podcastData.map((data) => {
             return (
@@ -35,7 +34,11 @@ export default function Index() {
                 className="flex opacity-0"
                 style={{ opacity: "1" }}
               >
-                <Link href={`/${slugify(data.company, { lower: true })}`}>
+                <Link
+                  href={`/${slugify(data.guest, {
+                    lower: true,
+                  }).replace(/-/g, "")}`}
+                >
                   <div className="flex w-auto flex-shrink-0 py-[0.325rem] opacity-[0.3] hover:opacity-[1]">
                     <span className="w-[120px] flex-shrink-0">
                       {data.guest}
@@ -46,7 +49,6 @@ export default function Index() {
                     <span className="w-[170px] flex flex-shrink-0">
                       {data.category}
                     </span>
-                    <span className="flex flex-shrink-0">#{data.episode}</span>
                   </div>
                   <div className="pointer-events-none w-[calc(80px)] flex-shrink-0 sm:hidden"></div>
                 </Link>
