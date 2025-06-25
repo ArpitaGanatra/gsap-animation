@@ -12,25 +12,175 @@ import { CompanyData } from "../api/companies/route";
 
 const SCROLL_THRESHOLD = 50; // Pixels required to trigger movement
 
+// WebGL detection function
+const isWebGLAvailable = () => {
+  try {
+    const canvas = document.createElement("canvas");
+    const gl =
+      canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    return !!gl;
+  } catch {
+    return false;
+  }
+};
+
+// Simple message component for hardware acceleration requirement
+const HardwareAccelerationMessage = () => {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        // background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        color: "black",
+        padding: "40px",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          background: "rgba(255, 255, 255, 0.1)",
+          borderRadius: "16px",
+          padding: "40px",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          maxWidth: "500px",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "28px",
+            fontWeight: "700",
+            marginBottom: "20px",
+            textTransform: "uppercase",
+          }}
+        >
+          Hardware Acceleration Required
+        </h1>
+
+        <p
+          style={{
+            fontSize: "18px",
+            lineHeight: "1.6",
+            marginBottom: "30px",
+            opacity: 0.9,
+          }}
+        >
+          This 3D experience requires hardware acceleration to display properly.
+        </p>
+
+        <div
+          style={{
+            background: "rgba(255, 255, 255, 0.15)",
+            borderRadius: "12px",
+            padding: "20px",
+            marginBottom: "30px",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "16px",
+              fontWeight: "600",
+              marginBottom: "15px",
+              textTransform: "uppercase",
+            }}
+          >
+            How to Enable:
+          </h3>
+
+          <div style={{ textAlign: "left" }}>
+            <p style={{ marginBottom: "10px", fontSize: "14px" }}>
+              <strong>Chrome/Edge:</strong> Settings → Advanced → System → Use
+              graphics acceleration when available
+            </p>
+            <p style={{ marginBottom: "10px", fontSize: "14px" }}>
+              <strong>Firefox:</strong> Settings → General → Performance → Use
+              recommended performance settings
+            </p>
+            <p style={{ fontSize: "14px" }}>
+              <strong>Safari:</strong> Develop → Experimental Features → WebGL
+              2.0
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => window.location.reload()}
+          style={{
+            background: "rgba(255, 255, 255, 0.2)",
+            border: "2px solid rgba(255, 255, 255, 0.3)",
+            borderRadius: "8px",
+            padding: "12px 24px",
+            color: "white",
+            fontSize: "16px",
+            fontWeight: "600",
+            cursor: "pointer",
+            transition: "all 0.3s ease",
+            textTransform: "uppercase",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.3)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.5)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.2)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+          }}
+        >
+          Reload After Enabling
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const WebView = () => {
   const { selectedCategory } = useCategory();
   const [podcastData, setPodcastData] = useState<CompanyData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [webGLAvailable, setWebGLAvailable] = useState<boolean | null>(null);
 
   useEffect(() => {
+    // Check WebGL availability
+    setWebGLAvailable(isWebGLAvailable());
+
     async function fetchData() {
-      const res = await fetch("/api/companies");
-
-      const data = await res.json();
-
-      setPodcastData(data);
-      setLoading(false);
+      try {
+        const res = await fetch("/api/companies");
+        const data = await res.json();
+        setPodcastData(data);
+      } catch (error) {
+        console.error("Failed to fetch podcast data:", error);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchData();
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "black",
+          fontSize: "18px",
+        }}
+      >
+        Loading...
+      </div>
+    );
+  }
+
+  // Show hardware acceleration message if WebGL is not available
+  if (webGLAvailable === false) {
+    return <HardwareAccelerationMessage />;
   }
 
   return (
@@ -47,6 +197,10 @@ const WebView = () => {
           preserveDrawingBuffer: true,
         }}
         style={{ cursor: "pointer" }}
+        onError={(error) => {
+          console.error("Three.js error:", error);
+          setWebGLAvailable(false);
+        }}
       >
         <StackedCards category={selectedCategory} podcastData={podcastData} />
       </Canvas>
