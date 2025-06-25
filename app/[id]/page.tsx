@@ -111,22 +111,10 @@ export default function CompanyDetail() {
 
         <hr className="my-4 border-gray-200" />
         <div className="flex items-center justify-center gap-4 text-sm">
-          <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">
-            {episodes.length} Videos
-          </span>
-
-          {/* <span className="h-4 border-l border-gray-300"></span> */}
-          {/* <span className="text-gray-500">
-            Publised at:{" "}
-            {episodes[0] && hasPublishedAt(episodes[0])
-              ? new Date(episodes[0].publishedAt).toLocaleDateString()
-              : "30 May 2025"}
-          </span> */}
           {episodes &&
             episodes[0]?.mintLink &&
             episodes[0]?.mintLink !== "" && (
               <>
-                <span className="h-4 border-l border-gray-300"></span>
                 <Link href={episodes[0].mintLink || ""} target="_blank">
                   <Button
                     size="sm"
@@ -135,9 +123,22 @@ export default function CompanyDetail() {
                     Mint
                   </Button>
                 </Link>
+                <span className="h-4 border-l border-gray-300"></span>
               </>
             )}
+
+          <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">
+            {episodes.length} Videos
+          </span>
           <span className="h-4 border-l border-gray-300"></span>
+
+          {/* <span className="h-4 border-l border-gray-300"></span> */}
+          {/* <span className="text-gray-500">
+            Publised at:{" "}
+            {episodes[0] && hasPublishedAt(episodes[0])
+              ? new Date(episodes[0].publishedAt).toLocaleDateString()
+              : "30 May 2025"}
+          </span> */}
 
           <Button
             size="sm"

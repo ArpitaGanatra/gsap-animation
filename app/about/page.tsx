@@ -7,6 +7,7 @@ import { useState } from "react";
 import { CompanyData } from "../api/companies/route";
 import Link from "next/link";
 import Image from "next/image";
+import slugify from "slugify";
 
 export default function About() {
   const router = useRouter();
@@ -63,9 +64,11 @@ export default function About() {
                   .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
                     <Link
-                      href={`${guest.twitter_link}`}
+                      href={`/${slugify(guest.guest, {
+                        lower: true,
+                        strict: true,
+                      }).replace(/-/g, "")}`}
                       key={`${guest.guest}-${guest.company}`}
-                      target="_blank"
                       className="cursor-pointer hover:opacity-70 transition-opacity duration-200 leading-[1.25]"
                     >
                       {guest.guest} · {guest.company}
@@ -79,9 +82,11 @@ export default function About() {
                   .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
                     <Link
-                      href={`${guest.twitter_link}`}
+                      href={`/${slugify(guest.guest, {
+                        lower: true,
+                        strict: true,
+                      }).replace(/-/g, "")}`}
                       key={`${guest.guest}-${guest.company}`}
-                      target="_blank"
                       className="cursor-pointer hover:opacity-70 transition-opacity duration-20 leading-[1.25]"
                     >
                       {guest.guest} · {guest.company}
@@ -99,9 +104,11 @@ export default function About() {
                   .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
                     <Link
-                      href={`${guest.twitter_link}`}
+                      href={`/${slugify(guest.guest, {
+                        lower: true,
+                        strict: true,
+                      }).replace(/-/g, "")}`}
                       key={`${guest.guest}-${guest.company}`}
-                      target="_blank"
                       className="cursor-pointer hover:opacity-70 transition-opacity duration-200 leading-[1.25]"
                     >
                       {guest.guest} · {guest.company}
