@@ -58,7 +58,7 @@ const HardwareAccelerationMessage = () => {
             textTransform: "uppercase",
           }}
         >
-          Hardware Acceleration Required
+          it&apos;s not me it&apos;s you
         </h1>
 
         <p
@@ -69,7 +69,8 @@ const HardwareAccelerationMessage = () => {
             opacity: 0.9,
           }}
         >
-          This 3D experience requires hardware acceleration to display properly.
+          Enjoy this 3D experience by making a teeny tiny change in your browser
+          settings <br /> <br /> Follow these steps (20 seconds)👇
         </p>
 
         <div
