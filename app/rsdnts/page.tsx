@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect, Suspense } from "react";
+import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { useSearchParams } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
 
 interface ApplicationForm {
   name: string;
@@ -16,22 +16,8 @@ interface ApplicationForm {
   walletAddress: string;
 }
 
-interface TwitterUser {
-  id: string;
-  username: string;
-  name: string;
-  profile_image_url: string;
-  verified: boolean;
-  followers_count: number;
-  following_count: number;
-  tweet_count: number;
-}
-
 function RsdntsContent() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<TwitterUser | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const searchParams = useSearchParams();
+  const { data: session, status } = useSession();
 
   const {
     register,
@@ -48,51 +34,9 @@ function RsdntsContent() {
       walletAddress: "",
     },
   });
-
-  // Check for OAuth callback results
-  useEffect(() => {
-    const loginStatus = searchParams.get("login");
-    const error = searchParams.get("error");
-
-    if (loginStatus === "success") {
-      checkUserSession();
-    } else if (error) {
-      console.error("Login error:", error);
-      // You can show an error message here
-    }
-  }, [searchParams]);
-
-  // Check if user is already logged in
-  useEffect(() => {
-    checkUserSession();
-  }, []);
-
-  const checkUserSession = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch("/api/auth/user");
-      const data = await response.json();
-
-      if (data.isLoggedIn) {
-        setIsLoggedIn(true);
-        setUser(data.user);
-      }
-    } catch (error) {
-      console.error("Error checking user session:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const onSubmit = async (data: ApplicationForm) => {
     try {
-      // Handle form submission logic here
       console.log("Application submitted:", data);
-
-      // You can add API call here
-      // await submitApplication(data);
-
-      // Reset form after successful submission
       reset();
       alert("Application submitted successfully!");
     } catch (error) {
@@ -101,60 +45,22 @@ function RsdntsContent() {
     }
   };
 
-  const handleTwitterLogin = () => {
-    // Open Twitter OAuth in a new window to avoid CORS issues
-    const authWindow = window.open(
-      "/api/auth/twitter",
-      "_blank",
-      "width=600,height=700"
-    );
+  // const handleTwitterLogin = () => {
+  //   // Open Twitter OAuth in a new window to avoid CORS issues
+  // };
 
-    // Check if the window was blocked
-    if (!authWindow) {
-      alert("Please allow popups for this site to login with Twitter");
-      return;
-    }
-
-    // Listen for messages from the popup
-    const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== window.location.origin) return;
-
-      if (event.data.type === "TWITTER_AUTH_SUCCESS") {
-        authWindow.close();
-        window.removeEventListener("message", handleMessage);
-        checkUserSession();
-      } else if (event.data.type === "TWITTER_AUTH_ERROR") {
-        authWindow.close();
-        window.removeEventListener("message", handleMessage);
-        console.error("Twitter auth error:", event.data.error);
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-  };
-
-  const handleLogout = async () => {
-    try {
-      await fetch("/api/auth/user", { method: "DELETE" });
-      setIsLoggedIn(false);
-      setUser(null);
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
-
-  if (isLoading) {
+  if (status === "loading") {
     return (
       <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
     );
   }
 
-  if (!isLoggedIn) {
+  if (!session) {
     return (
       <div className="min-h-screen w-full relative overflow-hidden">
         {/* Background Pattern */}
@@ -265,16 +171,9 @@ function RsdntsContent() {
                 cryptotown&apos;s network, private events and opportunities
               </p>
               <Button
-                onClick={handleTwitterLogin}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-12 py-6 text-xl font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-blue-500/25"
+                onClick={() => signIn("twitter")}
+                className="mt-4 bg-blue-500 text-white px-6 py-3 rounded-lg"
               >
-                <svg
-                  className="w-6 h-6 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                </svg>
                 Login with Twitter
               </Button>
             </div>
@@ -305,52 +204,6 @@ function RsdntsContent() {
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Join the most exclusive network in crypto
           </p>
-
-          {/* User Info */}
-          {user && (
-            <div className="mt-8 p-6 bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl max-w-md mx-auto">
-              <div className="flex items-center justify-center space-x-4 mb-4">
-                <Image
-                  src={user.profile_image_url}
-                  alt={user.name}
-                  width={48}
-                  height={48}
-                  className="rounded-full"
-                />
-                <div className="text-left">
-                  <h3 className="font-semibold text-lg">{user.name}</h3>
-                  <p className="text-gray-400">@{user.username}</p>
-                  {user.verified && (
-                    <span className="inline-flex items-center text-blue-500 text-sm">
-                      <svg
-                        className="w-4 h-4 mr-1"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Verified
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-center space-x-6 text-sm text-gray-400">
-                <span>{user.followers_count.toLocaleString()} followers</span>
-                <span>{user.following_count.toLocaleString()} following</span>
-                <span>{user.tweet_count.toLocaleString()} tweets</span>
-              </div>
-              <Button
-                onClick={handleLogout}
-                className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors"
-              >
-                Logout
-              </Button>
-            </div>
-          )}
         </div>
 
         {/* Application Form */}
