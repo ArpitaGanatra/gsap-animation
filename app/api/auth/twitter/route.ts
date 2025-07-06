@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import crypto from "crypto";
 
 const TWITTER_CLIENT_ID = process.env.NEXT_TWITTER_CLIENT_ID;
@@ -24,7 +24,7 @@ function base64URLEncode(buffer: Buffer): string {
     .replace(/=/g, "");
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Validate environment variables
     if (!TWITTER_CLIENT_ID) {

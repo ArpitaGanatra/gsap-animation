@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const config = {
     clientId: process.env.NEXT_TWITTER_CLIENT_ID,
     clientSecret: process.env.NEXT_TWITTER_CLIENT_SECRET
