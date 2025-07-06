@@ -26,6 +26,11 @@ const handler = NextAuth({
       return token;
     },
   },
+  pages: {
+    signIn: "/rsdnts",
+    error: "/rsdnts",
+  },
+  debug: process.env.NODE_ENV === "development",
 });
 
 export { handler as GET, handler as POST };
