@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { useSearchParams } from "next/navigation";
@@ -27,7 +27,7 @@ interface TwitterUser {
   tweet_count: number;
 }
 
-export default function Rsdnts() {
+function RsdntsContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<TwitterUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -540,5 +540,22 @@ export default function Rsdnts() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Rsdnts() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading...</p>
+          </div>
+        </div>
+      }
+    >
+      <RsdntsContent />
+    </Suspense>
   );
 }
