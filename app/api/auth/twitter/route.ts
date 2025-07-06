@@ -4,7 +4,7 @@ import crypto from "crypto";
 const TWITTER_CLIENT_ID = process.env.NEXT_TWITTER_CLIENT_ID;
 const TWITTER_CLIENT_SECRET = process.env.NEXT_TWITTER_CLIENT_SECRET;
 const REDIRECT_URI = process.env.NEXT_PUBLIC_BASE_URL
-  ? process.env.NEXT_PUBLIC_BASE_URL + "/api/auth/twitter/callback"
+  ? process.env.NEXT_PUBLIC_BASE_URL + "api/auth/twitter/callback"
   : "http://localhost:3000/api/auth/twitter/callback";
 
 function generateCodeVerifier(): string {

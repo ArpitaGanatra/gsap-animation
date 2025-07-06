@@ -102,8 +102,35 @@ function RsdntsContent() {
   };
 
   const handleTwitterLogin = () => {
-    // Redirect to Twitter OAuth
-    window.location.href = "/api/auth/twitter";
+    // Open Twitter OAuth in a new window to avoid CORS issues
+    const authWindow = window.open(
+      "/api/auth/twitter",
+      "_blank",
+      "width=600,height=700"
+    );
+
+    // Check if the window was blocked
+    if (!authWindow) {
+      alert("Please allow popups for this site to login with Twitter");
+      return;
+    }
+
+    // Listen for messages from the popup
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+
+      if (event.data.type === "TWITTER_AUTH_SUCCESS") {
+        authWindow.close();
+        window.removeEventListener("message", handleMessage);
+        checkUserSession();
+      } else if (event.data.type === "TWITTER_AUTH_ERROR") {
+        authWindow.close();
+        window.removeEventListener("message", handleMessage);
+        console.error("Twitter auth error:", event.data.error);
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
   };
 
   const handleLogout = async () => {
