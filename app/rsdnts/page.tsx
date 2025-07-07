@@ -5,7 +5,8 @@ import Link from "next/link";
 import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { signIn, useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
+import { useState, useEffect } from "react";
 
 interface ApplicationForm {
   name: string;
@@ -17,13 +18,17 @@ interface ApplicationForm {
 }
 
 function RsdntsContent() {
-  const { data: session, status } = useSession();
+  const { status, data: session } = useSession();
+  const [nftStatus, setNftStatus] = useState<
+    "idle" | "checking" | "hasNFT" | "noNFT" | "error"
+  >("idle");
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
+    watch,
   } = useForm<ApplicationForm>({
     defaultValues: {
       name: "",
@@ -34,6 +39,64 @@ function RsdntsContent() {
       walletAddress: "",
     },
   });
+
+  const walletAddress = watch("walletAddress");
+
+  async function checkNFTOwnership(walletAddress: string) {
+    try {
+      const contractAddress = "0xb33df09374f80c1870766182f9ba70483e28b300";
+
+      // Use Alchemy's NFT API for Base network - check if wallet holds NFTs from contract
+      const url = `https://base-mainnet.g.alchemy.com/nft/v3/${process.env.NEXT_ALCHEMY_API_KEY}/isHolderOfContract?wallet=${walletAddress}&contractAddress=${contractAddress}`;
+
+      console.log(
+        `Checking if wallet holds NFTs from contract: ${contractAddress}`
+      );
+      console.log(`Wallet address: ${walletAddress}`);
+
+      const options = { method: "GET" };
+      const response = await fetch(url, options);
+      const data = await response.json();
+
+      console.log("Alchemy API response:", data);
+
+      if (data.error) {
+        throw new Error(`Alchemy API Error: ${data.error.message}`);
+      }
+
+      // The API returns a boolean indicating if the wallet holds NFTs from the contract
+      const hasNFT = data.isHolderOfContract;
+      console.log(`NFT check result: ${hasNFT ? "Has NFT" : "No NFT found"}`);
+
+      return hasNFT;
+    } catch (error) {
+      console.error("Error checking NFT ownership:", error);
+      throw error;
+    }
+  }
+
+  // Effect to check NFT ownership when wallet address changes
+  useEffect(() => {
+    const checkNFT = async () => {
+      if (!walletAddress || !/^0x[a-fA-F0-9]{40}$/.test(walletAddress)) {
+        setNftStatus("idle");
+        return;
+      }
+
+      setNftStatus("checking");
+
+      try {
+        const hasNFT = await checkNFTOwnership(walletAddress);
+        setNftStatus(hasNFT ? "hasNFT" : "noNFT");
+      } catch {
+        setNftStatus("error");
+      }
+    };
+
+    const timeoutId = setTimeout(checkNFT, 1000); // Debounce for 1 second
+    return () => clearTimeout(timeoutId);
+  }, [walletAddress]);
+
   const onSubmit = async (data: ApplicationForm) => {
     try {
       console.log("Application submitted:", data);
@@ -202,7 +265,8 @@ function RsdntsContent() {
             [rsdnt] Application
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Join the most exclusive network in crypto
+            unlock exclusive access to cryptotown&apos;s network, private events
+            and opportunities
           </p>
         </div>
 
@@ -336,41 +400,10 @@ function RsdntsContent() {
 
               <div>
                 <label
-                  htmlFor="whyJoin"
-                  className="block text-lg font-semibold mb-3"
-                >
-                  5. Why do you want to join CryptoTown?
-                </label>
-                <textarea
-                  id="whyJoin"
-                  {...register("whyJoin", {
-                    required: "This field is required",
-                    minLength: {
-                      value: 50,
-                      message: "Please provide at least 50 characters",
-                    },
-                  })}
-                  rows={4}
-                  className={`w-full px-6 py-4 bg-white/10 border rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 backdrop-blur-sm resize-none ${
-                    errors.whyJoin
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-gray-600/50 focus:border-blue-500"
-                  }`}
-                  placeholder="Tell us why you want to be part of the cryptotown community..."
-                />
-                {errors.whyJoin && (
-                  <p className="text-red-500 text-sm mt-2">
-                    {errors.whyJoin.message}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <label
                   htmlFor="walletAddress"
                   className="block text-lg font-semibold mb-3"
                 >
-                  6. Wallet address (mint atleast 1 cryptotown episode to be
+                  5. Wallet address (mint atleast 1 cryptotown episode to be
                   eligible)
                 </label>
                 <input
@@ -397,8 +430,9 @@ function RsdntsContent() {
                 )}
                 <p className="text-sm text-gray-400 mt-3 flex items-center">
                   <Link
-                    href="/"
+                    href="https://pods.media/crypto-town"
                     className="text-blue-400 hover:text-blue-300 transition-colors underline decoration-blue-400/30 hover:decoration-blue-300"
+                    target="_blank"
                   >
                     Mint a cryptotown episode
                   </Link>
@@ -409,10 +443,29 @@ function RsdntsContent() {
               <div className="pt-8">
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-6 text-xl font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  disabled={
+                    isSubmitting ||
+                    nftStatus === "checking" ||
+                    nftStatus === "noNFT" ||
+                    nftStatus === "error" ||
+                    Object.keys(errors).length > 0
+                  }
+                  className="w-full bg-[#E3D8D1] text-black px-8 py-6 text-xl font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-[#E3D8D1]/80 shadow-2xl shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  {isSubmitting ? "Submitting..." : "Submit Application"}
+                  {isSubmitting ? (
+                    "Submitting..."
+                  ) : nftStatus === "checking" ? (
+                    <span className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-2"></div>
+                      Checking NFTs...
+                    </span>
+                  ) : nftStatus === "noNFT" ? (
+                    "Mint at least 1 NFT"
+                  ) : nftStatus === "error" ? (
+                    "Error checking NFT"
+                  ) : (
+                    "Submit Application"
+                  )}
                 </Button>
               </div>
             </form>
