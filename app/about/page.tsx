@@ -60,7 +60,9 @@ export default function About() {
                   Founders
                 </span>
                 {podcastData
-                  .filter((guest) => guest.category === "Founder")
+                  .filter(
+                    (guest) => guest.category === "Founder" && guest.about_index
+                  )
                   .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
                     <Link
@@ -78,7 +80,9 @@ export default function About() {
                 {/* Group and render VCs */}
                 <span className="leading-[1.25] opacity-30 mt-4 mb-2">VCs</span>
                 {podcastData
-                  .filter((guest) => guest.category === "VC")
+                  .filter(
+                    (guest) => guest.category === "VC" && guest.about_index
+                  )
                   .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
                     <Link
@@ -99,7 +103,9 @@ export default function About() {
                 </span>
                 {podcastData
                   .filter(
-                    (guest) => !["Founder", "VC"].includes(guest.category)
+                    (guest) =>
+                      !["Founder", "VC"].includes(guest.category) &&
+                      guest.about_index
                   )
                   .sort((a, b) => a.about_index - b.about_index)
                   .map((guest) => (
