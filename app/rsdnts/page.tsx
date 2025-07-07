@@ -135,10 +135,26 @@ function RsdntsContent() {
               <Image
                 src="/rsdnts.png"
                 alt="rsdnts"
-                width={100}
-                height={100}
+                width={280}
+                height={280}
                 className="mx-auto "
               />
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center">
+            <div className="p-10 mb-8 pt-0">
+              <p className="text-xl font-bold mb-4">
+                apply to become a [rsdnt] to unlock exclusive access to
+                cryptotown&apos;s network, private events and opportunities
+              </p>
+              <Button
+                onClick={() => signIn("twitter")}
+                className="mt-4 bg-blue-500 text-white px-6 py-3 rounded-lg"
+              >
+                Login with Twitter
+              </Button>
             </div>
           </div>
 
@@ -158,10 +174,8 @@ function RsdntsContent() {
                 </span>
                 <span className="block">
                   if you&apos;ve been here, listening, learning, watching the
-                  town grow, you&apos;re not just audience.
-                  <span className="text-white font-medium">
-                    you&apos;re building it too.
-                  </span>
+                  town grow, you&apos;re not just audience. you&apos;re building
+                  it too.
                 </span>
                 <span className="block">
                   [rsdnts] are the lifeline of cryptotown.
@@ -185,16 +199,18 @@ function RsdntsContent() {
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                content creators
-              </li>
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
                 operators
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                content creators
+              </li>
+
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
                 <Link
-                  href="/"
+                  href="https://pods.media/crypto-town"
+                  target="_blank"
                   className="text-black transition-colors underline  "
                 >
                   minted atleast 1 cryptotown episode
@@ -209,7 +225,7 @@ function RsdntsContent() {
             <ul className="space-y-4">
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                exclusive access to the cryptotown network and private events
+                exposure to dealflow
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
@@ -221,25 +237,9 @@ function RsdntsContent() {
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                exposure to dealflow
+                exclusive access to the cryptotown network and private events
               </li>
             </ul>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <div className="p-10 mb-8">
-              <p className="text-xl font-bold mb-4">
-                apply to become a [rsdnt] to unlock exclusive access to
-                cryptotown&apos;s network, private events and opportunities
-              </p>
-              <Button
-                onClick={() => signIn("twitter")}
-                className="mt-4 bg-blue-500 text-white px-6 py-3 rounded-lg"
-              >
-                Login with Twitter
-              </Button>
-            </div>
           </div>
         </div>
       </div>
