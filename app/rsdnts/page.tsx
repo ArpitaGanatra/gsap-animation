@@ -5,8 +5,9 @@ import Link from "next/link";
 import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { RiTwitterXLine } from "react-icons/ri";
 
 interface ApplicationForm {
   name: string;
@@ -17,7 +18,7 @@ interface ApplicationForm {
 }
 
 function RsdntsContent() {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   const [nftStatus, setNftStatus] = useState<
     "idle" | "checking" | "hasNFT" | "noNFT" | "error"
   >("idle");
@@ -137,133 +138,134 @@ function RsdntsContent() {
     );
   }
 
-  // if (!session) {
-  //   return (
-  //     <div className="min-h-screen w-full relative overflow-hidden">
-  //       {/* Background Pattern */}
+  if (!session) {
+    return (
+      <div className="min-h-screen w-full relative overflow-hidden">
+        {/* Background Pattern */}
 
-  //       <div className="relative z-10 max-w-4xl mx-auto px-8 py-20">
-  //         {/* Header */}
-  //         <div className="text-center mb-4">
-  //           <div className="relative inline-block ">
-  //             <Image
-  //               src="/rsdnts.png"
-  //               alt="rsdnts"
-  //               width={280}
-  //               height={280}
-  //               className="mx-auto "
-  //             />
-  //           </div>
-  //         </div>
+        <div className="relative z-10 md:max-w-4xl md:mx-auto md:px-8 py-20">
+          {/* Header */}
+          <div className="text-center mb-4 my-10">
+            <div className="relative inline-block ">
+              <Image
+                src="/rsdnts.png"
+                alt="rsdnts"
+                width={280}
+                height={280}
+                className="md:mx-auto h-[50vh] w-[50vh]"
+              />
+            </div>
+          </div>
 
-  //         {/* CTA */}
-  //         <div className="text-center">
-  //           <div className="p-10 mb-8 pt-0">
-  //             <p className="text-xl font-bold mb-4">
-  //               apply to become a [rsdnt] to unlock exclusive access to
-  //               cryptotown&apos;s network, private events and opportunities
-  //             </p>
-  //             <Button
-  //               onClick={() => signIn("twitter")}
-  //               className="mt-4 bg-blue-500 text-white px-6 py-3 rounded-lg"
-  //             >
-  //               Login with Twitter
-  //             </Button>
-  //           </div>
-  //         </div>
+          {/* CTA */}
+          <div className="text-center h-[50vh]">
+            <div className="p-10 mb-8 pt-0">
+              <p className="text-xl font-bold mb-4">
+                unlock exclusive access and opportunities
+              </p>
+              <Button
+                onClick={() => signIn("twitter")}
+                className="mt-4 bg-black text-white px-6 py-3 rounded-lg"
+              >
+                <RiTwitterXLine
+                  className=" text-white fill-white"
+                  fill="white"
+                />
+                Login with Twitter
+              </Button>
+            </div>
+          </div>
 
-  //         {/* Main Description */}
-  //         <div className="">
-  //           <div className="mb-8">
-  //             <p className="text-md leading-relaxed space-y-3">
-  //               <span className="block">
-  //                 cryptotown is a highly curated network of people shaping the
-  //                 future of crypto. but the town is incomplete without it&apos;s
-  //                 residents.
-  //               </span>
-  //               <span className="block">
-  //                 rsdnts are high agency founders, operators, content creators,
-  //                 investors - the ones defining culture and building the town
-  //                 block by block.
-  //               </span>
-  //               <span className="block">
-  //                 if you&apos;ve been here, listening, learning, watching the
-  //                 town grow, you&apos;re not just audience. you&apos;re building
-  //                 it too.
-  //               </span>
-  //               <span className="block">
-  //                 [rsdnts] are the lifeline of cryptotown.
-  //                 <br />
-  //                 and the townhall is where stories, culture and opportunities
-  //                 get passed on.
-  //               </span>
-  //             </p>
-  //           </div>
-  //         </div>
+          {/* Main Description */}
+          <div className="">
+            <div className="mb-8">
+              <p className="text-md leading-relaxed space-y-3">
+                <span className="block">
+                  cryptotown is a highly curated network of people shaping the
+                  future of crypto. <br /> ctzns + rsdnts = ctown
+                </span>
+                <span className="block">
+                  [rsdnts] are high agency founders, operators, content
+                  creators, investors. <br /> the ones defining culture and
+                  building the town block by block.
+                </span>
+                <span className="block">
+                  if you&apos;ve been here, listening, learning, watching the
+                  town grow, you&apos;re not just audience. <br /> you&apos;re
+                  building it too.
+                </span>
+                <span className="block">
+                  [rsdnts] are the lifeline of cryptotown. <br /> and the
+                  townhall is where stories, culture and opportunities get
+                  passed on.
+                </span>
+              </p>
+            </div>
+          </div>
 
-  //         {/* Who is eligible */}
-  //         <div className="mb-8">
-  //           <h2 className="text-xl font-bold mb-3 bg-gradient-to-r ">
-  //             who is eligible
-  //           </h2>
-  //           <ul className="space-y-4">
-  //             <li className="flex items-center text-md text-black">
-  //               <span className="w-2 h-2 bg-black rounded-full  mr-4"></span>
-  //               devs
-  //             </li>
-  //             <li className="flex items-center text-md text-black">
-  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-  //               operators
-  //             </li>
-  //             <li className="flex items-center text-md text-black">
-  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-  //               content creators
-  //             </li>
+          {/* Who is eligible */}
+          <div className="mb-8">
+            <h2 className="text-xl font-bold mb-3 bg-gradient-to-r ">
+              who is eligible
+            </h2>
+            <ul className="space-y-4">
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full  mr-4"></span>
+                devs
+              </li>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                operators
+              </li>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                content creators
+              </li>
 
-  //             <li className="flex items-center text-md text-black">
-  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-  //               <Link
-  //                 href="https://pods.media/crypto-town"
-  //                 target="_blank"
-  //                 className="text-black transition-colors underline  "
-  //               >
-  //                 minted atleast 1 cryptotown episode
-  //               </Link>
-  //             </li>
-  //           </ul>
-  //         </div>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                <Link
+                  href="https://pods.media/crypto-town"
+                  target="_blank"
+                  className="text-black transition-colors underline  "
+                >
+                  minted atleast 1 cryptotown episode
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-  //         {/* What to expect */}
-  //         <div className=" mb-8">
-  //           <h2 className="text-xl font-bold mb-3">what to expect</h2>
-  //           <ul className="space-y-4">
-  //             <li className="flex items-center text-md text-black">
-  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-  //               exposure to dealflow
-  //             </li>
-  //             <li className="flex items-center text-md text-black">
-  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-  //               curated opportunities from across the industry
-  //             </li>
-  //             <li className="flex items-center text-md text-black">
-  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-  //               alpha and behind-the-scenes of project narratives
-  //             </li>
-  //             <li className="flex items-center text-md text-black">
-  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-  //               exclusive access to the cryptotown network and private events
-  //             </li>
-  //           </ul>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+          {/* What to expect */}
+          <div className=" mb-8">
+            <h2 className="text-xl font-bold mb-3">what to expect</h2>
+            <ul className="space-y-4">
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                exposure to dealflow
+              </li>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                curated opportunities from across the industry
+              </li>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                alpha and behind-the-scenes of project narratives
+              </li>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                exclusive access to the cryptotown network and private events
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Logged in state - Application form
   return (
     <div className="min-h-screen w-full text-black relative overflow-hidden">
-      <div className="relative z-10 max-w-4xl mx-auto px-8 py-16">
+      <div className="relative z-10 md:max-w-4xl md:mx-auto md:px-8 py-16">
         {/* Header */}
         <div className="text-center mt-16">
           <div className="relative inline-block mb-8">
