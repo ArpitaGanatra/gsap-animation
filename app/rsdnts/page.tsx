@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { useSession, signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 
 interface ApplicationForm {
@@ -13,12 +13,11 @@ interface ApplicationForm {
   telegram: string;
   twitter: string;
   proofOfWork: string;
-  whyJoin: string;
   walletAddress: string;
 }
 
 function RsdntsContent() {
-  const { status, data: session } = useSession();
+  const { status } = useSession();
   const [nftStatus, setNftStatus] = useState<
     "idle" | "checking" | "hasNFT" | "noNFT" | "error"
   >("idle");
@@ -35,7 +34,6 @@ function RsdntsContent() {
       telegram: "",
       twitter: "",
       proofOfWork: "",
-      whyJoin: "",
       walletAddress: "",
     },
   });
@@ -44,31 +42,25 @@ function RsdntsContent() {
 
   async function checkNFTOwnership(walletAddress: string) {
     try {
-      const contractAddress = "0xb33df09374f80c1870766182f9ba70483e28b300";
+      console.log(`Checking NFT ownership for wallet: ${walletAddress}`);
 
-      // Use Alchemy's NFT API for Base network - check if wallet holds NFTs from contract
-      const url = `https://base-mainnet.g.alchemy.com/nft/v3/${process.env.NEXT_ALCHEMY_API_KEY}/isHolderOfContract?wallet=${walletAddress}&contractAddress=${contractAddress}`;
+      // Call our secure server-side API endpoint
+      const response = await fetch("/api/check-nft", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ walletAddress }),
+      });
 
-      console.log(
-        `Checking if wallet holds NFTs from contract: ${contractAddress}`
-      );
-      console.log(`Wallet address: ${walletAddress}`);
-
-      const options = { method: "GET" };
-      const response = await fetch(url, options);
       const data = await response.json();
 
-      console.log("Alchemy API response:", data);
-
-      if (data.error) {
-        throw new Error(`Alchemy API Error: ${data.error.message}`);
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to check NFT ownership");
       }
 
-      // The API returns a boolean indicating if the wallet holds NFTs from the contract
-      const hasNFT = data.isHolderOfContract;
-      console.log(`NFT check result: ${hasNFT ? "Has NFT" : "No NFT found"}`);
-
-      return hasNFT;
+      console.log("NFT check response:", data);
+      return data.hasNFT;
     } catch (error) {
       console.error("Error checking NFT ownership:", error);
       throw error;
@@ -99,9 +91,31 @@ function RsdntsContent() {
 
   const onSubmit = async (data: ApplicationForm) => {
     try {
-      console.log("Application submitted:", data);
+      console.log("Submitting application:", data);
+
+      // Submit to our API endpoint
+      const response = await fetch("/api/submit-application", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          telegram: data.telegram,
+          twitter: data.twitter,
+          walletAddress: data.walletAddress,
+          proofOfWork: data.proofOfWork,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit application");
+      }
+
+      console.log("Application submitted successfully:", result);
       reset();
-      alert("Application submitted successfully!");
     } catch (error) {
       console.error("Error submitting application:", error);
       alert("Error submitting application. Please try again.");
@@ -123,128 +137,128 @@ function RsdntsContent() {
     );
   }
 
-  if (!session) {
-    return (
-      <div className="min-h-screen w-full relative overflow-hidden">
-        {/* Background Pattern */}
+  // if (!session) {
+  //   return (
+  //     <div className="min-h-screen w-full relative overflow-hidden">
+  //       {/* Background Pattern */}
 
-        <div className="relative z-10 max-w-4xl mx-auto px-8 py-20">
-          {/* Header */}
-          <div className="text-center mb-4">
-            <div className="relative inline-block ">
-              <Image
-                src="/rsdnts.png"
-                alt="rsdnts"
-                width={280}
-                height={280}
-                className="mx-auto "
-              />
-            </div>
-          </div>
+  //       <div className="relative z-10 max-w-4xl mx-auto px-8 py-20">
+  //         {/* Header */}
+  //         <div className="text-center mb-4">
+  //           <div className="relative inline-block ">
+  //             <Image
+  //               src="/rsdnts.png"
+  //               alt="rsdnts"
+  //               width={280}
+  //               height={280}
+  //               className="mx-auto "
+  //             />
+  //           </div>
+  //         </div>
 
-          {/* CTA */}
-          <div className="text-center">
-            <div className="p-10 mb-8 pt-0">
-              <p className="text-xl font-bold mb-4">
-                apply to become a [rsdnt] to unlock exclusive access to
-                cryptotown&apos;s network, private events and opportunities
-              </p>
-              <Button
-                onClick={() => signIn("twitter")}
-                className="mt-4 bg-blue-500 text-white px-6 py-3 rounded-lg"
-              >
-                Login with Twitter
-              </Button>
-            </div>
-          </div>
+  //         {/* CTA */}
+  //         <div className="text-center">
+  //           <div className="p-10 mb-8 pt-0">
+  //             <p className="text-xl font-bold mb-4">
+  //               apply to become a [rsdnt] to unlock exclusive access to
+  //               cryptotown&apos;s network, private events and opportunities
+  //             </p>
+  //             <Button
+  //               onClick={() => signIn("twitter")}
+  //               className="mt-4 bg-blue-500 text-white px-6 py-3 rounded-lg"
+  //             >
+  //               Login with Twitter
+  //             </Button>
+  //           </div>
+  //         </div>
 
-          {/* Main Description */}
-          <div className="">
-            <div className="mb-8">
-              <p className="text-md leading-relaxed space-y-3">
-                <span className="block">
-                  cryptotown is a highly curated network of people shaping the
-                  future of crypto. but the town is incomplete without it&apos;s
-                  residents.
-                </span>
-                <span className="block">
-                  rsdnts are high agency founders, operators, content creators,
-                  investors - the ones defining culture and building the town
-                  block by block.
-                </span>
-                <span className="block">
-                  if you&apos;ve been here, listening, learning, watching the
-                  town grow, you&apos;re not just audience. you&apos;re building
-                  it too.
-                </span>
-                <span className="block">
-                  [rsdnts] are the lifeline of cryptotown.
-                  <br />
-                  and the townhall is where stories, culture and opportunities
-                  get passed on.
-                </span>
-              </p>
-            </div>
-          </div>
+  //         {/* Main Description */}
+  //         <div className="">
+  //           <div className="mb-8">
+  //             <p className="text-md leading-relaxed space-y-3">
+  //               <span className="block">
+  //                 cryptotown is a highly curated network of people shaping the
+  //                 future of crypto. but the town is incomplete without it&apos;s
+  //                 residents.
+  //               </span>
+  //               <span className="block">
+  //                 rsdnts are high agency founders, operators, content creators,
+  //                 investors - the ones defining culture and building the town
+  //                 block by block.
+  //               </span>
+  //               <span className="block">
+  //                 if you&apos;ve been here, listening, learning, watching the
+  //                 town grow, you&apos;re not just audience. you&apos;re building
+  //                 it too.
+  //               </span>
+  //               <span className="block">
+  //                 [rsdnts] are the lifeline of cryptotown.
+  //                 <br />
+  //                 and the townhall is where stories, culture and opportunities
+  //                 get passed on.
+  //               </span>
+  //             </p>
+  //           </div>
+  //         </div>
 
-          {/* Who is eligible */}
-          <div className="mb-8">
-            <h2 className="text-xl font-bold mb-3 bg-gradient-to-r ">
-              who is eligible
-            </h2>
-            <ul className="space-y-4">
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full  mr-4"></span>
-                devs
-              </li>
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                operators
-              </li>
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                content creators
-              </li>
+  //         {/* Who is eligible */}
+  //         <div className="mb-8">
+  //           <h2 className="text-xl font-bold mb-3 bg-gradient-to-r ">
+  //             who is eligible
+  //           </h2>
+  //           <ul className="space-y-4">
+  //             <li className="flex items-center text-md text-black">
+  //               <span className="w-2 h-2 bg-black rounded-full  mr-4"></span>
+  //               devs
+  //             </li>
+  //             <li className="flex items-center text-md text-black">
+  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+  //               operators
+  //             </li>
+  //             <li className="flex items-center text-md text-black">
+  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+  //               content creators
+  //             </li>
 
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                <Link
-                  href="https://pods.media/crypto-town"
-                  target="_blank"
-                  className="text-black transition-colors underline  "
-                >
-                  minted atleast 1 cryptotown episode
-                </Link>
-              </li>
-            </ul>
-          </div>
+  //             <li className="flex items-center text-md text-black">
+  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+  //               <Link
+  //                 href="https://pods.media/crypto-town"
+  //                 target="_blank"
+  //                 className="text-black transition-colors underline  "
+  //               >
+  //                 minted atleast 1 cryptotown episode
+  //               </Link>
+  //             </li>
+  //           </ul>
+  //         </div>
 
-          {/* What to expect */}
-          <div className=" mb-8">
-            <h2 className="text-xl font-bold mb-3">what to expect</h2>
-            <ul className="space-y-4">
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                exposure to dealflow
-              </li>
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                curated opportunities from across the industry
-              </li>
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                alpha and behind-the-scenes of project narratives
-              </li>
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                exclusive access to the cryptotown network and private events
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  //         {/* What to expect */}
+  //         <div className=" mb-8">
+  //           <h2 className="text-xl font-bold mb-3">what to expect</h2>
+  //           <ul className="space-y-4">
+  //             <li className="flex items-center text-md text-black">
+  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+  //               exposure to dealflow
+  //             </li>
+  //             <li className="flex items-center text-md text-black">
+  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+  //               curated opportunities from across the industry
+  //             </li>
+  //             <li className="flex items-center text-md text-black">
+  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+  //               alpha and behind-the-scenes of project narratives
+  //             </li>
+  //             <li className="flex items-center text-md text-black">
+  //               <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+  //               exclusive access to the cryptotown network and private events
+  //             </li>
+  //           </ul>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   // Logged in state - Application form
   return (
