@@ -18,30 +18,39 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: "jwt" as const,
+    strategy: "jwt", // Ensure this is declared explicitly
   },
   callbacks: {
-    async session({ session, token }) {
-      console.log("NextAuth session callback:", { session, token });
-      // Add Twitter username and profile image to session
-      if (token) {
-        session.user = {
-          ...session.user,
-          name: token.username as string,
-          image: token.picture as string,
-        };
-      }
-      return session;
-    },
     async jwt({ token, account, profile }) {
-      console.log("NextAuth JWT callback:", { token, account, profile });
+      console.log("NextAuth JWT callback BEFORE:", token);
+
       if (account && profile) {
         const twitterProfile = profile as TwitterProfile;
-        token.username = twitterProfile.username || twitterProfile.name;
-        token.picture =
-          twitterProfile.profile_image_url || twitterProfile.image;
+
+        // Robust spread to ensure token retains fields on refresh
+        token = {
+          ...token,
+          username: twitterProfile.username || twitterProfile.name,
+          picture: twitterProfile.profile_image_url || twitterProfile.image,
+        };
       }
+
+      console.log("NextAuth JWT callback AFTER:", token);
       return token;
+    },
+
+    async session({ session, token }) {
+      console.log("NextAuth session callback:", { session, token });
+
+      // Map token fields to session user consistently
+      session.user = {
+        ...session.user,
+        name: token.username as string,
+        image: token.picture as string,
+      };
+
+      console.log("NextAuth session returned:", session);
+      return session;
     },
   },
   pages: {
