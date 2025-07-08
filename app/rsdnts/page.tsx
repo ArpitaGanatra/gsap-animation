@@ -94,6 +94,17 @@ function RsdntsContent() {
     return () => clearTimeout(timeoutId);
   }, [walletAddress]);
 
+  // Effect to track Twitter login when session becomes available
+  useEffect(() => {
+    if (session?.user?.name && status === "authenticated") {
+      posthog?.capture("rsdnts_twitter_login_successful", {
+        page: "rsdnts_application",
+        twitterUsername: session.user.name,
+        timestamp: new Date().toISOString(),
+      });
+    }
+  }, [session, status, posthog]);
+
   const onSubmit = async (data: ApplicationForm) => {
     try {
       console.log("Submitting application:", data);
@@ -126,6 +137,7 @@ function RsdntsContent() {
         page: "rsdnts_application",
         walletAddress: data.walletAddress,
         hasNFT: true,
+        twitterUsername: session?.user?.name || data.twitter,
         timestamp: new Date().toISOString(),
       });
 
