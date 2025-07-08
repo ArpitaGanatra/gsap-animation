@@ -36,7 +36,7 @@ export default function Contact({ onClose }: { onClose: () => void }) {
   return (
     <div
       ref={containerRef}
-      className="absolute z-10 inset-0 w-screen h-screen backdrop-blur-xl flex justify-center items-center"
+      className="fixed z-50 inset-0 w-screen h-screen backdrop-blur-xl flex justify-center items-center"
       onClick={handleClose}
     >
       <div

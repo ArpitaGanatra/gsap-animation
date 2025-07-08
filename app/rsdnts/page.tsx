@@ -154,7 +154,7 @@ function RsdntsContent() {
       <div className="min-h-screen w-full relative overflow-hidden">
         {/* Background Pattern */}
 
-        <div className="relative z-10 md:max-w-4xl md:mx-auto md:px-8 py-20">
+        <div className="relative z-0 md:max-w-4xl md:mx-auto md:px-8 py-20">
           {/* Header */}
           <div className="flex flex-col items-center">
             <div className="text-center mb-4 my-10 flex flex-grow">
@@ -171,10 +171,7 @@ function RsdntsContent() {
 
             {/* CTA */}
             <div className="text-center ">
-              <div className="p-10 mb-8 pt-0">
-                <p className="text-xl font-bold mb-4">
-                  unlock exclusive access and opportunities
-                </p>
+              <div className=" mb-8 pt-0 flex flex-col items-center gap-4">
                 <Button
                   onClick={() => {
                     posthog?.capture("rsdnts_twitter_login_clicked", {
@@ -183,7 +180,7 @@ function RsdntsContent() {
                     });
                     signIn("twitter");
                   }}
-                  className="mt-4 bg-black text-white px-6 py-3 rounded-lg"
+                  className=" bg-black text-white px-6  rounded-lg"
                 >
                   <RiTwitterXLine
                     className=" text-white fill-white"
@@ -191,6 +188,9 @@ function RsdntsContent() {
                   />
                   Login
                 </Button>
+                <p className="text-xl font-bold ">
+                  unlock exclusive access and opportunities
+                </p>
               </div>
             </div>
           </div>
@@ -289,7 +289,7 @@ function RsdntsContent() {
   // Logged in state - Application form
   return (
     <div className="min-h-screen w-full text-black relative overflow-hidden">
-      <div className="relative z-10 md:max-w-4xl md:mx-auto md:px-8 py-16">
+      <div className="relative z-0 md:max-w-4xl md:mx-auto md:px-8 py-16">
         {/* Header */}
         <div className="text-center mt-16">
           <div className="relative inline-block mb-8">
