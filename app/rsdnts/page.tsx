@@ -9,6 +9,7 @@ import { useSession, signIn } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { usePostHog } from "posthog-js/react";
 import { RiTwitterXLine } from "react-icons/ri";
+import { useRouter } from "next/navigation";
 
 interface ApplicationForm {
   name: string;
@@ -21,15 +22,16 @@ interface ApplicationForm {
 function RsdntsContent() {
   const { status, data: session } = useSession();
   const posthog = usePostHog();
+  const router = useRouter();
   const [nftStatus, setNftStatus] = useState<
     "idle" | "checking" | "hasNFT" | "noNFT" | "error"
   >("idle");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
     watch,
   } = useForm<ApplicationForm>({
     defaultValues: {
@@ -127,7 +129,7 @@ function RsdntsContent() {
         timestamp: new Date().toISOString(),
       });
 
-      reset();
+      setIsSubmitted(true);
     } catch (error) {
       console.error("Error submitting application:", error);
       alert("Error submitting application. Please try again.");
@@ -137,6 +139,35 @@ function RsdntsContent() {
   // const handleTwitterLogin = () => {
   //   // Open Twitter OAuth in a new window to avoid CORS issues
   // };
+
+  // Success screen after form submission
+  if (isSubmitted) {
+    return (
+      <div
+        className="min-h-screen w-full text-black relative overflow-hidden flex items-center justify-center cursor-pointer"
+        onClick={() => router.push("/")}
+      >
+        <div className="text-center max-w-2xl mx-auto px-8">
+          <div className="mb-8">
+            <Image
+              src="/rsdnts.png"
+              alt="rsdnts"
+              width={280}
+              height={280}
+              className="mx-auto mb-8"
+            />
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
+            you&apos;re on the waitlist
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            we&apos;ll be in touch. sit tight
+          </p>
+          <p className="text-sm text-gray-400">click anywhere to continue</p>
+        </div>
+      </div>
+    );
+  }
 
   if (status === "loading") {
     return (
@@ -180,7 +211,7 @@ function RsdntsContent() {
                     });
                     signIn("twitter");
                   }}
-                  className=" bg-black text-white px-6  rounded-lg"
+                  className=" bg-black text-white   rounded-lg"
                 >
                   <RiTwitterXLine
                     className=" text-white fill-white"
@@ -418,8 +449,8 @@ function RsdntsContent() {
                   {...register("proofOfWork", {
                     required: "Proof of work is required",
                     minLength: {
-                      value: 50,
-                      message: "Please provide at least 50 characters",
+                      value: 10,
+                      message: "Please provide at least 10 characters",
                     },
                   })}
                   rows={4}
@@ -473,9 +504,9 @@ function RsdntsContent() {
                     className="text-blue-400 hover:text-blue-300 transition-colors underline decoration-blue-400/30 hover:decoration-blue-300"
                     target="_blank"
                   >
-                    Mint
+                    Free Mint
                   </Link>
-                  <span> to be eligible</span>
+                  <span className="ml-1"> to be eligible</span>
                 </p>
               </div>
 
