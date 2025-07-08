@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import TwitterProvider from "next-auth/providers/twitter";
 
 interface TwitterProfile {
@@ -9,7 +9,7 @@ interface TwitterProfile {
   image?: string;
 }
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     TwitterProvider({
       clientId: process.env.NEXT_TWITTER_CLIENT_ID!,
@@ -18,7 +18,7 @@ const handler = NextAuth({
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as const,
   },
   callbacks: {
     async session({ session, token }) {
@@ -49,6 +49,8 @@ const handler = NextAuth({
     error: "/rsdnts",
   },
   debug: process.env.NODE_ENV === "development",
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

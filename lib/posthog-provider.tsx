@@ -5,8 +5,15 @@ import React, { useEffect } from "react";
 import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
 import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
 
-const PosthogProvider = ({ children }: { children: React.ReactNode }) => {
+const PosthogProvider = ({
+  children,
+  session,
+}: {
+  children: React.ReactNode;
+  session?: Session | null;
+}) => {
   useEffect(() => {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
       api_host:
@@ -19,7 +26,7 @@ const PosthogProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <PHProvider client={posthog}>
       {" "}
-      <SessionProvider>{children}</SessionProvider>
+      <SessionProvider session={session}>{children}</SessionProvider>
     </PHProvider>
   );
 };

@@ -8,6 +8,8 @@ import { CategoryProvider } from "./context/CategoryContext";
 import "./globals.css";
 import PosthogProvider from "@/lib/posthog-provider";
 import { Toaster } from "sonner";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,18 +29,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen`}
       >
         <Toaster />
-        <PosthogProvider>
+        <PosthogProvider session={session}>
           <CategoryProvider>
             <SplashScreen />
             <AnimatedLogo />
