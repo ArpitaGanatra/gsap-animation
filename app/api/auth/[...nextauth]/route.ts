@@ -17,6 +17,9 @@ const handler = NextAuth({
       version: "2.0",
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     async session({ session, token }) {
       console.log("NextAuth session callback:", { session, token });

@@ -109,16 +109,24 @@ function RsdntsContent() {
 
     if (status === "authenticated" && !loginCapturedRef.current) {
       console.log("Capturing Twitter login event for:", session?.user);
+      console.log("Full session object:", session);
+      console.log("Session user object:", session?.user);
+      console.log("Session user name:", session?.user?.name);
       posthog?.capture("rsdnts_twitter_login_successful", {
         page: "rsdnts_application",
-        twitterUsername: session?.user?.name,
+        twitterUsername: session?.user?.name || "unknown",
+        sessionStatus: status,
+        hasUser: !!session?.user,
         timestamp: new Date().toISOString(),
       });
       loginCapturedRef.current = true;
     }
   }, [session, status, posthog]);
 
-  console.log("session", session);
+  // Debug effect to track all session changes
+  useEffect(() => {
+    console.log("Session debug - Status:", status, "Session:", session);
+  }, [session, status]);
 
   const onSubmit = async (data: ApplicationForm) => {
     try {
