@@ -203,6 +203,7 @@ function RsdntsContent() {
       </div>
     );
   }
+  console.log("xxx");
 
   if (status === "loading") {
     return (
