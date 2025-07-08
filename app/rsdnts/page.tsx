@@ -118,6 +118,8 @@ function RsdntsContent() {
     }
   }, [session, status, posthog]);
 
+  console.log("session", session);
+
   const onSubmit = async (data: ApplicationForm) => {
     try {
       console.log("Submitting application:", data);
