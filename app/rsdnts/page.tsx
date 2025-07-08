@@ -145,7 +145,7 @@ function RsdntsContent() {
 
         <div className="relative z-10 md:max-w-4xl md:mx-auto md:px-8 py-20">
           {/* Header */}
-          <div className="">
+          <div className="flex flex-col items-center">
             <div className="text-center mb-4 my-10 flex flex-grow">
               <div className="relative  flex flex-grow">
                 <Image
@@ -179,7 +179,7 @@ function RsdntsContent() {
           </div>
 
           {/* Main Description */}
-          <div className="">
+          <div className="p-2">
             <div className="mb-8">
               <p className="text-md leading-relaxed space-y-3">
                 <span className="block italic">ctzns + rsdnts = ctown</span>
@@ -203,7 +203,7 @@ function RsdntsContent() {
           </div>
 
           {/* Who is eligible */}
-          <div className="mb-8">
+          <div className="mb-8 p-2">
             <h2 className="text-xl font-bold mb-3 bg-gradient-to-r ">
               who is eligible
             </h2>
@@ -243,7 +243,7 @@ function RsdntsContent() {
           </div>
 
           {/* What to expect */}
-          <div className=" mb-8">
+          <div className=" mb-8 p-2">
             <h2 className="text-xl font-bold mb-3">what to expect</h2>
             <ul className="space-y-4">
               <li className="flex items-center text-md text-black">
@@ -279,8 +279,8 @@ function RsdntsContent() {
             <Image
               src="/rsdnts.png"
               alt="rsdnts"
-              width={120}
-              height={120}
+              width={280}
+              height={280}
               className="mx-auto"
             />
           </div>
