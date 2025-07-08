@@ -36,11 +36,11 @@ export default function About() {
     <>
       <section className="flex w-full flex-col gap-y-4 md:gap-y-8 pt-[80px] md:pt-[100px] absolute inset-0 sm:max-w-[27rem] p-1 overflow-y-auto ">
         <p className="text-[.65625rem]/[.8125rem] tracking-[.015em]  normal-case">
-          cryptotown is a curated network of the the most influential figures in
-          the industry : Founders, VCs & Operators.
+          cryptotown is a curated network of the the sharpest minds in crypto -
+          <br /> Founders, VCs & Operators.
           <br />
-          <br />a living archive of the sharpest minds shaping the future of
-          crypto, deciphering the art of building successful companies.
+          <br />a gallery of insights from the industry’s most influential
+          voices, decoding how great companies get built.
         </p>
         <section>
           <ul

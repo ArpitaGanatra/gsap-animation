@@ -180,10 +180,7 @@ function RsdntsContent() {
           <div className="">
             <div className="mb-8">
               <p className="text-md leading-relaxed space-y-3">
-                <span className="block">
-                  cryptotown is a highly curated network of people shaping the
-                  future of crypto. <br /> ctzns + rsdnts = ctown
-                </span>
+                <span className="block italic">ctzns + rsdnts = ctown</span>
                 <span className="block">
                   [rsdnts] are high agency founders, operators, content
                   creators, investors. <br /> the ones defining culture and
@@ -219,10 +216,18 @@ function RsdntsContent() {
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                founders
+              </li>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                investors
+              </li>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
                 content creators
               </li>
 
-              <li className="flex items-center text-md text-black">
+              {/* <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
                 <Link
                   href="https://pods.media/crypto-town"
@@ -231,7 +236,7 @@ function RsdntsContent() {
                 >
                   minted atleast 1 cryptotown episode
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -253,7 +258,7 @@ function RsdntsContent() {
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                exclusive access to the cryptotown network and private events
+                exclusive access to cryptotown network and private events
               </li>
             </ul>
           </div>
@@ -278,11 +283,10 @@ function RsdntsContent() {
             />
           </div>
           <h1 className="text-xl md:text-6xl font-black tracking-tight mb-4">
-            [rsdnt] Application
+            Become a [rsdnt]
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            unlock exclusive access to cryptotown&apos;s network, private events
-            and opportunities
+            unlock exclusive access and opportunities
           </p>
         </div>
 
@@ -450,7 +454,7 @@ function RsdntsContent() {
                     className="text-blue-400 hover:text-blue-300 transition-colors underline decoration-blue-400/30 hover:decoration-blue-300"
                     target="_blank"
                   >
-                    Mint a cryptotown episode
+                    Mint
                   </Link>
                   <span className="ml-2">to be eligible</span>
                 </p>
