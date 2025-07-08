@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { useSession, signIn } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { usePostHog } from "posthog-js/react";
 import { RiTwitterXLine } from "react-icons/ri";
 
 interface ApplicationForm {
@@ -19,6 +20,7 @@ interface ApplicationForm {
 
 function RsdntsContent() {
   const { status, data: session } = useSession();
+  const posthog = usePostHog();
   const [nftStatus, setNftStatus] = useState<
     "idle" | "checking" | "hasNFT" | "noNFT" | "error"
   >("idle");
@@ -116,6 +118,15 @@ function RsdntsContent() {
       }
 
       console.log("Application submitted successfully:", result);
+
+      // Track successful form submission
+      posthog?.capture("rsdnts_application_submitted", {
+        page: "rsdnts_application",
+        walletAddress: data.walletAddress,
+        hasNFT: true,
+        timestamp: new Date().toISOString(),
+      });
+
       reset();
     } catch (error) {
       console.error("Error submitting application:", error);
@@ -165,7 +176,13 @@ function RsdntsContent() {
                   unlock exclusive access and opportunities
                 </p>
                 <Button
-                  onClick={() => signIn("twitter")}
+                  onClick={() => {
+                    posthog?.capture("rsdnts_twitter_login_clicked", {
+                      page: "rsdnts_application",
+                      timestamp: new Date().toISOString(),
+                    });
+                    signIn("twitter");
+                  }}
                   className="mt-4 bg-black text-white px-6 py-3 rounded-lg"
                 >
                   <RiTwitterXLine
