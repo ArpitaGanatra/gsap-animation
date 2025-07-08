@@ -389,7 +389,7 @@ function RsdntsContent() {
                   htmlFor="name"
                   className="block text-lg font-semibold mb-3"
                 >
-                  1. Name
+                  1. Name <span>*</span>
                 </label>
                 <input
                   type="text"
@@ -420,7 +420,7 @@ function RsdntsContent() {
                   htmlFor="telegram"
                   className="block text-lg font-semibold mb-3"
                 >
-                  2. Telegram
+                  2. Telegram <span>*</span>
                 </label>
                 <input
                   type="text"
@@ -451,7 +451,7 @@ function RsdntsContent() {
                   htmlFor="twitter"
                   className="block text-lg font-semibold mb-3"
                 >
-                  3. Twitter/X
+                  3. Twitter/X <span>*</span>
                 </label>
                 <input
                   type="text"
@@ -482,7 +482,8 @@ function RsdntsContent() {
                   htmlFor="proofOfWork"
                   className="block text-lg font-semibold mb-3"
                 >
-                  4. Proof of Work (something you&apos;re proud of)
+                  4. Proof of Work (something you&apos;re proud of){" "}
+                  <span>*</span>
                 </label>
                 <textarea
                   id="proofOfWork"
@@ -514,7 +515,7 @@ function RsdntsContent() {
                   className="block text-lg font-semibold mb-3"
                 >
                   5. Wallet address (mint atleast 1 cryptotown episode to be
-                  eligible)
+                  eligible) <span>*</span>
                 </label>
                 <input
                   type="text"
@@ -546,7 +547,6 @@ function RsdntsContent() {
                   >
                     Free Mint
                   </Link>
-                  <span className="ml-1"> to be eligible</span>
                 </p>
               </div>
 
