@@ -145,34 +145,36 @@ function RsdntsContent() {
 
         <div className="relative z-10 md:max-w-4xl md:mx-auto md:px-8 py-20">
           {/* Header */}
-          <div className="text-center mb-4 my-10">
-            <div className="relative inline-block ">
-              <Image
-                src="/rsdnts.png"
-                alt="rsdnts"
-                width={280}
-                height={280}
-                className="md:mx-auto h-[50vh] w-[50vh]"
-              />
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center h-[50vh]">
-            <div className="p-10 mb-8 pt-0">
-              <p className="text-xl font-bold mb-4">
-                unlock exclusive access and opportunities
-              </p>
-              <Button
-                onClick={() => signIn("twitter")}
-                className="mt-4 bg-black text-white px-6 py-3 rounded-lg"
-              >
-                <RiTwitterXLine
-                  className=" text-white fill-white"
-                  fill="white"
+          <div className="">
+            <div className="text-center mb-4 my-10 flex flex-grow">
+              <div className="relative  flex flex-grow">
+                <Image
+                  src="/rsdnts.png"
+                  alt="rsdnts"
+                  width={280}
+                  height={280}
+                  className="md:mx-auto"
                 />
-                Login with Twitter
-              </Button>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center ">
+              <div className="p-10 mb-8 pt-0">
+                <p className="text-xl font-bold mb-4">
+                  unlock exclusive access and opportunities
+                </p>
+                <Button
+                  onClick={() => signIn("twitter")}
+                  className="mt-4 bg-black text-white px-6 py-3 rounded-lg"
+                >
+                  <RiTwitterXLine
+                    className=" text-white fill-white"
+                    fill="white"
+                  />
+                  Login
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -212,15 +214,15 @@ function RsdntsContent() {
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
-                operators
-              </li>
-              <li className="flex items-center text-md text-black">
-                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
                 founders
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
                 investors
+              </li>
+              <li className="flex items-center text-md text-black">
+                <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
+                operators
               </li>
               <li className="flex items-center text-md text-black">
                 <span className="w-2 h-2 bg-black rounded-full mr-4"></span>
@@ -283,7 +285,7 @@ function RsdntsContent() {
             />
           </div>
           <h1 className="text-xl md:text-6xl font-black tracking-tight mb-4">
-            Become a [rsdnt]
+            become a [rsdnt]
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             unlock exclusive access and opportunities
@@ -456,7 +458,7 @@ function RsdntsContent() {
                   >
                     Mint
                   </Link>
-                  <span className="ml-2">to be eligible</span>
+                  <span>to be eligible</span>
                 </p>
               </div>
 
