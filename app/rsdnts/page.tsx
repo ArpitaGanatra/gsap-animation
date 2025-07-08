@@ -104,17 +104,13 @@ function RsdntsContent() {
       isAuthenticated: status === "authenticated",
       loginCaptured: loginCapturedRef.current,
       posthogAvailable: !!posthog,
+      session: session,
     });
 
-    if (
-      session?.user?.name &&
-      status === "authenticated" &&
-      !loginCapturedRef.current
-    ) {
-      console.log("Capturing Twitter login event for:", session.user.name);
+    if (status === "authenticated" && !loginCapturedRef.current) {
       posthog?.capture("rsdnts_twitter_login_successful", {
         page: "rsdnts_application",
-        twitterUsername: session.user.name,
+        // twitterUsername: session.user.name,
         timestamp: new Date().toISOString(),
       });
       loginCapturedRef.current = true;
