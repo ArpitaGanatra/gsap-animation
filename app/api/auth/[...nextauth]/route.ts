@@ -11,6 +11,7 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
+      console.log("NextAuth session callback:", { session, token });
       // Add Twitter username and profile image to session
       if (token) {
         session.user!.name = token.username as string;
@@ -19,6 +20,7 @@ const handler = NextAuth({
       return session;
     },
     async jwt({ token, account, profile }) {
+      console.log("NextAuth JWT callback:", { token, account, profile });
       if (account && profile) {
         token.username = profile.name;
         token.picture = profile.image;
