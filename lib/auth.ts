@@ -1,14 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import TwitterProvider from "next-auth/providers/twitter";
 
-interface TwitterProfile {
-  id: string;
-  name: string;
-  username: string;
-  profile_image_url: string;
-  image?: string;
-}
-
 export const authOptions: NextAuthOptions = {
   providers: [
     TwitterProvider({
@@ -21,24 +13,6 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt", // Ensure this is declared explicitly
   },
   callbacks: {
-    async jwt({ token, account, profile }) {
-      console.log("NextAuth JWT callback BEFORE:", token);
-
-      if (account && profile) {
-        const twitterProfile = profile as TwitterProfile;
-
-        // Robust spread to ensure token retains fields on refresh
-        token = {
-          ...token,
-          username: twitterProfile.username || twitterProfile.name,
-          picture: twitterProfile.profile_image_url || twitterProfile.image,
-        };
-      }
-
-      console.log("NextAuth JWT callback AFTER:", token);
-      return token;
-    },
-
     async session({ session, token }) {
       console.log("NextAuth session callback:", { session, token });
 

@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 
 import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
+import { SessionProvider } from "next-auth/react";
 
 const PosthogProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
@@ -15,7 +16,11 @@ const PosthogProvider = ({ children }: { children: React.ReactNode }) => {
     });
   }, []);
 
-  return <PHProvider client={posthog}> {children}</PHProvider>;
+  return (
+    <PHProvider client={posthog}>
+      <SessionProvider>{children}</SessionProvider>
+    </PHProvider>
+  );
 };
 
 export default PosthogProvider;
