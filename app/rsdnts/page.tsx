@@ -97,6 +97,15 @@ function RsdntsContent() {
 
   // Effect to track Twitter login when session becomes available
   useEffect(() => {
+    console.log("Session effect triggered:", {
+      status,
+      hasSession: !!session,
+      userName: session?.user?.name,
+      isAuthenticated: status === "authenticated",
+      loginCaptured: loginCapturedRef.current,
+      posthogAvailable: !!posthog,
+    });
+
     if (
       session?.user?.name &&
       status === "authenticated" &&
@@ -224,6 +233,10 @@ function RsdntsContent() {
               <div className=" mb-8 pt-0 flex flex-col items-center gap-4">
                 <Button
                   onClick={() => {
+                    console.log(
+                      "Login button clicked, PostHog available:",
+                      !!posthog
+                    );
                     posthog?.capture("rsdnts_twitter_login_clicked", {
                       page: "rsdnts_application",
                       timestamp: new Date().toISOString(),
