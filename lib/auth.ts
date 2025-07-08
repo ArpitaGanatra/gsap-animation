@@ -19,8 +19,8 @@ export const authOptions: NextAuthOptions = {
       // Map token fields to session user consistently
       session.user = {
         ...session.user,
-        name: token.username as string,
-        image: token.picture as string,
+        name: session.user?.name,
+        image: session.user?.image,
       };
 
       console.log("NextAuth session returned:", session);
