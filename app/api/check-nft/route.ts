@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Use Alchemy's NFT API for Base network - check if wallet holds NFTs from contract
-    const url = `https://base-mainnet.g.alchemy.com/nft/v2/etQckx9wm2vjy_c98uVQ7nn-6kXG3jgi/isHolderOfContract?wallet=${walletAddress}&contractAddress=${contractAddress}`;
+    const url = `https://base-mainnet.g.alchemy.com/nft/v3/etQckx9wm2vjy_c98uVQ7nn-6kXG3jgi/isHolderOfContract?wallet=${walletAddress}&contractAddress=${contractAddress}`;
 
     console.log(
       `Checking if wallet holds NFTs from contract: ${contractAddress}`

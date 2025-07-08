@@ -475,7 +475,7 @@ function RsdntsContent() {
                   >
                     Mint
                   </Link>
-                  <span>to be eligible</span>
+                  <span> to be eligible</span>
                 </p>
               </div>
 
