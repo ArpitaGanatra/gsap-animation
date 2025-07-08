@@ -6,7 +6,7 @@ import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { useSession, signIn } from "next-auth/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePostHog } from "posthog-js/react";
 import { RiTwitterXLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
@@ -27,6 +27,7 @@ function RsdntsContent() {
     "idle" | "checking" | "hasNFT" | "noNFT" | "error"
   >("idle");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const loginCapturedRef = useRef(false);
 
   const {
     register,
@@ -96,12 +97,18 @@ function RsdntsContent() {
 
   // Effect to track Twitter login when session becomes available
   useEffect(() => {
-    if (session?.user?.name && status === "authenticated") {
+    if (
+      session?.user?.name &&
+      status === "authenticated" &&
+      !loginCapturedRef.current
+    ) {
+      console.log("Capturing Twitter login event for:", session.user.name);
       posthog?.capture("rsdnts_twitter_login_successful", {
         page: "rsdnts_application",
         twitterUsername: session.user.name,
         timestamp: new Date().toISOString(),
       });
+      loginCapturedRef.current = true;
     }
   }, [session, status, posthog]);
 
