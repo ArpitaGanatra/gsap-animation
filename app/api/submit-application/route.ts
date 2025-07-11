@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, telegram, twitter, walletAddress, proofOfWork } =
-      await request.json();
+    const { name, telegram, twitter, proofOfWork } = await request.json();
 
     // Validate required fields
-    if (!name || !telegram || !twitter || !walletAddress || !proofOfWork) {
+    if (!name || !telegram || !twitter || !proofOfWork) {
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
@@ -14,12 +13,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate wallet address format
-    if (!/^0x[a-fA-F0-9]{40}$/.test(walletAddress)) {
-      return NextResponse.json(
-        { error: "Invalid wallet address format" },
-        { status: 400 }
-      );
-    }
+    // if (!/^0x[a-fA-F0-9]{40}$/.test(walletAddress)) {
+    //   return NextResponse.json(
+    //     { error: "Invalid wallet address format" },
+    //     { status: 400 }
+    //   );
+    // }
 
     const airtableApiKey = process.env.NEXT_PUBLIC_AIRTABLE_ACCESS_TOKEN;
     const baseId = process.env.NEXT_PUBLIC_BASE_ID;
@@ -40,7 +39,7 @@ export async function POST(request: NextRequest) {
             name: name,
             telegram: telegram,
             twitter: twitter,
-            wallet_address: walletAddress,
+            // wallet_address: walletAddress,
             pow: proofOfWork,
           },
         },

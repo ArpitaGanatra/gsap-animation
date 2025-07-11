@@ -142,7 +142,7 @@ function RsdntsContent() {
           name: data.name,
           telegram: data.telegram,
           twitter: data.twitter,
-          walletAddress: data.walletAddress,
+          // walletAddress: data.walletAddress,
           proofOfWork: data.proofOfWork,
         }),
       });
@@ -156,13 +156,13 @@ function RsdntsContent() {
       console.log("Application submitted successfully:", result);
 
       // Track successful form submission
-      posthog?.capture("rsdnts_application_submitted", {
-        page: "rsdnts_application",
-        walletAddress: data.walletAddress,
-        hasNFT: true,
-        twitterUsername: session?.user?.name || data.twitter,
-        timestamp: new Date().toISOString(),
-      });
+      // posthog?.capture("rsdnts_application_submitted", {
+      //   page: "rsdnts_application",
+      //   walletAddress: data.walletAddress,
+      //   hasNFT: true,
+      //   twitterUsername: session?.user?.name || data.twitter,
+      //   timestamp: new Date().toISOString(),
+      // });
 
       setIsSubmitted(true);
     } catch (error) {
