@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import React, { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,9 @@ function RsdntsContent() {
   const { status, data: session } = useSession();
   const posthog = usePostHog();
   const router = useRouter();
-  const [nftStatus, setNftStatus] = useState<
-    "idle" | "checking" | "hasNFT" | "noNFT" | "error"
-  >("idle");
+  // const [nftStatus, setNftStatus] = useState<
+  //   "idle" | "checking" | "hasNFT" | "noNFT" | "error"
+  // >("idle");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const loginCapturedRef = useRef(false);
 
@@ -33,7 +33,7 @@ function RsdntsContent() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    watch,
+    // watch,
   } = useForm<ApplicationForm>({
     defaultValues: {
       name: "",
@@ -44,56 +44,56 @@ function RsdntsContent() {
     },
   });
 
-  const walletAddress = watch("walletAddress");
+  // const walletAddress = watch("walletAddress");
 
-  async function checkNFTOwnership(walletAddress: string) {
-    try {
-      console.log(`Checking NFT ownership for wallet: ${walletAddress}`);
+  // async function checkNFTOwnership(walletAddress: string) {
+  //   try {
+  //     console.log(`Checking NFT ownership for wallet: ${walletAddress}`);
 
-      // Call our secure server-side API endpoint
-      const response = await fetch("/api/check-nft", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ walletAddress }),
-      });
+  //     // Call our secure server-side API endpoint
+  //     const response = await fetch("/api/check-nft", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ walletAddress }),
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to check NFT ownership");
-      }
+  //     if (!response.ok) {
+  //       throw new Error(data.error || "Failed to check NFT ownership");
+  //     }
 
-      console.log("NFT check response:", data);
-      return data.hasNFT;
-    } catch (error) {
-      console.error("Error checking NFT ownership:", error);
-      throw error;
-    }
-  }
+  //     console.log("NFT check response:", data);
+  //     return data.hasNFT;
+  //   } catch (error) {
+  //     console.error("Error checking NFT ownership:", error);
+  //     throw error;
+  //   }
+  // }
 
   // Effect to check NFT ownership when wallet address changes
-  useEffect(() => {
-    const checkNFT = async () => {
-      if (!walletAddress || !/^0x[a-fA-F0-9]{40}$/.test(walletAddress)) {
-        setNftStatus("idle");
-        return;
-      }
+  // useEffect(() => {
+  //   const checkNFT = async () => {
+  //     if (!walletAddress || !/^0x[a-fA-F0-9]{40}$/.test(walletAddress)) {
+  //       setNftStatus("idle");
+  //       return;
+  //     }
 
-      setNftStatus("checking");
+  //     setNftStatus("checking");
 
-      try {
-        const hasNFT = await checkNFTOwnership(walletAddress);
-        setNftStatus(hasNFT ? "hasNFT" : "noNFT");
-      } catch {
-        setNftStatus("error");
-      }
-    };
+  //     try {
+  //       const hasNFT = await checkNFTOwnership(walletAddress);
+  //       setNftStatus(hasNFT ? "hasNFT" : "noNFT");
+  //     } catch {
+  //       setNftStatus("error");
+  //     }
+  //   };
 
-    const timeoutId = setTimeout(checkNFT, 1000); // Debounce for 1 second
-    return () => clearTimeout(timeoutId);
-  }, [walletAddress]);
+  //   const timeoutId = setTimeout(checkNFT, 1000); // Debounce for 1 second
+  //   return () => clearTimeout(timeoutId);
+  // }, [walletAddress]);
 
   // Effect to track Twitter login when session becomes available
   useEffect(() => {
@@ -509,7 +509,7 @@ function RsdntsContent() {
                 )}
               </div>
 
-              <div>
+              {/* <div>
                 <label
                   htmlFor="walletAddress"
                   className="block text-lg font-semibold mb-3"
@@ -548,21 +548,21 @@ function RsdntsContent() {
                     Free Mint
                   </Link>
                 </p>
-              </div>
+              </div> */}
 
               <div className="pt-8">
                 <Button
                   type="submit"
                   disabled={
                     isSubmitting ||
-                    nftStatus === "checking" ||
-                    nftStatus === "noNFT" ||
-                    nftStatus === "error" ||
+                    // nftStatus === "checking" ||
+                    // nftStatus === "noNFT" ||
+                    // nftStatus === "error" ||
                     Object.keys(errors).length > 0
                   }
                   className="w-full bg-[#E3D8D1] text-black px-8 py-6 text-xl font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-[#E3D8D1]/80 shadow-2xl shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  {isSubmitting ? (
+                  {/* {isSubmitting ? (
                     "Submitting..."
                   ) : nftStatus === "checking" ? (
                     <span className="flex items-center justify-center">
@@ -575,7 +575,8 @@ function RsdntsContent() {
                     "Error checking NFT"
                   ) : (
                     "Submit Application"
-                  )}
+                  )} */}
+                  {isSubmitting ? "Submitting..." : "Submit Application"}
                 </Button>
               </div>
             </form>
