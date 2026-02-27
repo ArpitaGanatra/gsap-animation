@@ -43,16 +43,14 @@ const Highlights = () => {
   return (
     // <div className="flex flex-col min-h-screen bg-background px-4 py-32 md:py-24">
     <div className="flex flex-col min-h-screen w-full pt-[60px] md:pt-[100px] absolute inset-0  p-1 overflow-y-auto ">
-      <div className="flex flex-col min-h-screen w-full pt-[60px] md:pt-[100px] absolute inset-0  p-1 overflow-y-auto ">
-  {/* CryptoTown Tagline */}
-  <div className="container mx-auto mb-8 px-4">
-    <p className="text-[.8rem]/[1.2rem] md:text-[1rem]/[1.5rem] tracking-[.015em] text-center opacity-70">
-      Conversations with investors managing <strong>$10B+</strong> in AUM
-      <br />
-      Founders building companies valued at <strong>$5B+</strong>
-    </p>
-  </div>
-  <div className="flex flex-wrap gap-8 container mx-auto">
+      {/* CryptoTown Tagline */}
+      <div className="container mx-auto mb-8 px-4">
+        <p className="text-[.8rem]/[1.2rem] md:text-[1rem]/[1.5rem] tracking-[.015em] text-center opacity-70">
+          Conversations with investors managing <strong>$10B+</strong> in AUM
+          <br />
+          Founders building companies valued at <strong>$5B+</strong>
+        </p>
+      </div>
       <div className="flex flex-wrap gap-8 container mx-auto">
         {allHighlights.map((tweetUrl, index) => (
           <div
